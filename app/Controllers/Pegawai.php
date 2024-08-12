@@ -30,7 +30,7 @@ class Pegawai extends BaseController
         ];
         return view('admin-pages/v_tambah_pegawai', $data);
     }
-    
+
     public function save()
     {
         if (!$this->validate([
@@ -66,7 +66,63 @@ class Pegawai extends BaseController
         return redirect()->to('pegawai');
     }
 
-    public function deletepegawai($id_pegawai){
+    public function v_updatepegawai($id_pegawai)
+    {
+        $rpegawai2 = $this->Mpegawai->where(['id_pegawai' => $id_pegawai])->get()->getResult();
+        $data = [
+            'tittle' => 'Pegawai',
+            'rp2' => $rpegawai2
+        ];
+        return view('admin-pages/v_edit_pegawai', $data);
+    }
+
+    public function actedit_updatepegawai($id_pegawai)
+    {
+        if (!$this->validate([
+            'ft' => [
+                'rules' => 'is_image[ft]|mime_in[ft,image/jpg,image/jpeg,image/gif,image/png]|max_size[ft,2048]',
+                'errors' => [
+                    'mime_in' => 'File Extention Harus Berupa jpg,jpeg,gif,png',
+                    'max_size' => 'Ukuran File Maksimal 2 MB'
+                ]
+
+            ]
+        ])) {
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+        }
+
+        $Berkasfoto = $this->request->getFile('ft');
+        $berkass = $this->request->getVar('fl');
+        // cek gambar apakah tetap gambar lama
+        if ($Berkasfoto->getError() == 4) {
+            $filefoto = $this->request->getVar('fl');
+        } else {
+            $filefoto = $Berkasfoto->getName();
+            $Berkasfoto->move('Berkas/foto/', $filefoto);
+            //hapus file yang lama
+            $a = $this->Mpegawai->find($id_pegawai);
+            if ($a['foto'] != 'blank_avatar.png') {
+                unlink('foto/' . $berkass);
+            }
+        }
+
+        $this->Mpegawai->save([
+            'id_pegawai' => $id_pegawai,
+            'nama_pegawai' => $this->request->getVar('nama_pegawai'),
+            'jabatan' => $this->request->getVar('jabatan'),
+            'nohp' => $this->request->getVar('nohp'),
+            'foto' => $filefoto,
+            'username' => $this->request->getVar('username'),
+            'pass' => password_hash($this->request->getVar('pass'), PASSWORD_DEFAULT),
+        ]);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        return redirect()->to('label');
+    }
+
+
+    public function deletepegawai($id_pegawai)
+    {
         //hapus laporan dan foto berdasarkan id
         $berkas = $this->Mpegawai->find($id_pegawai);
         // cek jika file laporannya dan foto default
