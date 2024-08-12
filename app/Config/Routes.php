@@ -17,8 +17,14 @@ $routes->get('/tambah_pegawai', 'Pegawai::insert');
 $routes->get('/tambah_kategori', 'Kategori::insert');
 $routes->get('/tambah_label', 'Label::insert');
 
+//view edit
+$routes->get('/vedit_label/(:num)', 'Label::v_updateLabel/$1');
+
 //action tambah
 $routes->post('/tlabel', 'Label::save');
+//action edit
+$routes->post('/edittlabel/(:segment)', 'Label::actedit_updateLabel/$1');
 
-//hapus
+
+//action hapus
 $routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');

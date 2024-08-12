@@ -56,7 +56,7 @@
                                             <td class="align-middle"><?= $d['nama_label'] ?></td>
                                             <td class="align-middle">
                                                 <form action="<?= base_url(); ?>hapus/<?= $d['id_label']; ?>" method="post">
-                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <a href="<?= base_url(); ?>vedit_label/<?= $d['id_label']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <?= csrf_field() ?>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
