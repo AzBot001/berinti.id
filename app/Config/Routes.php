@@ -12,7 +12,13 @@ $routes->get('/kategori', 'Kategori::index');
 $routes->get('/label', 'Label::index');
 $routes->get('/berita', 'Berita::index');
 
-//tambah data
+//view tambah data
 $routes->get('/tambah_pegawai', 'Pegawai::insert');
 $routes->get('/tambah_kategori', 'Kategori::insert');
 $routes->get('/tambah_label', 'Label::insert');
+
+//action tambah
+$routes->post('/tlabel', 'Label::save');
+
+//hapus
+$routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');

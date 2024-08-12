@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="assets/modules/weather-icon/css/weather-icons.min.css" />
     <link rel="stylesheet" href="assets/modules/weather-icon/css/weather-icons-wind.min.css" />
     <link rel="stylesheet" href="assets/modules/summernote/summernote-bs4.css" />
+    <link rel="stylesheet" href="assets/modules/datatables/datatables.min.css" />
+    <link rel="stylesheet" href="assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css" />
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -152,6 +155,8 @@
     <script src="assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="assets/modules/summernote/summernote-bs4.js"></script>
     <script src="assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+    <script src="assets/modules/datatables/datatables.min.js"></script>
+    <script src="assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script src="assets/js/page/index-0.js"></script>
@@ -159,6 +164,16 @@
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/page/modules-datatables.js"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".alert").fadeTo(600, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 2000);
+        });
+    </script>
 </body>
 
 </html>

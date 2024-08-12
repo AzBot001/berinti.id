@@ -20,7 +20,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="">
+                        <form action="tlabel" method="post">
+                            <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
@@ -31,7 +32,7 @@
                                                     <i class="fas fa-tags"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="nl" class="form-control">
                                         </div>
                                     </div>
                                 </div>

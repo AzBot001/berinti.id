@@ -21,6 +21,22 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <?php if (session()->getFlashdata('pesan')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
+                        <?php if (session()->getFlashdata('hapus')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('hapus'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="tambah_label" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA LABEL</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
@@ -32,36 +48,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">Bupati</td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">2</td>
-                                        <td class="align-middle">Daerah</td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">3</td>
-                                        <td class="align-middle">Walikota</td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($rl as $d) : ?>
+                                        <tr>
+                                            <td class="align-middle"><?= $i++ ?></td>
+                                            <td class="align-middle"><?= $d['nama_label'] ?></td>
+                                            <td class="align-middle">
+                                                <form action="<?= base_url(); ?>hapus/<?= $d['id_label']; ?>" method="post">
+                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <?= csrf_field() ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
