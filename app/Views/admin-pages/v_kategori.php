@@ -21,6 +21,14 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <?php if (session()->getFlashdata('pesan')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="tambah_kategori" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA KATEGORI</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
@@ -33,39 +41,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">Wilayah</td>
-                                        <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">Sub Kategori</button></td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">2</td>
-                                        <td class="align-middle">Olahraga</td>
-                                        <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">Sub Kategori</button></td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">3</td>
-                                        <td class="align-middle">Human Insterest Story</td>
-                                        <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">Sub Kategori</button></td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($rk as $d) :
+                                    ?>
+                                        <tr>
+                                            <td class="align-middle"><?= $i++ ?></td>
+                                            <td class="align-middle"><?= $d['nama_kategori'] ?></td>
+                                            <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#mdl<?= $d['id_kategori'] ?>">Sub Kategori</button></td>
+                                            <td class="align-middle">
+                                                <form action="">
+                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -74,7 +66,10 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+    <?php
+    foreach($rk as $d) :
+    ?>
+    <div class="modal fade" tabindex="-1" role="dialog" id="mdl<?= $d['id_kategori'] ?>">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -86,13 +81,9 @@
                 <div class="modal-body">
                     <table class="table table-striped">
                         <ul class="list-group list">
+                            <?php foreach($rk_s as $dd) : ?>
                             <li class="list-group-item">Provinsi Gorontalo</li>
-                            <li class="list-group-item">Kota Gorontalo</li>
-                            <li class="list-group-item">Kabupaten Gorontalo</li>
-                            <li class="list-group-item">Kabupaten Bone Bolango</li>
-                            <li class="list-group-item">Kabupaten Boalemo</li>
-                            <li class="list-group-item">Kabupaten Pohuwato</li>
-                            <li class="list-group-item">Kabupaten Gorontalo Utara</li>
+                            <?php endforeach; ?>
                         </ul>
                     </table>
                 </div>
@@ -102,6 +93,7 @@
             </div>
         </div>
     </div>
+    <?php endforeach ?>
 </div>
 </div>
 <?= $this->endSection(); ?>

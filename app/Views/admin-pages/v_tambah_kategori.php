@@ -17,24 +17,25 @@
             Halaman untuk menambah data kategori di Berinti.id
         </p>
         <div class="row">
-            <div class="col-6">
+            <div class="col-8">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Tambah Data Kategori</h4>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                    <form action="tkategori" method="post">
+                    <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label>Nama Wartawan</label>
+                                        <label>Nama Kategori</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-bookmark"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="nama_kategori">
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Tambah Data Kategori</h4>

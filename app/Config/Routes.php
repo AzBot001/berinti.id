@@ -23,6 +23,7 @@ $routes->get('/vedit_label/(:num)', 'Label::v_updateLabel/$1');
 //action tambah
 $routes->post('/tlabel', 'Label::save');
 $routes->post('/tpegawai', 'Pegawai::save');
+$routes->post('/tkategori', 'Kategori::save');
 //action edit
 $routes->post('/edittlabel/(:segment)', 'Label::actedit_updateLabel/$1');
 
