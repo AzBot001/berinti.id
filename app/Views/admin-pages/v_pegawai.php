@@ -67,7 +67,7 @@
                                                 <form action="<?= base_url(); ?>hapus_pegawai/<?= $d['id_pegawai']; ?>" method="post">
                                                     <?= csrf_field() ?>
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <a href="vedit_pegawai/<?= $d['id_pegawai']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <button onclick="return confirm('Apakah Anda Yakin?');" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
