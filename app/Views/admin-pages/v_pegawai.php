@@ -29,6 +29,14 @@
                                 </button>
                             </div>
                         <?php endif ?>
+                        <?php if (session()->getFlashdata('hapus')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('hapus'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="tambah_pegawai" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA PEGAWAI</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
