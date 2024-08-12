@@ -21,7 +21,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="tambah_pegawai" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA Pegawai</a>
+                        <?php if (session()->getFlashdata('pesan')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
+                        <a href="tambah_pegawai" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA PEGAWAI</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
                                 <thead>
@@ -35,51 +43,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">Azwar Ramadhan</td>
-                                        <td class="align-middle">Software Developer</td>
-                                        <td class="align-middle">081356311627</td>
-                                        <td class="align-middle">
-                                            <img src="assets/img/avatar/avatar-1.png" class="rounded-circle" width="50" alt="">
-                                        </td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">2</td>
-                                        <td class="align-middle">Azwar Ramadhan</td>
-                                        <td class="align-middle">Software Developer</td>
-                                        <td class="align-middle">081356311627</td>
-                                        <td class="align-middle">
-                                            <img src="assets/img/avatar/avatar-4.png" class="rounded-circle" width="50" alt="">
-                                        </td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">3</td>
-                                        <td class="align-middle">Azwar Ramadhan</td>
-                                        <td class="align-middle">Software Developer</td>
-                                        <td class="align-middle">081356311627</td>
-                                        <td class="align-middle">
-                                            <img src="assets/img/avatar/avatar-3.png" class="rounded-circle" width="50" alt="">
-                                        </td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($rp as $d) :
+                                    ?>
+                                        <tr>
+                                            <td class="align-middle"><?= $i++; ?> </td>
+                                            <td class="align-middle"><?= $d['nama_pegawai'] ?></td>
+                                            <td class="align-middle"><?= $d['jabatan'] ?></td>
+                                            <td class="align-middle"><?= $d['nohp'] ?></td>
+                                            <td class="align-middle">
+                                                <img src="foto/<?= $d['foto'] ?>" class="rounded-circle" width="50" alt="">
+                                            </td>
+                                            <td class="align-middle">
+                                                <form action="<?= base_url(); ?>hapus_pegawai/<?= $d['id_pegawai']; ?>" method="post">
+                                                    <?= csrf_field() ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <button onclick="return confirm('Apakah Anda Yakin?');" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

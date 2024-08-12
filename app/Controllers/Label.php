@@ -36,7 +36,7 @@ class Label extends BaseController
         $this->Mlabel->save([
             'nama_label' => $this->request->getVar('nl'),
         ]);
-        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
         return redirect()->to('label');
     }
 

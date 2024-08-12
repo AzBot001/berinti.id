@@ -42,7 +42,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                                        <a href="label.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+                                        <a href="label" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
                                     </div>
                                 </div>
                             </div>
