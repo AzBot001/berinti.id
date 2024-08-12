@@ -36,7 +36,29 @@ class Label extends BaseController
         $this->Mlabel->save([
             'nama_label' => $this->request->getVar('nl'),
         ]);
-        session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
+        return redirect()->to('label');
+    }
+
+    public function v_updateLabel($id_label)
+    {
+
+        $rlabel2 = $this->Mlabel->where(['id_label' => $id_label])->get()->getResult();
+        $data = [
+            'tittle' => 'Label',
+            'rl2' => $rlabel2
+        ];
+        return view('admin-pages/v_edit_label', $data);
+    }
+
+    public function actedit_updateLabel($id_label)
+    {
+
+        $this->Mlabel->save([
+            'id_label' => $id_label,
+            'nama_label' => $this->request->getVar('nl')
+        ]);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('label');
     }
 

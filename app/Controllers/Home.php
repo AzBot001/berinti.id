@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Mlabel;
 
 class Home extends BaseController
 {
