@@ -59,7 +59,7 @@
                     </div>
                     <div class="card-body">
                         <form action="tsub" method="post">
-                        <?= csrf_field() ?>
+                             <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">

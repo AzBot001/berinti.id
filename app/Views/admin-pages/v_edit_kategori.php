@@ -86,9 +86,10 @@
                                                                     <?= csrf_field() ?>
                                                                     <?php if ($d->id_subkategori != '') : ?>
                                                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mdl2<?= $d->id_subkategori ?>"><i class=" fas fa-edit"></i></button>
-                                                                    <?php endif; ?>
-                                                                    <input type="text" name="ids" value="<?= $d->id_subkategori ?>">
+                                                                    
+                                                                    <input type="hidden" name="ids" value="<?= $d->id_subkategori ?>">
                                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
+                                                                    <?php endif; ?>
                                                                 </form>
                                                             </td>
                                                         </tr>
