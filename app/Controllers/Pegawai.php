@@ -117,7 +117,7 @@ class Pegawai extends BaseController
             'pass' => password_hash($this->request->getVar('pass'), PASSWORD_DEFAULT),
         ]);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('label');
+        return redirect()->to('pegawai');
     }
 
 

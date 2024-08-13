@@ -25,6 +25,7 @@ $routes->get('/vedit_pegawai/(:num)', 'Pegawai::v_updatepegawai/$1');
 $routes->post('/tlabel', 'Label::save');
 $routes->post('/tpegawai', 'Pegawai::save');
 $routes->post('/tkategori', 'Kategori::save');
+$routes->post('/tsub', 'Kategori::save_sub');
 //action edit
 $routes->post('/edittlabel/(:segment)', 'Label::actedit_updateLabel/$1');
 $routes->post('/edittpegawai/(:segment)', 'Pegawai::actedit_updatepegawai/$1');
@@ -34,3 +35,4 @@ $routes->post('/edittpegawai/(:segment)', 'Pegawai::actedit_updatepegawai/$1');
 //action hapus
 $routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');
 $routes->delete('hapus_pegawai/(:num)', 'Pegawai::deletepegawai/$1');
+$routes->delete('hapus_kategori/(:num)', 'Kategori::deletekategori/$1');

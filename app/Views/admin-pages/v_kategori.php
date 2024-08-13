@@ -50,9 +50,10 @@
                                             <td class="align-middle"><?= $d['nama_kategori'] ?></td>
                                             <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#mdl<?= $d['id_kategori'] ?>">Sub Kategori</button></td>
                                             <td class="align-middle">
-                                                <form action="">
+                                                <form action="<?= base_url(); ?>hapus_kategori/<?= $d['id_kategori']; ?>" method="post">
+                                                    <input type="hidden" name="_method" value="DELETE">
                                                     <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" onclick="return confirm('Apakah Anda Yakin ??')"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -67,35 +68,38 @@
         </div>
     </section>
     <?php
-    
-    foreach($rk as $d) :
-        
+    foreach ($rk as $d) :
     ?>
-    <div class="modal fade" tabindex="-1" role="dialog" id="mdl<?= $d['id_kategori'] ?>">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sub Kategori - <?= $d['nama_kategori'] ?></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-striped">
-                        <ul class="list-group list">
-                            <?php foreach($rk_s as $dd ) : ?>
-                            <li class="list-group-item">Provinsi Gorontalo</li>
-                            
-                            <?php endforeach; ?>
-                        </ul>
-                    </table>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal fade" tabindex="-1" role="dialog" id="mdl<?= $d['id_kategori'] ?>">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sub Kategori - <?= $d['nama_kategori'] ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <ul class="list-group list">
+                                <?php
+                                foreach ($rks as $dd) :
+                                    if ($dd->id_kategori == $d['id_kategori']) {
+
+                                ?>
+                                        <li class="list-group-item"><?= $dd->nama_subkategori ?></li>
+                                <?php
+                                    }
+                                endforeach; ?>
+                            </ul>
+                        </table>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <?php endforeach ?>
 </div>
 </div>

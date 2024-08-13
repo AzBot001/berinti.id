@@ -5,28 +5,37 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Mkategori;
+use App\Models\Msubkategori;
 
 class Kategori extends BaseController
 {
     protected $Mkategori;
+    protected $Msubkategori;
     public function __construct()
     {
         $this->Mkategori = new Mkategori();
+        $this->Msubkategori = new Msubkategori();
     }
     public function index()
     {
+        //panggil di tabel
         $rkategori = $this->Mkategori->findAll();
-        
+        $m = $this->Mkategori->where("id_kategori")->first();;
+        $rks = $this->Msubkategori->getAll();
+
         $data = [
             'tittle' => 'Kategori',
             'rk' => $rkategori,
+            'rks' => $rks
         ];
         return view('admin-pages/v_kategori', $data);
     }
     public function insert()
     {
+        $rsub = $this->Mkategori->findAll();
         $data = [
-            'tittle' => 'Kategori'
+            'tittle' => 'Kategori',
+            'rsub' => $rsub
         ];
         return view('admin-pages/v_tambah_kategori', $data);
     }
@@ -38,4 +47,22 @@ class Kategori extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
         return redirect()->to('kategori');
     }
+    public function save_sub()
+    {
+        $this->Msubkategori->save([
+            'id_kategori' => $this->request->getVar('id_kategori'),
+            'nama_subkategori' => $this->request->getVar('nama_subkategori'),
+        ]);
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
+        return redirect()->to('kategori');
+    }
+    public function deletekategori($id_kategori)
+    {
+
+        $this->Mkategori->delete($id_kategori);
+        $this->Msubkategori->delete($id_kategori);
+        session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
+        return redirect()->to(base_url('kategori'));
+    }
+
 }
