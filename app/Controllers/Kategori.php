@@ -16,12 +16,10 @@ class Kategori extends BaseController
     public function index()
     {
         $rkategori = $this->Mkategori->findAll();
-        $db = \Config\Database::connect();
-        $rks = $db->query('SELECT * FROM kategori LEFT JOIN subkategori ON kategori.id_kategori = subkategori.id_kategori;')->getResult();
+        
         $data = [
             'tittle' => 'Kategori',
             'rk' => $rkategori,
-            'rk_s' => $rks
         ];
         return view('admin-pages/v_kategori', $data);
     }

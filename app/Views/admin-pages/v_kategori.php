@@ -67,13 +67,15 @@
         </div>
     </section>
     <?php
+    
     foreach($rk as $d) :
+        
     ?>
     <div class="modal fade" tabindex="-1" role="dialog" id="mdl<?= $d['id_kategori'] ?>">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Sub Kategori - Wilayah</h5>
+                    <h5 class="modal-title">Sub Kategori - <?= $d['nama_kategori'] ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -81,8 +83,9 @@
                 <div class="modal-body">
                     <table class="table table-striped">
                         <ul class="list-group list">
-                            <?php foreach($rk_s as $dd) : ?>
+                            <?php foreach($rk_s as $dd ) : ?>
                             <li class="list-group-item">Provinsi Gorontalo</li>
+                            
                             <?php endforeach; ?>
                         </ul>
                     </table>
