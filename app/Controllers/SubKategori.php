@@ -16,10 +16,9 @@ class SubKategori extends BaseController
         $this->Mkategori = new Mkategori();
         $this->Msubkategori = new Msubkategori();
     }
-    public function deletesubkategori()
-    {
 
-        $id_subkategori = $this->request->getVar('ids');
+    public function deletesub($id_subkategori)
+    {
         $this->Msubkategori->delete($id_subkategori);
         session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
         return redirect()->to(base_url('kategori'));

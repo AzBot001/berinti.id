@@ -73,22 +73,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr class="d-none">
+                                                    <td class="align-middle">s</td>
+                                                    <td class="align-middle">s </td>
+                                                    <td class="align-middle">
+                                                        <form action="<?= base_url(); ?>hapus_sub/15" method="post">
+                                                            <?= csrf_field() ?>
+
+
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
+
+                                                        </form>
+                                                    </td>
+                                                </tr>
                                                 <?php
                                                 $i = 1;
                                                 foreach ($skat as $d) :
                                                     if ($d->id_kategori == $dr->id_kategori) {
                                                 ?>
                                                         <tr>
+
                                                             <td class="align-middle"><?= $i++ ?></td>
-                                                            <td class="align-middle"><?= $d->nama_subkategori ?></td>
+                                                            <td class="align-middle"><?= $d->nama_subkategori ?>
+
+                                                            </td>
                                                             <td class="align-middle">
-                                                                <form action="<?= base_url() ?>hapus_subkategori/<?= $d->id_subkategori ?>" method="post">
+                                                                <form action="<?= base_url(); ?>hapus_sub/<?= $d->id_subkategori; ?>" method="post">
                                                                     <?= csrf_field() ?>
                                                                     <?php if ($d->id_subkategori != '') : ?>
                                                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mdl2<?= $d->id_subkategori ?>"><i class=" fas fa-edit"></i></button>
-                                                                    
-                                                                    <input type="hidden" name="ids" value="<?= $d->id_subkategori ?>">
-                                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
                                                                     <?php endif; ?>
                                                                 </form>
                                                             </td>
