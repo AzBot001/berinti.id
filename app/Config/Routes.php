@@ -20,6 +20,7 @@ $routes->get('/tambah_label', 'Label::insert');
 //view edit
 $routes->get('/vedit_label/(:num)', 'Label::v_updateLabel/$1');
 $routes->get('/vedit_pegawai/(:num)', 'Pegawai::v_updatepegawai/$1');
+$routes->get('/vedit_kategori/(:num)', 'Kategori::v_updatekategori/$1');
 
 //action tambah
 $routes->post('/tlabel', 'Label::save');
@@ -29,6 +30,8 @@ $routes->post('/tsub', 'Kategori::save_sub');
 //action edit
 $routes->post('/edittlabel/(:segment)', 'Label::actedit_updateLabel/$1');
 $routes->post('/edittpegawai/(:segment)', 'Pegawai::actedit_updatepegawai/$1');
+$routes->post('/edittkategori/(:segment)', 'Kategori::actedit_updatekategori/$1');
+$routes->post('/edittsubkategori/(:segment)', 'Kategori::actedit_updatesubkategori/$1');
 
 
 
@@ -36,3 +39,4 @@ $routes->post('/edittpegawai/(:segment)', 'Pegawai::actedit_updatepegawai/$1');
 $routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');
 $routes->delete('hapus_pegawai/(:num)', 'Pegawai::deletepegawai/$1');
 $routes->delete('hapus_kategori/(:num)', 'Kategori::deletekategori/$1');
+$routes->post('hapus_subkategori/(:segment)', 'SubKategori::deletesubkategori/$1');

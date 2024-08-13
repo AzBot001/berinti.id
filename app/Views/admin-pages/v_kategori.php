@@ -52,7 +52,7 @@
                                             <td class="align-middle">
                                                 <form action="<?= base_url(); ?>hapus_kategori/<?= $d['id_kategori']; ?>" method="post">
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <a href="vedit_kategori/<?= $d['id_kategori'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" onclick="return confirm('Apakah Anda Yakin ??')"></i></button>
                                                 </form>
                                             </td>
