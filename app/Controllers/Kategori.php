@@ -5,19 +5,27 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Mkategori;
+use App\Models\Msubkategori;
 
 class Kategori extends BaseController
 {
     protected $Mkategori;
+    protected $Msubkategori;
     public function __construct()
     {
         $this->Mkategori = new Mkategori();
+        $this->Msubkategori = new Msubkategori();
     }
     public function index()
     {
+        $coba = $this->Mkategori->findAll();
+        foreach ($coba as $d) {
+        }
+        //panggil di tabel
         $rkategori = $this->Mkategori->findAll();
-        $db = \Config\Database::connect();
-        $rks = $db->query('SELECT * FROM kategori LEFT JOIN subkategori ON kategori.id_kategori = subkategori.id_kategori;')->getResult();
+        $m = $this->Mkategori->where("id_kategori")->first();;
+        $rks = $this->Msubkategori->getAll();
+
         $data = [
             'tittle' => 'Kategori',
             'rk' => $rkategori,

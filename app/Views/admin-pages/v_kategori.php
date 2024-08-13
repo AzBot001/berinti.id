@@ -67,32 +67,38 @@
         </div>
     </section>
     <?php
-    foreach($rk as $d) :
+    foreach ($rk as $d) :
     ?>
-    <div class="modal fade" tabindex="-1" role="dialog" id="mdl<?= $d['id_kategori'] ?>">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sub Kategori - Wilayah</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-striped">
-                        <ul class="list-group list">
-                            <?php foreach($rk_s as $dd) : ?>
-                            <li class="list-group-item">Provinsi Gorontalo</li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </table>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal fade" tabindex="-1" role="dialog" id="mdl<?= $d['id_kategori'] ?>">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sub Kategori - Wilayah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <ul class="list-group list">
+                                <?php
+                                foreach ($rk_s as $dd) :
+                                    if ($dd->id_kategori == $d['id_kategori']) {
+
+                                ?>
+                                        <li class="list-group-item"><?= $dd->nama_subkategori ?></li>
+                                <?php
+                                    }
+                                endforeach; ?>
+                            </ul>
+                        </table>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <?php endforeach ?>
 </div>
 </div>
