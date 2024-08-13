@@ -51,7 +51,7 @@
                                             <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#mdl<?= $d['id_kategori'] ?>">Sub Kategori</button></td>
                                             <td class="align-middle">
                                                 <form action="">
-                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <a href="vedit_kategori/<?= $d['id_kategori'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
@@ -73,7 +73,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Sub Kategori - Wilayah</h5>
+                        <h5 class="modal-title">Sub Kategori - Nama Kategori</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

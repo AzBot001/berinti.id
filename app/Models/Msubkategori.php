@@ -8,7 +8,7 @@ class Msubkategori extends Model
 {
     protected $table            = 'subkategori';
     protected $primaryKey       = 'id_subkategori';
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_kategori', 'nama_subkategori'];
 
     public function getAll()
     {

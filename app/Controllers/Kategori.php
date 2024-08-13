@@ -48,4 +48,43 @@ class Kategori extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
         return redirect()->to('kategori');
     }
+    public function v_updatekategori($id_kategori)
+    {
+        $skateg = $this->Msubkategori->getAll();
+        $kat = $this->Mkategori->where(['id_kategori' => $id_kategori])->get()->getResult();
+        $data = [
+            'tittle' => 'Kategori',
+            'kateg' => $kat,
+            'skat' => $skateg
+        ];
+        return view('admin-pages/v_edit_kategori', $data);
+    }
+
+    public function actedit_updatekategori($id_kategori)
+    {
+        $this->Mkategori->save([
+            'id_kategori' => $id_kategori,
+            'nama_kategori' => $this->request->getVar('nama_kategori'),
+        ]);
+        session()->setFlashdata('pesan', 'Data Berhasil Diedit');
+        return redirect()->to('kategori');
+    }
+    public function actedit_updatesubkategori($id_subkategori)
+    {
+        $this->Msubkategori->save([
+            'id_subkategori' => $id_subkategori,
+            'id_kategori' => $this->request->getVar('idkategori'),
+            'nama_subkategori' => $this->request->getVar('namasubkategori')
+        ]);
+        session()->setFlashdata('pesan', 'Data Berhasil Diedit');
+        return redirect()->to('kategori');
+    }
+
+    public function deletesubkategori($id_subkategori)
+    {
+
+        $this->Msubkategori->delete($id_subkategori);
+        session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
+        return redirect()->to(base_url('kategori'));
+    }
 }
