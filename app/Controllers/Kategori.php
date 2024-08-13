@@ -96,5 +96,4 @@ class Kategori extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Diedit');
         return redirect()->to('kategori');
     }
-
 }
