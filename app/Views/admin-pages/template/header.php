@@ -165,6 +165,46 @@
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/page/modules-datatables.js"></script>
+    <script
+        src="assets/tinymce/tinymce/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        // Event Read Too
+        $(document).ready(function() {
+            $(this)
+                .contents()
+                .find(".baten")
+                .click(function() {
+                    tinymce.activeEditor.execCommand(
+                        "mceInsertContent",
+                        false,
+                        '<strong class="read__others">Baca Juga: <a href="' +
+                        $(this).attr("data-url") +
+                        '">' +
+                        $(this).attr("data-title") +
+                        "</a></strong>"
+                    );
+                    $("#myModal").modal("hide");
+                });
+        });
+    </script>
+    <script>
+        tinymce.init({
+            selector: "textarea#mytextarea",
+            height: 850,
+            plugins: "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
+            menubar: "file edit view insert format tools table help",
+            toolbar: "undo redo | blocks fontfamily fontsize | readtoo | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview",
+            setup: (editor) => {
+                editor.ui.registry.addButton("readtoo", {
+                    icon: "search",
+                    tooltip: "Baca Juga",
+                    onAction: () => $("#myModal").modal("show"),
+                });
+            },
+            content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:16px }",
+        });
+    </script>
     <script>
         $(document).ready(function() {
             setTimeout(function() {

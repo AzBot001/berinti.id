@@ -16,6 +16,7 @@ $routes->get('/berita', 'Berita::index');
 $routes->get('/tambah_pegawai', 'Pegawai::v_tambah_pegawai');
 $routes->get('/tambah_kategori', 'Kategori::insert');
 $routes->get('/tambah_label', 'Label::insert');
+$routes->get('/vtambah_berita', 'Berita::v_tambahberita');
 
 //view edit
 $routes->get('/vedit_label/(:num)', 'Label::v_updateLabel/$1');

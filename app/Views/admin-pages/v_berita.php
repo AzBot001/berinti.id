@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="tambah_berita.html" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA BERITA</a>
+                        <a href="vtambah_berita" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA BERITA</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
                                 <thead>
