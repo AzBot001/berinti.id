@@ -16,7 +16,7 @@
         <p class="section-lead">
             Halaman untuk menambah berita di Berinti.id
         </p>
-        <form action="">
+        <form action="tberita" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-7">
                     <div class="card">
@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
-                                        <label>Nama Wartawan</label>
+                                        <label>Judul Berita</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -33,6 +33,7 @@
                                             </div>
                                             <input
                                                 type="text"
+                                                name="judul"
                                                 class="form-control judul"
                                                 placeholder="Judul Berita" />
                                         </div>
@@ -41,7 +42,7 @@
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Isi Berita</label>
-                                        <textarea id="mytextarea"></textarea>
+                                        <textarea id="mytextarea" name="isi"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -65,6 +66,7 @@
                                             </div>
                                             <input
                                                 type="file"
+                                                name="thumb"
                                                 class="form-control judul" />
                                         </div>
                                     </div>
@@ -78,6 +80,7 @@
                                             </div>
                                             <input
                                                 type="text"
+                                                name="capt"
                                                 class="form-control judul"
                                                 placeholder="Caption Gambar" />
                                         </div>
@@ -90,14 +93,14 @@
                                                     <i class="fas fa-bookmark"></i>
                                                 </div>
                                             </div>
-                                            <select name="" class="form-control" id="">
+                                            <select name="kateg" class="form-control" id="">
                                                 <option value="" hidden>-Pilih Kategori-</option>
                                                 <?php foreach ($kat as $kd): ?>
                                                     <optgroup label="<?= $kd['nama_kategori'] ?>">
                                                         <?php foreach ($subkat as $sd):
                                                             if ($kd['id_kategori'] == $sd->id_kategori) {
                                                         ?>
-                                                                <option value=""><?= $sd->nama_subkategori ?></option>
+                                                                <option value="<?= $sd->id_subkategori ?>"><?= $sd->nama_subkategori ?></option>
                                                         <?php
                                                             }
                                                         endforeach; ?>
@@ -111,17 +114,26 @@
                                         <div class="selectgroup selectgroup-pills">
                                             <?php foreach ($label as $ld): ?>
                                                 <label class="selectgroup-item">
-                                                    <input type="checkbox" name="value" value="HTML" class="selectgroup-input">
+                                                    <input type="checkbox" name="label[]" value="<?= $ld['id_label'] ?>" class="selectgroup-input">
                                                     <span class="selectgroup-button"><?= $ld['nama_label'] ?></span>
                                                 </label>
                                             <?php endforeach; ?>
                                         </div>
+                                        <?php foreach ($peg as $pd): ?>
+                                            <label class="selectgroup-item">
+                                                <input type="hidden" name="peg" value="<?= $pd['id_pegawai'] ?>" class="selectgroup-input">
+                                            </label>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-sm-12 col-12">
+                    <button class="btn btn-primary col-12" type="submit">Simpan</button>
+                </div>
+            </div>
         </form>
     </section>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -159,5 +171,4 @@
             </div>
         </div>
     </div>
-</div>
-<?= $this->endSection(); ?>
+    <?= $this->endSection(); ?>
