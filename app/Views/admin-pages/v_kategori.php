@@ -51,6 +51,19 @@
                                             <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#mdl<?= $d['id_kategori'] ?>">Sub Kategori</button></td>
                                             <td class="align-middle">
                                                 <form action="<?= base_url(); ?>hapus_kategori/<?= $d['id_kategori']; ?>" method="post">
+                                                    <?php
+                                                    foreach ($ber as $bd) {
+
+                                                        foreach ($rks as $dd) {
+                                                    ?>
+                                                            <?php
+                                                            if ($dd->id_kategori == $d['id_kategori']) {
+                                                                if ($dd->id_subkategori == $bd->id_subkategori) { ?>
+                                                                    <input type="text" value="<?= $bd->id_berita ?>" name="id_berita">
+                                                    <?php }
+                                                            }
+                                                        }
+                                                    } ?>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <a href="vedit_kategori/<?= $d['id_kategori'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" onclick="return confirm('Apakah Anda Yakin ??')"></i></button>
@@ -67,6 +80,7 @@
             </div>
         </div>
     </section>
+
     <?php
     foreach ($rk as $d) :
     ?>
@@ -85,10 +99,11 @@
                                 <?php
                                 foreach ($rks as $dd) :
                                     if ($dd->id_kategori == $d['id_kategori']) {
-
                                 ?>
-                                        <li class="list-group-item"><?= $dd->nama_subkategori ?></li>
+                                        <li class="list-group-item"><?= $dd->nama_subkategori ?> ||
+                                        </li>
                                 <?php
+
                                     }
                                 endforeach; ?>
                             </ul>

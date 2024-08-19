@@ -50,7 +50,7 @@
                                 <tbody>
                                     <?php
                                     $i = 1;
-                                    foreach ($rl as $d) : 
+                                    foreach ($rl as $d) :
                                     ?>
                                         <tr>
                                             <td class="align-middle"><?= $i++ ?></td>

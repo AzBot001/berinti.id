@@ -146,7 +146,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table-1">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -156,11 +156,15 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>aab</td>
-                                <td><button class="btn btn-primary baten" data-title="a" data-url="google.com">Pilih</button></td>
-                            </tr>
+                            <?php
+                            $i = 1;
+                            foreach ($ber as $bd):  ?>
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $bd->judul ?></td>
+                                    <td><button class="btn btn-primary baten" data-title="<?= $bd->judul ?>" data-url="<?= $bd->slug ?>">Pilih</button></td>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>

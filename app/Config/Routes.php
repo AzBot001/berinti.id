@@ -45,3 +45,4 @@ $routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');
 $routes->delete('hapus_pegawai/(:num)', 'Pegawai::deletepegawai/$1');
 $routes->delete('hapus_kategori/(:num)', 'Kategori::deletekategori/$1');
 $routes->delete('hapus_sub/(:num)', 'SubKategori::deletesub/$1');
+$routes->delete('hapus_ber/(:num)', 'Berita::deleteber/$1');

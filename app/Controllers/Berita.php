@@ -31,11 +31,13 @@ class Berita extends BaseController
     public function index()
     {
         $berita_label = $this->MberitaLabel->getAll();
-        $berita = $this->Mberita->getAll();
+        $berita = $this->Mberita->findAll();
+        $beritajoin = $this->Mberita->getAll();
         $data = [
             'tittle' => 'Berita',
             'ber' => $berita,
-            'lb' => $berita_label
+            'lb' => $berita_label,
+            'berjoin' => $beritajoin
         ];
         return view('admin-pages/v_berita', $data);
     }
@@ -43,6 +45,7 @@ class Berita extends BaseController
     public function v_tambahberita()
     {
         $kategori = $this->Mkategori->findAll();
+        $berita = $this->Mberita->findAll();
         $pegawai = $this->Mpegawai->findAll();
         $subkateg = $this->Msubkategori->getAll();
         $label = $this->Mlabel->findAll();
@@ -52,6 +55,8 @@ class Berita extends BaseController
             'subkat' => $subkateg,
             'peg' => $pegawai,
             'label' => $label,
+            'ber' => $berita,
+
         ];
         return view('admin-pages/v_tambah_berita', $data);
     }
@@ -179,5 +184,16 @@ class Berita extends BaseController
 
         session()->setFlashdata('pesan', 'Data Berhasil Diedit');
         return redirect()->to('berita');
+    }
+    public function deleteber($id_berita)
+    {
+        $this->Mberita->delete($id_berita);
+        $id_bl = $this->request->getVar('id');
+        $jml = count($id_bl);
+        for ($i = 0; $i < $jml; $i++) {
+            $this->MberitaLabel->delete($id_bl[$i]);
+        }
+        session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
+        return redirect()->to(base_url('berita'));
     }
 }
