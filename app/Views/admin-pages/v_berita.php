@@ -33,6 +33,14 @@ function merubah_tanggal($tgl)
                 </div>
                 <div class="breadcrumb-item">Data Berita</div>
             </div>
+            <?php if (session()->getFlashdata('pesanlogout')) : ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif ?>
         </div>
         <h2 class="section-title">Data Berita</h2>
         <p class="section-lead">
@@ -70,7 +78,6 @@ function merubah_tanggal($tgl)
                                         <th>Kategori</th>
                                         <th>Tanggal Upload</th>
                                         <th>Jumlah Views</th>
-                                        <th>Label</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -100,17 +107,7 @@ function merubah_tanggal($tgl)
                                             <td class="align-middle"><?= merubah_tanggal($bd['tgl_upload']) ?></td>
                                             <td class="align-middle"><?= $bd['jumlah_view'] ?></td>
                                             <td class="align-middle">
-                                                <?php foreach ($lb as $ld):
-                                                    if ($bd['id_berita'] == $ld->id_berita) {
-                                                ?>
-                                                        <span class="badge badge-warning"><?= $ld->nama_label ?> </span>
-                                                <?php
-                                                    }
-                                                endforeach; ?>
-                                            </td>
-                                            <td class="align-middle">
                                                 <form action="hapus_ber/<?= $bd['id_berita'] ?>" method="post">
-                                                    <a href="" class="btn btn-info btn-sm"><i class="fas fa-search"></i> Detail</a>
                                                     <?php foreach ($lb as $lds):
                                                         if ($bd['id_berita'] == $lds->id_berita) {
                                                     ?>

@@ -21,28 +21,39 @@ class Kategori extends BaseController
     }
     public function index()
     {
-        //panggil di tabel
-        $berita = $this->Mberita->getAll();
-        $rkategori = $this->Mkategori->findAll();
-        $m = $this->Mkategori->where("id_kategori")->first();;
-        $rks = $this->Msubkategori->getAll();
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            //panggil di tabel
+            $berita = $this->Mberita->getAll();
+            $rkategori = $this->Mkategori->findAll();
+            $m = $this->Mkategori->where("id_kategori")->first();;
+            $rks = $this->Msubkategori->getAll();
 
-        $data = [
-            'tittle' => 'Kategori',
-            'rk' => $rkategori,
-            'rks' => $rks,
-            'ber' => $berita
-        ];
-        return view('admin-pages/v_kategori', $data);
+            $data = [
+                'tittle' => 'Kategori',
+                'rk' => $rkategori,
+                'rks' => $rks,
+                'ber' => $berita
+            ];
+            return view('admin-pages/v_kategori', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
     public function insert()
     {
-        $rsub = $this->Mkategori->findAll();
-        $data = [
-            'tittle' => 'Kategori',
-            'rsub' => $rsub
-        ];
-        return view('admin-pages/v_tambah_kategori', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+
+            $rsub = $this->Mkategori->findAll();
+            $data = [
+                'tittle' => 'Kategori',
+                'rsub' => $rsub
+            ];
+            return view('admin-pages/v_tambah_kategori', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
     public function save()
     {
@@ -81,14 +92,20 @@ class Kategori extends BaseController
 
     public function v_updatekategori($id_kategori)
     {
-        $skateg = $this->Msubkategori->where('id_kategori', $id_kategori)->get()->getResult();
-        $kat = $this->Mkategori->where('id_kategori', $id_kategori)->get()->getResult();
-        $data = [
-            'tittle' => 'Kategori',
-            'kateg' => $kat,
-            'skat' => $skateg
-        ];
-        return view('admin-pages/v_edit_kategori', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+
+            $skateg = $this->Msubkategori->where('id_kategori', $id_kategori)->get()->getResult();
+            $kat = $this->Mkategori->where('id_kategori', $id_kategori)->get()->getResult();
+            $data = [
+                'tittle' => 'Kategori',
+                'kateg' => $kat,
+                'skat' => $skateg
+            ];
+            return view('admin-pages/v_edit_kategori', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function actedit_updatekategori($id_kategori)

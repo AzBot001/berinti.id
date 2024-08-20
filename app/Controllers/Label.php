@@ -12,24 +12,35 @@ class Label extends BaseController
     protected $Mlabel;
     public function __construct()
     {
+
         $this->Mlabel = new Mlabel();
     }
     public function index()
     {
-        $rlabel = $this->Mlabel->findAll();
-        $data = [
-            'tittle' => 'Label',
-            'rl' => $rlabel
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            $rlabel = $this->Mlabel->findAll();
+            $data = [
+                'tittle' => 'Label',
+                'rl' => $rlabel
 
-        ];
-        return view('admin-pages/v_label', $data);
+            ];
+            return view('admin-pages/v_label', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
     public function insert()
     {
-        $data = [
-            'tittle' => 'Label'
-        ];
-        return view('admin-pages/v_tambah_label', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            $data = [
+                'tittle' => 'Label'
+            ];
+            return view('admin-pages/v_tambah_label', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
     public function save()
     {
@@ -42,13 +53,18 @@ class Label extends BaseController
 
     public function v_updateLabel($id_label)
     {
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
 
-        $rlabel2 = $this->Mlabel->where(['id_label' => $id_label])->get()->getResult();
-        $data = [
-            'tittle' => 'Label',
-            'rl2' => $rlabel2
-        ];
-        return view('admin-pages/v_edit_label', $data);
+            $rlabel2 = $this->Mlabel->where(['id_label' => $id_label])->get()->getResult();
+            $data = [
+                'tittle' => 'Label',
+                'rl2' => $rlabel2
+            ];
+            return view('admin-pages/v_edit_label', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function actedit_updateLabel($id_label)

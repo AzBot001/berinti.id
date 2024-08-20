@@ -6,6 +6,22 @@
         <div class="section-header">
             <h1>Dashboard</h1>
         </div>
+        <?php if (session()->getFlashdata('pesanlogin')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogin'); ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif ?>
+        <?php if (session()->getFlashdata('pesanlogout')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif ?>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">

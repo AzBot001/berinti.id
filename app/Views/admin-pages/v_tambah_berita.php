@@ -119,11 +119,7 @@
                                                 </label>
                                             <?php endforeach; ?>
                                         </div>
-                                        <?php foreach ($peg as $pd): ?>
-                                            <label class="selectgroup-item">
-                                                <input type="hidden" name="peg" value="<?= $pd['id_pegawai'] ?>" class="selectgroup-input">
-                                            </label>
-                                        <?php endforeach; ?>
+                                        <input type="hidden" name="peg" value="<?= session()->get('id_pegawai') ?>" class="">
                                     </div>
                                 </div>
                             </div>

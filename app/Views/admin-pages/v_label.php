@@ -11,6 +11,14 @@
                 </div>
                 <div class="breadcrumb-item">Data Label</div>
             </div>
+            <?php if (session()->getFlashdata('pesanlogout')) : ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif ?>
         </div>
         <h2 class="section-title">Data Label</h2>
         <p class="section-lead">

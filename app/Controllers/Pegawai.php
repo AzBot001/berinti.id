@@ -15,20 +15,30 @@ class Pegawai extends BaseController
     }
     public function index()
     {
-        $rpegawai = $this->Mpegawai->findAll();
-        $data = [
-            'tittle' => 'Pegawai',
-            'rp' => $rpegawai
-        ];
-        return view('admin-pages/v_pegawai', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            $rpegawai = $this->Mpegawai->findAll();
+            $data = [
+                'tittle' => 'Pegawai',
+                'rp' => $rpegawai
+            ];
+            return view('admin-pages/v_pegawai', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function v_tambah_pegawai()
     {
-        $data = [
-            'tittle' => 'Pegawai'
-        ];
-        return view('admin-pages/v_tambah_pegawai', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            $data = [
+                'tittle' => 'Pegawai'
+            ];
+            return view('admin-pages/v_tambah_pegawai', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function save()
@@ -68,12 +78,18 @@ class Pegawai extends BaseController
 
     public function v_updatepegawai($id_pegawai)
     {
-        $rpegawai2 = $this->Mpegawai->where(['id_pegawai' => $id_pegawai])->get()->getResult();
-        $data = [
-            'tittle' => 'Pegawai',
-            'rp2' => $rpegawai2
-        ];
-        return view('admin-pages/v_edit_pegawai', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+
+            $rpegawai2 = $this->Mpegawai->where(['id_pegawai' => $id_pegawai])->get()->getResult();
+            $data = [
+                'tittle' => 'Pegawai',
+                'rp2' => $rpegawai2
+            ];
+            return view('admin-pages/v_edit_pegawai', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function actedit_updatepegawai($id_pegawai)

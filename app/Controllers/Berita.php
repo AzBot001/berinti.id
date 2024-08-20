@@ -30,35 +30,46 @@ class Berita extends BaseController
     }
     public function index()
     {
-        $berita_label = $this->MberitaLabel->getAll();
-        $berita = $this->Mberita->findAll();
-        $beritajoin = $this->Mberita->getAll();
-        $data = [
-            'tittle' => 'Berita',
-            'ber' => $berita,
-            'lb' => $berita_label,
-            'berjoin' => $beritajoin
-        ];
-        return view('admin-pages/v_berita', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            $berita_label = $this->MberitaLabel->getAll();
+            $berita = $this->Mberita->findAll();
+            $beritajoin = $this->Mberita->getAll();
+            $data = [
+                'tittle' => 'Berita',
+                'ber' => $berita,
+                'lb' => $berita_label,
+                'berjoin' => $beritajoin
+            ];
+            return view('admin-pages/v_berita', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function v_tambahberita()
     {
-        $kategori = $this->Mkategori->findAll();
-        $berita = $this->Mberita->getAll();
-        $pegawai = $this->Mpegawai->findAll();
-        $subkateg = $this->Msubkategori->getAll();
-        $label = $this->Mlabel->findAll();
-        $data = [
-            'tittle' => 'Berita',
-            'kat' => $kategori,
-            'subkat' => $subkateg,
-            'peg' => $pegawai,
-            'label' => $label,
-            'ber' => $berita,
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
 
-        ];
-        return view('admin-pages/v_tambah_berita', $data);
+            $kategori = $this->Mkategori->findAll();
+            $berita = $this->Mberita->getAll();
+            $pegawai = $this->Mpegawai->findAll();
+            $subkateg = $this->Msubkategori->getAll();
+            $label = $this->Mlabel->findAll();
+            $data = [
+                'tittle' => 'Berita',
+                'kat' => $kategori,
+                'subkat' => $subkateg,
+                'peg' => $pegawai,
+                'label' => $label,
+                'ber' => $berita,
+
+            ];
+            return view('admin-pages/v_tambah_berita', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function save_berita()
@@ -112,22 +123,27 @@ class Berita extends BaseController
 
     public function v_updateberita($id_berita)
     {
-        $berita_label = $this->MberitaLabel->getAll();
-        $berita = $this->Mberita->where(['id_berita' => $id_berita])->get()->getResult();
-        $kategori = $this->Mkategori->findAll();
-        $pegawai = $this->Mpegawai->findAll();
-        $subkateg = $this->Msubkategori->getAll();
-        $label = $this->Mlabel->findAll();
-        $data = [
-            'tittle' => 'Berita',
-            'kat' => $kategori,
-            'subkat' => $subkateg,
-            'peg' => $pegawai,
-            'label' => $label,
-            'ber' => $berita,
-            'lb' => $berita_label
-        ];
-        return view('admin-pages/v_edit_berita', $data);
+        if (session()->has('logged_in') and session()->get('logged_in') == true) {
+            $berita_label = $this->MberitaLabel->getAll();
+            $berita = $this->Mberita->where(['id_berita' => $id_berita])->get()->getResult();
+            $kategori = $this->Mkategori->findAll();
+            $pegawai = $this->Mpegawai->findAll();
+            $subkateg = $this->Msubkategori->getAll();
+            $label = $this->Mlabel->findAll();
+            $data = [
+                'tittle' => 'Berita',
+                'kat' => $kategori,
+                'subkat' => $subkateg,
+                'peg' => $pegawai,
+                'label' => $label,
+                'ber' => $berita,
+                'lb' => $berita_label
+            ];
+            return view('admin-pages/v_edit_berita', $data);
+        } else {
+            session()->setFlashdata('pesanlogin', 'Anda Harus Login');
+            return redirect()->to(base_url('login_admin'));
+        }
     }
 
     public function actedit_updateberita($id_berita)
