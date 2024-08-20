@@ -58,6 +58,14 @@
                     <div class="card-header">
                         <h4 class="card-title">Tambah Data Kategori</h4>
                     </div>
+                    <?php if (session()->getFlashdata('gagalhapus')) : ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('gagalhapus'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif ?>
                     <div class="card-body">
                         <form action="">
                             <div class="row">
@@ -90,28 +98,26 @@
                                                 <?php
                                                 $i = 1;
                                                 foreach ($skat as $d) :
-                                                    if ($d->id_kategori == $dr->id_kategori) {
+
                                                 ?>
-                                                        <tr>
+                                                    <tr>
 
-                                                            <td class="align-middle"><?= $i++ ?></td>
-                                                            <td class="align-middle"><?= $d->nama_subkategori ?>
+                                                        <td class="align-middle"><?= $i++ ?></td>
+                                                        <td class="align-middle"><?= $d->nama_subkategori ?>
 
-                                                            </td>
-                                                            <td class="align-middle">
-                                                                <form action="<?= base_url(); ?>hapus_sub/<?= $d->id_subkategori; ?>" method="post">
-                                                                    <?= csrf_field() ?>
-                                                                    <?php if ($d->id_subkategori != '') : ?>
-                                                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mdl2<?= $d->id_subkategori ?>"><i class=" fas fa-edit"></i></button>
-                                                                        <input type="hidden" name="_method" value="DELETE">
-                                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
-                                                                    <?php endif; ?>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <form action="<?= base_url(); ?>hapus_sub/<?= $d->id_subkategori; ?>" method="post">
+                                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mdl2<?= $d->id_subkategori ?>"><i class=" fas fa-edit"></i></button>
+                                                                <?= csrf_field() ?>
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ??')"><i class="fas fa-trash"></i></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
 
                                                 <?php
-                                                    }
+
                                                 endforeach; ?>
                                             </tbody>
                                         </table>

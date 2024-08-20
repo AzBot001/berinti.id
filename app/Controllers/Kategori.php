@@ -50,7 +50,7 @@ class Kategori extends BaseController
             'nama_kategori' => $this->request->getVar('nama_kategori'),
         ]);
         session()->setFlashdata('pesan', 'Data Berhasil Ditambah');
-        return redirect()->to('kategori');
+        return redirect()->to('tambah_kategori');
     }
     public function save_sub()
     {
@@ -63,21 +63,26 @@ class Kategori extends BaseController
     }
     public function deletekategori($id_kategori)
     {
-        $id_berita = $this->request->getVar('id_berita');
-        $this->Mberita->save([
-            'id_berita' => $id_berita,
-            'id_subkategori' => 0
-        ]);
-        $this->Mkategori->delete($id_kategori);
-        $this->Msubkategori->delete($id_kategori);
-        session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
-        return redirect()->to(base_url('kategori'));
+        // $id_berita = $this->request->getVar('id_berita');
+
+        $idsubkategori = $this->request->getVar('id_sub');
+        $berita = $this->Mberita->whereIn('id_subkategori', $idsubkategori)->first();
+
+        if ($berita) {
+            session()->setFlashdata('gagalhapus', 'Data Tidak Bisa Dihapus');
+            return redirect()->to(base_url('kategori'));
+        } else {
+            $this->Msubkategori->deletesubkategori($id_kategori);
+            $this->Mkategori->delete($id_kategori);
+            session()->setFlashdata('berhasilhapus', 'Berkas Berhasil Dihapus');
+            return redirect()->to(base_url('kategori'));
+        }
     }
 
     public function v_updatekategori($id_kategori)
     {
-        $skateg = $this->Msubkategori->getAll();
-        $kat = $this->Mkategori->where(['id_kategori' => $id_kategori])->get()->getResult();
+        $skateg = $this->Msubkategori->where('id_kategori', $id_kategori)->get()->getResult();
+        $kat = $this->Mkategori->where('id_kategori', $id_kategori)->get()->getResult();
         $data = [
             'tittle' => 'Kategori',
             'kateg' => $kat,

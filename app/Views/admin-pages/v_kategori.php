@@ -29,6 +29,22 @@
                                 </button>
                             </div>
                         <?php endif ?>
+                        <?php if (session()->getFlashdata('gagalhapus')) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('gagalhapus'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
+                        <?php if (session()->getFlashdata('berhasilhapus')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('berhasilhapus'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="tambah_kategori" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA KATEGORI</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
@@ -52,16 +68,12 @@
                                             <td class="align-middle">
                                                 <form action="<?= base_url(); ?>hapus_kategori/<?= $d['id_kategori']; ?>" method="post">
                                                     <?php
-                                                    foreach ($ber as $bd) {
-
-                                                        foreach ($rks as $dd) {
+                                                    foreach ($rks as $sd) {
+                                                        if ($d['id_kategori'] == $sd->id_kategori) {
                                                     ?>
-                                                            <?php
-                                                            if ($dd->id_kategori == $d['id_kategori']) {
-                                                                if ($dd->id_subkategori == $bd->id_subkategori) { ?>
-                                                                    <input type="text" value="<?= $bd->id_berita ?>" name="id_berita">
-                                                    <?php }
-                                                            }
+
+                                                            <input type="hidden" value="<?= $sd->id_subkategori ?>" name="id_sub[]">
+                                                    <?php
                                                         }
                                                     } ?>
                                                     <input type="hidden" name="_method" value="DELETE">
@@ -100,7 +112,7 @@
                                 foreach ($rks as $dd) :
                                     if ($dd->id_kategori == $d['id_kategori']) {
                                 ?>
-                                        <li class="list-group-item"><?= $dd->nama_subkategori ?> ||
+                                        <li class="list-group-item"><?= $dd->nama_subkategori ?>
                                         </li>
                                 <?php
 

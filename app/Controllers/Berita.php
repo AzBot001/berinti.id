@@ -45,7 +45,7 @@ class Berita extends BaseController
     public function v_tambahberita()
     {
         $kategori = $this->Mkategori->findAll();
-        $berita = $this->Mberita->findAll();
+        $berita = $this->Mberita->getAll();
         $pegawai = $this->Mpegawai->findAll();
         $subkateg = $this->Msubkategori->getAll();
         $label = $this->Mlabel->findAll();
