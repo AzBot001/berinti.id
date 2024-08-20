@@ -16,6 +16,14 @@
         <p class="section-lead">
             Halaman untuk menambah data kategori di Berinti.id
         </p>
+        <?php if (session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif ?>
         <div class="row">
             <div class="col-8">
                 <div class="card">
@@ -23,8 +31,8 @@
                         <h4 class="card-title">Tambah Data Kategori</h4>
                     </div>
                     <div class="card-body">
-                    <form action="tkategori" method="post">
-                    <?= csrf_field() ?>
+                        <form action="tkategori" method="post">
+                            <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
@@ -59,7 +67,7 @@
                     </div>
                     <div class="card-body">
                         <form action="tsub" method="post">
-                             <?= csrf_field() ?>
+                            <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
@@ -72,8 +80,8 @@
                                             </div>
                                             <select name="id_kategori" id="" class="form-control">
                                                 <option value="" hidden>-Pilih Katgori-</option>
-                                                <?php  foreach ($rsub as $d) : ?>
-                                                <option value="<?= $d['id_kategori'] ?>"><?= $d['nama_kategori'] ?></option>
+                                                <?php foreach ($rsub as $d) : ?>
+                                                    <option value="<?= $d['id_kategori'] ?>"><?= $d['nama_kategori'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

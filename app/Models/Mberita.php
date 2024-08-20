@@ -22,4 +22,5 @@ class Mberita extends Model
     {
         return $this->db->insertID();
     }
+    public function cekrow() {}
 }
