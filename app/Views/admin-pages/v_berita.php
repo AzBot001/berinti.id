@@ -1,6 +1,28 @@
 <?= $this->extend('admin-pages/template/header'); ?>
 
 <?= $this->section('content'); ?>
+<?php
+function merubah_tanggal($tgl)
+{
+    $bulan = array(
+        1 => 'januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $pecahkan = explode('-', $tgl);
+    return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+}
+
+?>
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -21,6 +43,22 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <?php if (session()->getFlashdata('pesan')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
+                        <?php if (session()->getFlashdata('hapus')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('hapus'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="vtambah_berita" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA BERITA</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
@@ -37,54 +75,56 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">TIM RRQ berhasil menjuarai Point Blank</td>
-                                        <td class="align-middle">Azwar Ramadhan</td>
-                                        <td class="align-middle">Esport</td>
-                                        <td class="align-middle">29 November 2024</td>
-                                        <td class="align-middle">23</td>
-                                        <td class="align-middle"><span class="badge badge-warning">Daerah</span> <span class="badge badge-warning">Kabupaten</span></td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-info btn-sm"><i class="fas fa-search"></i> Detail</a>
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">TIM RRQ berhasil menjuarai Point Blank</td>
-                                        <td class="align-middle">Azwar Ramadhan</td>
-                                        <td class="align-middle">Esport</td>
-                                        <td class="align-middle">29 November 2024</td>
-                                        <td class="align-middle">23</td>
-                                        <td class="align-middle"><span class="badge badge-warning">Daerah</span> <span class="badge badge-warning">Kabupaten</span></td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-info btn-sm"><i class="fas fa-search"></i> Detail</a>
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">TIM RRQ berhasil menjuarai Point Blank</td>
-                                        <td class="align-middle">Azwar Ramadhan</td>
-                                        <td class="align-middle">Esport</td>
-                                        <td class="align-middle">29 November 2024</td>
-                                        <td class="align-middle">23</td>
-                                        <td class="align-middle"><span class="badge badge-warning">Daerah</span> <span class="badge badge-warning">Kabupaten</span></td>
-                                        <td class="align-middle">
-                                            <form action="">
-                                                <a href="" class="btn btn-info btn-sm"><i class="fas fa-search"></i> Detail</a>
-                                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($ber as $bd):
+                                    ?>
+                                        <tr>
+                                            <td class="align-middle"><?= $i++ ?></td>
+                                            <td class="align-middle"><?= $bd['judul'] ?></td>
+
+                                            <td class="align-middle">
+                                                <?php foreach ($berjoin as $bj): ?>
+                                                    <?= $bj->nama_pegawai ?>
+                                                <?php endforeach; ?>
+
+                                            </td>
+                                            <td class="align-middle">
+                                                <?php if ($bj->id_subkategori != 0) { ?>
+                                                    <?= $bj->nama_subkategori ?>
+                                                <?php } else {
+                                                    echo 'lainnya';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td class="align-middle"><?= merubah_tanggal($bd['tgl_upload']) ?></td>
+                                            <td class="align-middle"><?= $bd['jumlah_view'] ?></td>
+                                            <td class="align-middle">
+                                                <?php foreach ($lb as $ld):
+                                                    if ($bd['id_berita'] == $ld->id_berita) {
+                                                ?>
+                                                        <span class="badge badge-warning"><?= $ld->nama_label ?> </span>
+                                                <?php
+                                                    }
+                                                endforeach; ?>
+                                            </td>
+                                            <td class="align-middle">
+                                                <form action="hapus_ber/<?= $bd['id_berita'] ?>" method="post">
+                                                    <a href="" class="btn btn-info btn-sm"><i class="fas fa-search"></i> Detail</a>
+                                                    <?php foreach ($lb as $lds):
+                                                        if ($bd['id_berita'] == $lds->id_berita) {
+                                                    ?>
+                                                            <input type="hidden" name="id[]" value="<?= $lds->id ?>">
+                                                    <?php }
+                                                    endforeach ?>
+                                                    <a href="vedit_berita/<?= $bd['id_berita'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    endforeach ?>
                                 </tbody>
                             </table>
                         </div>

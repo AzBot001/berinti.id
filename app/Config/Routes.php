@@ -22,17 +22,21 @@ $routes->get('/vtambah_berita', 'Berita::v_tambahberita');
 $routes->get('/vedit_label/(:num)', 'Label::v_updateLabel/$1');
 $routes->get('/vedit_pegawai/(:num)', 'Pegawai::v_updatepegawai/$1');
 $routes->get('/vedit_kategori/(:num)', 'Kategori::v_updatekategori/$1');
+$routes->get('/vedit_berita/(:num)', 'Berita::v_updateberita/$1');
 
 //action tambah
 $routes->post('/tlabel', 'Label::save');
 $routes->post('/tpegawai', 'Pegawai::save');
 $routes->post('/tkategori', 'Kategori::save');
 $routes->post('/tsub', 'Kategori::save_sub');
+$routes->post('/tberita', 'Berita::save_berita');
+
 //action edit
 $routes->post('/edittlabel/(:segment)', 'Label::actedit_updateLabel/$1');
 $routes->post('/edittpegawai/(:segment)', 'Pegawai::actedit_updatepegawai/$1');
 $routes->post('/edittkategori/(:segment)', 'Kategori::actedit_updatekategori/$1');
 $routes->post('/edittsubkategori/(:segment)', 'Kategori::actedit_updatesubkategori/$1');
+$routes->post('/edittberita/(:segment)', 'Berita::actedit_updateberita/$1');
 
 
 
@@ -41,3 +45,4 @@ $routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');
 $routes->delete('hapus_pegawai/(:num)', 'Pegawai::deletepegawai/$1');
 $routes->delete('hapus_kategori/(:num)', 'Kategori::deletekategori/$1');
 $routes->delete('hapus_sub/(:num)', 'SubKategori::deletesub/$1');
+$routes->delete('hapus_ber/(:num)', 'Berita::deleteber/$1');

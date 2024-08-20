@@ -6,19 +6,23 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Mkategori;
 use App\Models\Msubkategori;
+use App\Models\Mberita;
 
 class Kategori extends BaseController
 {
     protected $Mkategori;
     protected $Msubkategori;
+    protected $Mberita;
     public function __construct()
     {
         $this->Mkategori = new Mkategori();
         $this->Msubkategori = new Msubkategori();
+        $this->Mberita = new Mberita();
     }
     public function index()
     {
         //panggil di tabel
+        $berita = $this->Mberita->getAll();
         $rkategori = $this->Mkategori->findAll();
         $m = $this->Mkategori->where("id_kategori")->first();;
         $rks = $this->Msubkategori->getAll();
@@ -26,7 +30,8 @@ class Kategori extends BaseController
         $data = [
             'tittle' => 'Kategori',
             'rk' => $rkategori,
-            'rks' => $rks
+            'rks' => $rks,
+            'ber' => $berita
         ];
         return view('admin-pages/v_kategori', $data);
     }
@@ -58,7 +63,11 @@ class Kategori extends BaseController
     }
     public function deletekategori($id_kategori)
     {
-
+        $id_berita = $this->request->getVar('id_berita');
+        $this->Mberita->save([
+            'id_berita' => $id_berita,
+            'id_subkategori' => 0
+        ]);
         $this->Mkategori->delete($id_kategori);
         $this->Msubkategori->delete($id_kategori);
         session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
