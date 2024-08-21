@@ -66,7 +66,7 @@ function merubah_tanggal($tgl)
                         <div>
                             <p><?= $new->nama_subkategori ?></p>
                             <h1 class="hero-title">
-                                <a href="<?= $new->slug ?>"><?= $new->judul ?></a>
+                                <a href="detail_berita/<?= $new->slug ?>"><?= $new->judul ?></a>
                             </h1>
                             <p class="hero-date"><?= $new->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
                         </div>

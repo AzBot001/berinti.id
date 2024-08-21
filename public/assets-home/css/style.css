@@ -409,11 +409,11 @@ body {
     margin-right:auto;
 }
 
-/* .read_others{
+.read__others{
     padding:20px;
     border-left:5px solid #fade3a;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-} */
+}
 
 .text-kuning{
     color:#fade3a !important;

@@ -148,6 +148,8 @@ class Berita extends BaseController
 
     public function actedit_updateberita($id_berita)
     {
+        // hapus dahulu tabel berita label
+        $this->MberitaLabel->deleteberitalabel($id_berita);
         if (!$this->validate([
             'thumb' => [
                 'rules' => 'is_image[thumb]|mime_in[thumb,image/jpg,image/jpeg,image/gif,image/png]|max_size[thumb,2048]',
@@ -185,8 +187,7 @@ class Berita extends BaseController
             'id_subkategori' => $this->request->getVar('kateg'),
         ]);
 
-        // hapus dahulu tabel berita label
-        $this->MberitaLabel->delete($id_berita);
+
         //input kembali label berita yang baru
 
         $id_l = $this->request->getVar('label');

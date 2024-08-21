@@ -34,7 +34,7 @@ class Home extends BaseController
         $munculkiribawahnusantara = $this->Mberita->kiribawah2();
         $berita_terbaru = $this->Mberita->dataterbaru();
         $berita_headline = $this->Mberita->headline();
-        $kategori = $this->Mkategori->findAll();
+        // $kategori = $this->Mkategori->findAll();
         $subkategori = $this->Msubkategori->getAll();
         $berita = $this->Mberita->getAll();
         $kategori = $this->Mkategori->get_categories();
@@ -66,9 +66,22 @@ class Home extends BaseController
         ];
         return view('v_home_kategori', $data);
     }
-    public function detail_berita()
+    public function detail_berita($slug)
     {
+        // $kategori = $this->Mkategori->findAll();
+        $lastetkategori = $this->Mberita->lastetkategori($slug);
+        $munculberitatop = $this->Mberita->beritatop();
+        $kategori = $this->Mkategori->get_categories();
+        $detailberita = $this->Mberita->detailberita($slug);
+        $data = [
+            'tittle' => 'Detail Berita',
+            'kat' => $kategori,
+            'detailB' => $detailberita,
+            'munculberitatop' => $munculberitatop,
+            'muncullastetkategori' => $lastetkategori,
 
-        return view('v_detail_berita');
+        ];
+
+        return view('v_detail_berita', $data);
     }
 }
