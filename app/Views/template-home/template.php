@@ -54,21 +54,13 @@
                                         class="dropdown-menu"
                                         aria-labelledby="navbarDropdownMenuLink">
                                         <li>
+                                            <a class="dropdown-item" href="subkategori/<?= $kateg['id_kategori'] ?>"><?= $kateg['nama_kategori'] ?></a>
                                             <?php
                                             // memanggil subkategori berdasarkan kategorinya
                                             foreach ($sub as $subkateggg):
                                                 if ($kateg['id_kategori'] == $subkateggg->id_kategori):
                                             ?>
-                                                    <a class="dropdown-item" href="
-                                                     <?php
-                                                        //  untuk memanggil slug berita
-                                                        foreach ($ber as $berita):
-                                                            if ($berita->id_subkategori == $subkateggg->id_subkategori):
-                                                        ?>
-                                            <?= $berita->id_berita ?>
-                                             <?php endif;
-                                                        endforeach ?>
-                                            "><?= $subkateggg->nama_subkategori ?></a>
+                                                    <a class="dropdown-item" href="subkategori/<?= $subkateggg->id_subkategori ?>"><?= $subkateggg->nama_subkategori ?></a>
                                             <?php endif;
                                             endforeach ?>
                                         </li>

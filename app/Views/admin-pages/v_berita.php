@@ -67,6 +67,14 @@ function merubah_tanggal($tgl)
                                 </button>
                             </div>
                         <?php endif ?>
+                        <?php if (session()->getFlashdata('pesangagal')) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesangagal'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="vtambah_berita" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA BERITA</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
@@ -98,18 +106,29 @@ function merubah_tanggal($tgl)
                                             </td>
                                             <td class="align-middle"><?= merubah_tanggal($bd->tgl_upload) ?></td>
                                             <td class="align-middle"><?= $bd->jumlah_view ?></td>
-                                            <td class="align-middle">
-                                                <form action="hapus_ber/<?= $bd->id_berita ?>" method="post">
-                                                    <?php foreach ($lb as $lds):
-                                                        if ($bd->id_berita == $lds->id_berita) {
-                                                    ?>
-                                                            <input type="hidden" name="id[]" value="<?= $lds->id ?>">
-                                                    <?php }
-                                                    endforeach ?>
-                                                    <a href="vedit_berita/<?= $bd->id_berita ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                </form>
+                                            <td class="align-middle" width="100">
+                                                <div style="display: inline;">
+                                                    <form action="hapus_ber/<?= $bd->id_berita ?>" method="post" style="display: inline;">
+                                                        <?php foreach ($lb as $lds):
+                                                            if ($bd->id_berita == $lds->id_berita) {
+                                                        ?>
+                                                                <input type="hidden" name="id[]" value="<?= $lds->id ?>">
+                                                        <?php }
+                                                        endforeach ?>
+                                                        <a href="vedit_berita/<?= $bd->id_berita ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                    </form>
+                                                    <?php if ($bd->status_head == 0) { ?>
+                                                        <form action="status_head/<?= $bd->id_berita ?>" method="post" style="display: inline;">
+                                                            <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check"></i></button>
+                                                        </form>
+                                                    <?php } else { ?>
+                                                        <form action="status_head_kembali/<?= $bd->id_berita ?>" method="post" style="display: inline;">
+                                                            <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-times"></i></button>
+                                                        </form>
+                                                    <?php } ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php

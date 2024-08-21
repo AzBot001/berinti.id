@@ -8,7 +8,7 @@ class Mberita extends Model
 {
     protected $table            = 'berita';
     protected $primaryKey       = 'id_berita';
-    protected $allowedFields    = ['slug', 'judul', 'isi', 'gambar', 'caption', 'jumlah_view', 'tgl_upload', 'id_subkategori', 'id_pegawai'];
+    protected $allowedFields    = ['slug', 'judul', 'isi', 'gambar', 'caption', 'jumlah_view', 'tgl_upload', 'id_subkategori', 'id_pegawai', 'status_head'];
 
     public function getAll()
     {
@@ -27,7 +27,8 @@ class Mberita extends Model
         $builder = $this->db->table('berita');
         $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
-        $builder->orderBy('jumlah_view', 'DESC');
+        $builder->where('status_head', 1); // Filter untuk hari ini
+        $builder->limit(4);
         $query = $builder->get();
         return $query->getResult();
     }

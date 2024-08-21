@@ -20,6 +20,11 @@ function merubah_tanggal($tgl)
     );
     $pecahkan = explode('-', $tgl);
     return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+    function limit_wordss($string, $word_limit)
+    {
+        $words = explode(" ", $string);
+        return implode(" ", array_splice($words, 0, $word_limit));
+    }
 }
 
 ?>
@@ -50,8 +55,10 @@ function merubah_tanggal($tgl)
     </div>
     <div class="carousel-inner">
         <!-- Slide 1 -->
-        <?php foreach ($baru as $new): ?>
-            <div class="carousel-item active">
+        <?php
+        $no = 1;
+        foreach ($baru as $new): ?>
+            <div class="carousel-item <?= $no++ == '1' ? 'active' : '' ?>">
                 <div class="hero">
                     <img src="assets-home/img/berita/<?= $new->gambar ?>" alt="Gambar Latar" />
                     <div class="hero-overlay"></div>
@@ -59,10 +66,10 @@ function merubah_tanggal($tgl)
                         <div>
                             <p><?= $new->nama_subkategori ?></p>
                             <h1 class="hero-title">
-                                <a href="<?= $new->slug ?>"><?= $new->caption ?></a>
+                                <a href="<?= $new->slug ?>"><?= $new->judul ?></a>
                             </h1>
                             <p class="hero-subtitle">
-                                <?= $new->judul ?>
+                                <?= substr($new->isi, 0, 150) . '...' ?>
                             </p>
                             <p class="hero-date"><?= $new->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
                         </div>
@@ -100,7 +107,7 @@ function merubah_tanggal($tgl)
         </div>
         <div class="row">
             <div class="subjdl mb-2">
-                <b>Intinya</b> Bulan ini <a href="">Liha Semua</a>
+                <b>Intinya</b> Bulan ini <a href="">Lihat Semua</a>
             </div>
             <!-- Card 1 -->
             <div class="col-lg-3 col-md-12 col-sm-12">

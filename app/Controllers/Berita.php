@@ -212,4 +212,32 @@ class Berita extends BaseController
         session()->setFlashdata('hapus', 'Berkas Berhasil Dihapus');
         return redirect()->to(base_url('berita'));
     }
+
+    //function edit status headline
+    public function status_beritahead($id_berita)
+    {
+        $headline = $this->Mberita->where(['status_head' => 1])->get()->getNumRows();
+        if ($headline >= 4) {
+            session()->setFlashdata('pesangagal', 'Headline Sudah Empat Kali Dipilih');
+            return redirect()->to('berita');
+        } else {
+            $this->Mberita->save([
+                'id_berita' => $id_berita,
+                'status_head' => 1
+            ]);
+            session()->setFlashdata('pesan', 'Headline Berhasil Ditambahkan');
+            return redirect()->to('berita');
+        }
+    }
+
+    //function edit status headline terubah menjadi 0
+    public function status_kembali_beritahead($id_berita)
+    {
+        $this->Mberita->save([
+            'id_berita' => $id_berita,
+            'status_head' => 0
+        ]);
+        session()->setFlashdata('pesan', 'Headline Berhasil Dihapus');
+        return redirect()->to('berita');
+    }
 }
