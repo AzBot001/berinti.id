@@ -22,5 +22,13 @@ class Mberita extends Model
     {
         return $this->db->insertID();
     }
-    public function cekrow() {}
+    public function dataterbaru()
+    {
+        $builder = $this->db->table('berita');
+        $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('jumlah_view', 'DESC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

@@ -84,37 +84,29 @@ function merubah_tanggal($tgl)
                                 <tbody>
                                     <?php
                                     $i = 1;
-                                    foreach ($ber as $bd):
+                                    foreach ($berjoin as $bd):
                                     ?>
                                         <tr>
                                             <td class="align-middle"><?= $i++ ?></td>
-                                            <td class="align-middle"><?= $bd['judul'] ?></td>
+                                            <td class="align-middle"><?= $bd->judul ?></td>
 
                                             <td class="align-middle">
-                                                <?php foreach ($berjoin as $bj): ?>
-                                                    <?= $bj->nama_pegawai ?>
-                                                <?php endforeach; ?>
-
+                                                <?= $bd->nama_pegawai ?>
                                             </td>
                                             <td class="align-middle">
-                                                <?php if ($bj->id_subkategori != 0) { ?>
-                                                    <?= $bj->nama_subkategori ?>
-                                                <?php } else {
-                                                    echo 'lainnya';
-                                                }
-                                                ?>
+                                                <?= $bd->nama_subkategori ?>
                                             </td>
-                                            <td class="align-middle"><?= merubah_tanggal($bd['tgl_upload']) ?></td>
-                                            <td class="align-middle"><?= $bd['jumlah_view'] ?></td>
+                                            <td class="align-middle"><?= merubah_tanggal($bd->tgl_upload) ?></td>
+                                            <td class="align-middle"><?= $bd->jumlah_view ?></td>
                                             <td class="align-middle">
-                                                <form action="hapus_ber/<?= $bd['id_berita'] ?>" method="post">
+                                                <form action="hapus_ber/<?= $bd->id_berita ?>" method="post">
                                                     <?php foreach ($lb as $lds):
-                                                        if ($bd['id_berita'] == $lds->id_berita) {
+                                                        if ($bd->id_berita == $lds->id_berita) {
                                                     ?>
                                                             <input type="hidden" name="id[]" value="<?= $lds->id ?>">
                                                     <?php }
                                                     endforeach ?>
-                                                    <a href="vedit_berita/<?= $bd['id_berita'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                    <a href="vedit_berita/<?= $bd->id_berita ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                 </form>

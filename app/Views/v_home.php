@@ -1,6 +1,28 @@
 <?= $this->extend('template-home/template'); ?>
 
 <?= $this->section('content-home'); ?>
+<?php
+function merubah_tanggal($tgl)
+{
+    $bulan = array(
+        1 => 'januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $pecahkan = explode('-', $tgl);
+    return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+}
+
+?>
 <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button
@@ -28,89 +50,27 @@
     </div>
     <div class="carousel-inner">
         <!-- Slide 1 -->
-        <div class="carousel-item active">
-            <div class="hero">
-                <img src="assets-home/img/berita/berita1.jpg" alt="Gambar Latar" />
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <div>
-                        <p>Olahraga</p>
-                        <h1 class="hero-title">
-                            <a href="detail_berita.html">Indonesia Raih 2 Emas Olimpiade Setelah 32 Tahun, Netizen
-                                Nangis</a>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Atlet angkat besi Rizki Juniansyah berhasil menorehkan
-                            prestasi gemilang di Olimpiade Paris 2024.
-                        </p>
-                        <p class="hero-date">oleh Joanna Wellick • 29 Maret 2023</p>
+        <?php foreach ($baru as $new): ?>
+            <div class="carousel-item active">
+                <div class="hero">
+                    <img src="assets-home/img/berita/<?= $new->gambar ?>" alt="Gambar Latar" />
+                    <div class="hero-overlay"></div>
+                    <div class="container hero-content">
+                        <div>
+                            <p><?= $new->nama_subkategori ?></p>
+                            <h1 class="hero-title">
+                                <a href="<?= $new->slug ?>"><?= $new->caption ?></a>
+                            </h1>
+                            <p class="hero-subtitle">
+                                <?= $new->judul ?>
+                            </p>
+                            <p class="hero-date"><?= $new->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endforeach ?>
 
-        <!-- Slide 2 -->
-        <div class="carousel-item">
-            <div class="hero">
-                <img src="assets-home/img/berita/juve.jpeg" alt="Gambar Latar" />
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <div>
-                        <p>Olahraga</p>
-                        <h1 class="hero-title">
-                            <a href="detail_berita.html">Biar Bisa Nonton Inggris di Final Euro 2024, Sekolah di
-                                Essex Bolehkan Siswanya Terlambat</a>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Demi menonton Inggris di final Euro 2024, sekolahan di Essex
-                            bikin kebijakan baru.
-                        </p>
-                        <p class="hero-date">oleh John Doe • 15 April 2023</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item">
-            <div class="hero">
-                <img src="assets-home/img/a.jpeg" alt="Gambar Latar" />
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <div>
-                        <p>Hulonthalo</p>
-                        <h1 class="hero-title">
-                            <a href="detail_berita.html">8 Nama Titik Bor di Tambang Emas Ilegal Suwawa Gorontalo</a>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Ada 8 titik bor aktif di tambang emasilegal Suwawa, Gorontalo.
-                            Beroperasi sejak tahun 90-an.
-                        </p>
-                        <p class="hero-date">oleh Jane Smith • 10 Mei 2023</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="hero">
-                <img src="assets-home/img/berita/itali.jpeg" alt="Gambar Latar" />
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <div>
-                        <p>Olahraga</p>
-                        <h1 class="hero-title">
-                            <a href="detail_berita.html">Rekap Perjalanan Italia di Euro 2024: Tertatih di Fase
-                                Grup, Remuk di Fase Knockout</a>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Italia menjadi tim pertama yang tersingkir di babak 16 besar
-                            Euro 2024..
-                        </p>
-                        <p class="hero-date">oleh Jane Smith • 10 Mei 2023</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <button
         class="carousel-control-prev"

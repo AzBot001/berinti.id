@@ -29,120 +29,73 @@
             <a class="navbar-brand" href="#"><img src="assets-home/img/logo.png" width="130" alt="" /></a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Hulonthalo
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Provinsi Gorontalo</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#">Kota Gorontalo</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">Kabupaten Bone Bolango</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Kabupaten Gorontalo</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#">Kabupaten Boalemo</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">Kabupaten Gorontalo Utara</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Kabupaten Pohuwato</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Olahraga
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Esport</a></li>
-                            <li><a class="dropdown-item" href="#">Sepak Bola</a></li>
-                            <li><a class="dropdown-item" href="#">Takraw</a></li>
-                            <li><a class="dropdown-item" href="#">Silat</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Human Interest Story
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Kisah Pedagang</a></li>
-                            <li><a class="dropdown-item" href="#">Kisah Inspiratif</a></li>
-                            <li><a class="dropdown-item" href="#">Kisah Sukses</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Politik
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Pilkada</a></li>
-                            <li><a class="dropdown-item" href="#">KPU</a></li>
-                            <li><a class="dropdown-item" href="#">Bawaslu</a></li>
-                            <li><a class="dropdown-item" href="#">Caleg</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Teknologi
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Spesifikasi Handphone, pc dan Laptop</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Perbedaan Produk produk Teknologi</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
-                    </li>
+                    <?php
+                    // memanggil kategori
+                    foreach ($kat as $kateg):
+                    ?>
+                        <li class="nav-item dropdown">
+                            <?php if ($kateg['nama_kategori'] != 'Nusantara'): ?>
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdownMenuLink"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <?= $kateg['nama_kategori'] ?>
+                                </a>
+                            <?php endif ?>
+                            <?php
+                            // mengecualikan kategori Nusantara
+                            foreach ($sub as $subkateg):
+                                if ($kateg['nama_kategori'] != 'Nusantara'):
+                            ?>
+                                    <ul
+                                        class="dropdown-menu"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <li>
+                                            <?php
+                                            // memanggil subkategori berdasarkan kategorinya
+                                            foreach ($sub as $subkateggg):
+                                                if ($kateg['id_kategori'] == $subkateggg->id_kategori):
+                                            ?>
+                                                    <a class="dropdown-item" href="
+                                                     <?php
+                                                        //  untuk memanggil slug berita
+                                                        foreach ($ber as $berita):
+                                                            if ($berita->id_subkategori == $subkateggg->id_subkategori):
+                                                        ?>
+                                            <?= $berita->id_berita ?>
+                                             <?php endif;
+                                                        endforeach ?>
+                                            "><?= $subkateggg->nama_subkategori ?></a>
+                                            <?php endif;
+                                            endforeach ?>
+                                        </li>
+                        </li>
                 </ul>
+        <?php
+                                endif;
+                            endforeach ?>
+        </li>
+        <?php
+                        // memanggil nusantara
+                        if ($kateg['nama_kategori'] == 'Nusantara'): ?>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link"
+                    href="nusantara">
+                    Nusantara
+                </a>
+            </li>
+        <?php endif ?>
+
+    <?php endforeach ?>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+    </li>
+    </ul>
             </div>
         </div>
     </nav>
