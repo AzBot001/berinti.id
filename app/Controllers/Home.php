@@ -68,7 +68,13 @@ class Home extends BaseController
     }
     public function detail_berita()
     {
+        $kategori = $this->Mkategori->get_categories();
 
-        return view('v_detail_berita');
+        $data = [
+            'tittle' => "Kategori Berinti.id",
+            'kat' => $kategori
+        ];
+        
+        return view('v_detail_berita', $data);
     }
 }

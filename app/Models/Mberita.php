@@ -25,7 +25,9 @@ class Mberita extends Model
     public function headline()
     {
         $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.slug, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai, berita.slug');
         $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
         $builder->where('status_head', 1); // Filter untuk hari ini
         $builder->limit(4);
@@ -36,7 +38,9 @@ class Mberita extends Model
     public function dataterbaru()
     {
         $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai, berita.slug');
         $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
         $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
         $builder->limit(4);
@@ -50,7 +54,7 @@ class Mberita extends Model
         // $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
         // $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
         // $builder->limit(2);
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -63,7 +67,7 @@ class Mberita extends Model
     public function kiribawah2()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai, berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -77,7 +81,7 @@ class Mberita extends Model
     public function tengahhulonthalo()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -91,7 +95,7 @@ class Mberita extends Model
     public function tengahhulonthalo2()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -104,7 +108,7 @@ class Mberita extends Model
     public function tengaholahraga()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -120,7 +124,7 @@ class Mberita extends Model
         //menghitung tanggal 1 minggu yang lalu
         $oneWeekAgo = date('Y-m-d', strtotime('-1 week'));
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -134,7 +138,7 @@ class Mberita extends Model
     public function kisahgorontalo()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
@@ -147,7 +151,7 @@ class Mberita extends Model
     public function gayahidup()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai,berita.slug');
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');

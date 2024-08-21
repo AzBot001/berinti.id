@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap');
 a{
     text-decoration:none;
+    color:#000;
+}
+a:hover{
+    color:#000;
+    text-decoration:underline;
 }
 body {
   margin: 0;
@@ -165,7 +170,7 @@ body {
 .custom-card-index {
     border: none;
     margin-bottom: 20px;
-    border-bottom:1px solid #bfbfbf;
+    /* border-bottom:1px solid #bfbfbf; */
 }
 /* 
 .custom-card-index:last-child{
@@ -187,7 +192,7 @@ body {
 .custom-card-lg-index {
     border: none;
     margin-bottom: 20px;
-    border-bottom:1px solid #bfbfbf;
+    /* border-bottom:1px solid #bfbfbf; */
 }
 
 /* .custom-card-index-lg:last-child{
@@ -211,13 +216,21 @@ body {
     border: none;
     align-items: flex-start;
     padding: 0;   
+    transition: transform 0.3s ease;
 }
+
 
 .ren-card-large img {
     width: 100%;
     border-radius: 0px;
     object-fit: cover;
+   
 }
+.ren-card-large:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
 
 .ren-card-large .card-body {
     color: white;
@@ -233,7 +246,7 @@ body {
     display: flex;
     align-items: center;
     padding: 1rem 0;
-    border-bottom:1px solid #bfbfbf;
+    /* border-bottom:1px solid #bfbfbf; */
 }
 /* .ren-card-small:last-child{
     border:0;
@@ -245,10 +258,14 @@ body {
     object-fit: cover;
     margin-left: 1rem;
     border-radius: 0px;
+    transition: transform 0.3s ease;
+}
+.ren-card-small img:hover {
+    transform: scale(1.05);
 }
 
 .topcard {
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
     padding-bottom: 1.5rem;
 }
 .content {
@@ -258,17 +275,21 @@ body {
     width: 150px;
     height: auto;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.topcard img:hover{
+    transform: scale(1.05);
 }
 /* batas */
 
 .category-tag {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #fade3a;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 10px;
     display: block;
-    text-shadow: 1px -1px 0px #000;
+    text-shadow: 1px -1px 2px #000;
 }
 
 .card-title {
@@ -287,7 +308,7 @@ body {
     align-items: center;
     background-color: transparent;
     border: none;
-    border-bottom:1px solid #bfbfbf;
+    /* border-bottom:1px solid #bfbfbf; */
 }
 /* .ren-card:last-child{
     border-bottom:0;
@@ -304,6 +325,11 @@ body {
     height: 100px;
     object-fit: cover;
     border-radius: 0px;
+    transition: transform 0.3s ease;
+}
+
+.ren-card img:hover{
+    transform: scale(1.05);
 }
 
 .ren-card .card-title {
@@ -324,6 +350,7 @@ body {
     font-size: 3rem;
     color: #fade3a;
     font-weight: bold;
+    margin-right:10px;
 }
 
 .article-header h1 {
@@ -343,7 +370,7 @@ body {
 }
 
 .subjdl{
-    font-size:1rem;
+    font-size:1.5rem;
 }
 
 .subjdl a{
@@ -409,11 +436,11 @@ body {
     margin-right:auto;
 }
 
-/* .read_others{
+.read__others{
     padding:20px;
     border-left:5px solid #fade3a;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-} */
+}
 
 .text-kuning{
     color:#fade3a !important;
@@ -518,7 +545,7 @@ body {
     color: #fade3a;
 }
 .card-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 
