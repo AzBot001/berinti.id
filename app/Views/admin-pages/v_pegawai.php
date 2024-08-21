@@ -12,6 +12,14 @@
                 <div class="breadcrumb-item">Data Pegawai</div>
             </div>
         </div>
+        <?php if (session()->getFlashdata('pesanlogout')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif ?>
         <h2 class="section-title">Data Pegawai</h2>
         <p class="section-lead">
             Halaman Berisi data Pegawai di Berinti.id

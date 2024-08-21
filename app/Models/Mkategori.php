@@ -18,4 +18,25 @@ class Mkategori extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    public function get_categories()
+    {
+        $query = $this->db->table('kategori')->get();
+        $return = array();
+
+        foreach ($query->getResult() as $category) {
+            $return[$category->id_kategori] = $category;
+            $return[$category->id_kategori]->subkategori = $this->get_sub_categories($category->id_kategori);
+        }
+
+        return $return;
+    }
+
+
+    public function get_sub_categories($category_id)
+    {
+        $query = $this->db->table('subkategori');
+        $query->where('id_kategori', $category_id);
+        return $query->get()->getResult();
+    }
 }

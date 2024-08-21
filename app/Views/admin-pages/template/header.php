@@ -55,7 +55,7 @@
                         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="assets/img/avatar/avatar-4.png" class="rounded-circle mr-1" />
                             <div class="d-sm-none d-lg-inline-block">
-                                Hi, Ujang Maman
+                                Hi! <?= session()->get('nama_pegawai') ?>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -70,7 +70,7 @@
                                 <i class="fas fa-cog"></i> Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item has-icon text-danger">
+                            <a href="logout" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </div>
@@ -168,7 +168,7 @@
     <script
         src="assets/tinymce/tinymce/tinymce.min.js"
         referrerpolicy="origin"></script>
-    <script>
+        <script>
         // Event Read Too
         $(document).ready(function() {
             $(this)

@@ -6,6 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/home_kategori', 'Home::kategori');
+$routes->get('/detail_berita', 'Home::detail_berita');
+$routes->get('/login_admin', 'Login::index');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/pegawai', 'Pegawai::index');
 $routes->get('/kategori', 'Kategori::index');
@@ -38,7 +41,9 @@ $routes->post('/edittkategori/(:segment)', 'Kategori::actedit_updatekategori/$1'
 $routes->post('/edittsubkategori/(:segment)', 'Kategori::actedit_updatesubkategori/$1');
 $routes->post('/edittberita/(:segment)', 'Berita::actedit_updateberita/$1');
 
-
+//post status head
+$routes->post('/status_head/(:segment)', 'Berita::status_beritahead/$1');
+$routes->post('/status_head_kembali/(:segment)', 'Berita::status_kembali_beritahead/$1');
 
 //action hapus
 $routes->delete('hapus/(:num)', 'Label::deleteLabel/$1');
@@ -46,3 +51,7 @@ $routes->delete('hapus_pegawai/(:num)', 'Pegawai::deletepegawai/$1');
 $routes->delete('hapus_kategori/(:num)', 'Kategori::deletekategori/$1');
 $routes->delete('hapus_sub/(:num)', 'SubKategori::deletesub/$1');
 $routes->delete('hapus_ber/(:num)', 'Berita::deleteber/$1');
+
+//proses login
+$routes->post('/loginproses', 'Login::proses');
+$routes->get('/logout', 'Login::logout');

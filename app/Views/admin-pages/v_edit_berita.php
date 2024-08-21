@@ -12,7 +12,7 @@
                 <div class="breadcrumb-item">Edit Berita</div>
             </div>
         </div>
-        <h2 class="section-title">Tambah Berita</h2>
+        <h2 class="section-title">Edit Berita</h2>
         <p class="section-lead">
             Halaman untuk menambah berita di Berinti.id
         </p>
@@ -180,11 +180,15 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>aab</td>
-                                <td><button class="btn btn-primary baten" data-title="a" data-url="google.com">Pilih</button></td>
-                            </tr>
+                            <?php
+                            $i = 1;
+                            foreach ($ber as $bd):  ?>
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $bd->judul ?></td>
+                                    <td><button class="btn btn-primary baten" data-title="<?= $bd->judul ?>" data-url="<?= $bd->slug ?>">Pilih</button></td>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>

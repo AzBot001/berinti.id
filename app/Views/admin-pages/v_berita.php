@@ -33,6 +33,14 @@ function merubah_tanggal($tgl)
                 </div>
                 <div class="breadcrumb-item">Data Berita</div>
             </div>
+            <?php if (session()->getFlashdata('pesanlogout')) : ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif ?>
         </div>
         <h2 class="section-title">Data Berita</h2>
         <p class="section-lead">
@@ -59,6 +67,14 @@ function merubah_tanggal($tgl)
                                 </button>
                             </div>
                         <?php endif ?>
+                        <?php if (session()->getFlashdata('pesangagal')) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesangagal'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif ?>
                         <a href="vtambah_berita" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA BERITA</a>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
@@ -70,57 +86,49 @@ function merubah_tanggal($tgl)
                                         <th>Kategori</th>
                                         <th>Tanggal Upload</th>
                                         <th>Jumlah Views</th>
-                                        <th>Label</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $i = 1;
-                                    foreach ($ber as $bd):
+                                    foreach ($berjoin as $bd):
                                     ?>
                                         <tr>
                                             <td class="align-middle"><?= $i++ ?></td>
-                                            <td class="align-middle"><?= $bd['judul'] ?></td>
+                                            <td class="align-middle"><?= $bd->judul ?></td>
 
                                             <td class="align-middle">
-                                                <?php foreach ($berjoin as $bj): ?>
-                                                    <?= $bj->nama_pegawai ?>
-                                                <?php endforeach; ?>
-
+                                                <?= $bd->nama_pegawai ?>
                                             </td>
                                             <td class="align-middle">
-                                                <?php if ($bj->id_subkategori != 0) { ?>
-                                                    <?= $bj->nama_subkategori ?>
-                                                <?php } else {
-                                                    echo 'lainnya';
-                                                }
-                                                ?>
+                                                <?= $bd->nama_subkategori ?>
                                             </td>
-                                            <td class="align-middle"><?= merubah_tanggal($bd['tgl_upload']) ?></td>
-                                            <td class="align-middle"><?= $bd['jumlah_view'] ?></td>
-                                            <td class="align-middle">
-                                                <?php foreach ($lb as $ld):
-                                                    if ($bd['id_berita'] == $ld->id_berita) {
-                                                ?>
-                                                        <span class="badge badge-warning"><?= $ld->nama_label ?> </span>
-                                                <?php
-                                                    }
-                                                endforeach; ?>
-                                            </td>
-                                            <td class="align-middle">
-                                                <form action="hapus_ber/<?= $bd['id_berita'] ?>" method="post">
-                                                    <a href="" class="btn btn-info btn-sm"><i class="fas fa-search"></i> Detail</a>
-                                                    <?php foreach ($lb as $lds):
-                                                        if ($bd['id_berita'] == $lds->id_berita) {
-                                                    ?>
-                                                            <input type="hidden" name="id[]" value="<?= $lds->id ?>">
-                                                    <?php }
-                                                    endforeach ?>
-                                                    <a href="vedit_berita/<?= $bd['id_berita'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                </form>
+                                            <td class="align-middle"><?= merubah_tanggal($bd->tgl_upload) ?></td>
+                                            <td class="align-middle"><?= $bd->jumlah_view ?></td>
+                                            <td class="align-middle" width="100">
+                                                <div style="display: inline;">
+                                                    <form action="hapus_ber/<?= $bd->id_berita ?>" method="post" style="display: inline;">
+                                                        <?php foreach ($lb as $lds):
+                                                            if ($bd->id_berita == $lds->id_berita) {
+                                                        ?>
+                                                                <input type="hidden" name="id[]" value="<?= $lds->id ?>">
+                                                        <?php }
+                                                        endforeach ?>
+                                                        <a href="vedit_berita/<?= $bd->id_berita ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                    </form>
+                                                    <?php if ($bd->status_head == 0) { ?>
+                                                        <form action="status_head/<?= $bd->id_berita ?>" method="post" style="display: inline;">
+                                                            <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check"></i></button>
+                                                        </form>
+                                                    <?php } else { ?>
+                                                        <form action="status_head_kembali/<?= $bd->id_berita ?>" method="post" style="display: inline;">
+                                                            <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-times"></i></button>
+                                                        </form>
+                                                    <?php } ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php
