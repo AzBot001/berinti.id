@@ -57,10 +57,10 @@ function merubah_tanggal($tgl)
         <!-- Slide 1 -->
         <?php
         $no = 1;
-        foreach ($baru as $new): ?>
+        foreach ($head as $new): ?>
             <div class="carousel-item <?= $no++ == '1' ? 'active' : '' ?>">
                 <div class="hero">
-                    <img src="assets-home/img/berita/<?= $new->gambar ?>" alt="Gambar Latar" />
+                    <img src="thumbnail/<?= $new->gambar ?>" alt="Gambar Latar" />
                     <div class="hero-overlay"></div>
                     <div class="container hero-content">
                         <div>
@@ -68,9 +68,6 @@ function merubah_tanggal($tgl)
                             <h1 class="hero-title">
                                 <a href="<?= $new->slug ?>"><?= $new->judul ?></a>
                             </h1>
-                            <p class="hero-subtitle">
-                                <!-- <?= substr($new->isi, 0, 150) . '...' ?> -->
-                            </p>
                             <p class="hero-date"><?= $new->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
                         </div>
                     </div>
@@ -110,70 +107,23 @@ function merubah_tanggal($tgl)
                 <b>Intinya</b> Bulan ini <a href="">Lihat Semua</a>
             </div>
             <!-- Card 1 -->
-            <div class="col-lg-3 col-md-12 col-sm-12">
-                <div class="card custom-card">
-                    <img
-                        src="assets-home/img/berita/berita1.jpg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">Olahraga</span>
-                        <h5 class="card-title">
-                            Indonesia Raih 2 Emas Olimpiade Setelah 32 Tahun, Netizen
-                            Nangis
-                        </h5>
-                        <p class="card-text">by Elliot Alderson • February 5, 2023</p>
+            <?php foreach ($muncul2 as $section2): ?>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="card custom-card">
+                        <img
+                            src="thumbnail/<?= $section2->gambar ?>"
+                            class="card-img-top"
+                            alt="Article Image" />
+                        <div class="card-body">
+                            <span class="category-tag"></span>
+                            <h5 class="card-title">
+                                <?= $section2->judul ?>
+                            </h5>
+                            <p class="card-text"><?= $section2->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col-lg-3 col-md-12 col-sm-12">
-                <div class="card custom-card">
-                    <img
-                        src="assets-home/img/berita/itali.jpeg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">Olahraga</span>
-                        <h5 class="card-title">Rekap Perjalanan Italia di Euro 2024: Tertatih di Fase
-                            Grup, Remuk di Fase Knockout</h5>
-                        <p class="card-text">by Joanna Wellick • June 7, 2023</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col-lg-3 col-md-12 col-sm-12">
-                <div class="card custom-card">
-                    <img
-                        src="assets-home/img/berita/juve.jpeg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">Olahraga</span>
-                        <h5 class="card-title">
-                            Biar Bisa Nonton Inggris di Final Euro 2024, Sekolah di
-                            Essex Bolehkan Siswanya Terlambat
-                        </h5>
-                        <p class="card-text">by Elliot Alderson • March 19, 2023</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 4 -->
-            <div class="col-lg-3 col-md-12 col-sm-12">
-                <div class="card custom-card">
-                    <img
-                        src="assets-home/img/a.jpeg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">Hulonthalo</span>
-                        <h5 class="card-title">
-                            8 Nama Titik Bor di Tambang Emas Ilegal Suwawa Gorontalo
-                        </h5>
-                        <p class="card-text">by Elliot Alderson • March 9, 2023</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach ?>
         </div>
     </div>
 </div>
@@ -181,74 +131,90 @@ function merubah_tanggal($tgl)
     <div class="container mt-5">
         <div class="row">
             <!-- Card 1 -->
+            <!-- muncul nusantara dan politik -->
             <div class="subjdl mb-2">
-                <b>Hulonthalo</b> <a href="">Liha Semua</a>
+                <b>
+                    Lintas Berita
+                </b>
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 mb-2 border-right-index">
-                <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12">
-                    <img
-                        src="assets-home/img/berita/66b0df4a1c552.jpg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">HULONTHALO</span>
-                        <h5 class="card-title">
-                            Behind the Scenes: A Day in a Star's Life
-                        </h5>
-                        <p class="card-text">by Elliot Alderson • February 5, 2023</p>
+                <?php foreach ($muncul3 as $row):
+                ?>
+                    <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12">
+                        <img
+                            src="thumbnail/<?= $row->gambar ?>"
+                            class="card-img-top"
+                            alt="Article Image" />
+                        <div class="card-body">
+                            <span class="category-tag"><?= $row->nama_kategori ?></span>
+                            <h5 class="card-title">
+                                <?= $row->judul ?>
+                            </h5>
+                            <p class="card-text"><?= $row->nama_pegawai ?> • <?= merubah_tanggal($row->tgl_upload) ?></p>
+                        </div>
                     </div>
-                </div>
-                <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12">
-                    <img
-                        src="assets-home/img/berita/6551ad4118fd5.jpg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">HULONTHALO</span>
-                        <h5 class="card-title">
-                            Behind the Scenes: A Day in a Star's Life
-                        </h5>
-                        <p class="card-text">by Elliot Alderson • February 5, 2023</p>
+                <?php endforeach ?>
+                <?php foreach ($munculnusantara as $rows):
+                ?>
+                    <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12">
+                        <img
+                            src="thumbnail/<?= $rows->gambar ?>"
+                            class="card-img-top"
+                            alt="Article Image" />
+                        <div class="card-body">
+                            <span class="category-tag"><?= $rows->nama_kategori ?></span>
+                            <h5 class="card-title">
+                                <?= $rows->judul ?>
+                            </h5>
+                            <p class="card-text"><?= $rows->nama_pegawai ?> • <?= merubah_tanggal($rows->tgl_upload) ?></p>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach ?>
             </div>
             <!-- Card 2 -->
             <div class="col-lg-6 col-md-12 col-sm-12 mb-2 border-right-index">
-                <div class="card custom-card-lg-index">
-                    <img
-                        src="assets-home/img/berita/66b7088ee1763.jpg"
-                        class="card-img-top"
-                        alt="Article Image" />
-                    <div class="card-body">
-                        <span class="category-tag">HULONTHALO</span>
-                        <h5 class="card-title">Behind the Lens: A Journey into</h5>
-                        <p class="card-text">by Joanna Wellick • June 7, 2023</p>
+                <?php foreach ($munculhulonthalo as $munhulonthalo): ?>
+                    <div class="card custom-card-lg-index">
+                        <img
+                            src="thumbnail/<?= $munhulonthalo->gambar ?>"
+                            class="card-img-top"
+                            alt="Article Image" />
+                        <div class="card-body">
+                            <span class="category-tag"><?= $munhulonthalo->nama_kategori ?></span>
+                            <h5 class="card-title"><?= $munhulonthalo->judul ?></h5>
+                            <p class="card-text"><?= $munhulonthalo->nama_pegawai ?> • <?= merubah_tanggal($munhulonthalo->tgl_upload) ?></p>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach ?>
+                <?php if (isset($munculhulonthalo2[1])) {
+                    $secondrow = $munculhulonthalo2[1];
+                } ?>
                 <div class="ren-card">
                     <div class="card-body">
-                        <h5 class="category-tag">HULONTHALO</h5>
+                        <h5 class="category-tag"><?= $secondrow['nama_kategori'] ?></h5>
                         <h3 class="card-title mb-2">
-                            Exploring the Renaissance: Masters and Masterpieces
+                            <?= $secondrow['judul'] ?>
                         </h3>
                         <p class="card-text">
-                            <small class="text-muted">by Elliot Alderson | April 25, 2023</small>
+                            <small class="text-muted"><?= $secondrow['nama_pegawai'] ?> • <?= merubah_tanggal($secondrow['tgl_upload']) ?></small>
                         </p>
                     </div>
-                    <img src="assets-home/img/berita/66be2e59e4ebe.jpg" alt="Artwork Image" />
+                    <img src="thumbnail/<?= $secondrow['gambar'] ?>" alt="Artwork Image" />
                 </div>
-                <div class="ren-card">
-                    <div class="card-body">
-                        <h5 class="category-tag">HULONTHALO</h5>
-                        <h3 class="card-title mb-2">
-                            Exploring the Renaissance: Masters and Masterpieces
-                        </h3>
-                        <p class="card-text">
-                            <small class="text-muted">by Elliot Alderson | April 25, 2023</small>
-                        </p>
+                <?php foreach ($munculolahraga as $munolahraga): ?>
+                    <div class="ren-card">
+                        <div class="card-body">
+                            <h5 class="category-tag"><?= $munolahraga->nama_kategori ?></h5>
+                            <h3 class="card-title mb-2">
+                                <?= $munolahraga->judul ?>
+                            </h3>
+                            <p class="card-text">
+                                <small class="text-muted"><?= $munolahraga->nama_pegawai ?> • <?= merubah_tanggal($munolahraga->tgl_upload) ?></small>
+                            </p>
+                        </div>
+                        <img src="thumbnail/<?= $munolahraga->gambar ?>" alt="Artwork Image" />
                     </div>
-                    <img src="assets-home/img/a.jpeg" alt="Artwork Image" />
-                </div>
+                <?php endforeach ?>
             </div>
             <!-- Card 3 -->
             <div class="col-lg-3 col-md-12 col-sm-12 mb-2">
@@ -269,102 +235,28 @@ function merubah_tanggal($tgl)
     <div class="container mt-5">
         <div class="row">
             <div class="subjdl mb-2">
-                <b>Olahraga</b> <a href="">Liha Semua</a>
+                <b>Berita Populer</b>
             </div>
-            <!-- Article 1 -->
-            <div
-                class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
-                <div class="number">1</div>
-                <div class="content ms-1">
-                    <span class="category-tag">FASHION</span>
-                    <h2 class="card-title">
-                        Unforgettable Moments from This Year’s Oscars
-                    </h2>
-                    <p class="card-text">by Joanna Wellick • June 7, 2023</p>
+            <?php
+            $no = 1;
+            foreach ($munculberitapopuler as $populer): ?>
+                <!-- Article 1 -->
+                <div
+                    class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
+                    <div class="number"><?= $no++ ?></div>
+                    <div class="content ms-1">
+                        <span class="category-tag"><?= $populer->nama_kategori ?></span>
+                        <h2 class="card-title">
+                            <?= $populer->judul ?>
+                        </h2>
+                        <p class="card-text"><?= $populer->nama_pegawai ?> • <?= merubah_tanggal($populer->tgl_upload) ?></p>
+                    </div>
+                    <img
+                        src="thumbnail/<?= $populer->gambar ?>"
+                        alt="Article Image"
+                        class="ms-auto" />
                 </div>
-                <img
-                    src="assets-home/img/berita/berita1.jpg"
-                    alt="Article Image"
-                    class="ms-auto" />
-            </div>
-            <!-- Article 2 -->
-            <div
-                class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
-                <div class="number">2</div>
-                <div class="content ms-1">
-                    <span class="category-tag">FASHION</span>
-                    <h2 class="card-title">
-                        Unforgettable Moments from This Year’s Oscars
-                    </h2>
-                    <p class="card-text">by Joanna Wellick • June 7, 2023</p>
-                </div>
-                <img
-                    src="assets-home/img/berita/juve.jpeg"
-                    alt="Article Image"
-                    class="ms-auto" />
-            </div>
-            <div
-                class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
-                <div class="number">3</div>
-                <div class="content ms-1">
-                    <span class="category-tag">FASHION</span>
-                    <h2 class="card-title">
-                        Unforgettable Moments from This Year’s Oscars
-                    </h2>
-                    <p class="card-text">by Joanna Wellick • June 7, 2023</p>
-                </div>
-                <img
-                    src="assets-home/img/berita/itali.jpeg"
-                    alt="Article Image"
-                    class="ms-auto" />
-            </div>
-            <!-- Article 2 -->
-            <div
-                class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
-                <div class="number">4</div>
-                <div class="content ms-1">
-                    <span class="category-tag">FASHION</span>
-                    <h2 class="card-title">
-                        Unforgettable Moments from This Year’s Oscars
-                    </h2>
-                    <p class="card-text">by Joanna Wellick • June 7, 2023</p>
-                </div>
-                <img
-                    src="assets-home/img/berita/rans.jpeg"
-                    alt="Article Image"
-                    class="ms-auto" />
-            </div>
-            <div
-                class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
-                <div class="number">5</div>
-                <div class="content ms-1">
-                    <span class="category-tag">FASHION</span>
-                    <h2 class="card-title">
-                        Unforgettable Moments from This Year’s Oscars
-                    </h2>
-                    <p class="card-text">by Joanna Wellick • June 7, 2023</p>
-                </div>
-                <img
-                    src="assets-home/img/berita/gp.jpg"
-                    alt="Article Image"
-                    class="ms-auto" />
-            </div>
-            <!-- Article 2 -->
-            <div
-                class="col-lg-6 col-md-12 col-sm-12 topcard d-flex mb-4 border-bottom p-3">
-                <div class="number">6</div>
-                <div class="content ms-1">
-                    <span class="category-tag">FASHION</span>
-                    <h2 class="card-title">
-                        Unforgettable Moments from This Year’s Oscarsasdsadasd
-                    </h2>
-                    <p class="card-text">by Joanna Wellick • June 7, 2023</p>
-                </div>
-                <img
-                    src="assets-home/img/berita//kanguru.jpg"
-                    alt="Article Image"
-                    class="ms-auto" />
-            </div>
+            <?php endforeach ?>
 
             <!-- Tambahkan lebih banyak artikel sesuai kebutuhan -->
         </div>
@@ -377,66 +269,42 @@ function merubah_tanggal($tgl)
             <div class="subjdl mb-2">
                 <b>Human Interest Story</b> <a href="">Liha Semua</a>
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 border-right-index">
-                <div class="ren-card-large position-relative">
-                    <img
-                        src="assets-home/img/berita/berita1.jpg"
-                        alt="Music Festival Image" />
-                    <div class="card-body">
-                        <h5 class="category-tag">Events</h5>
-                        <h3 class="card-title mb-2">
-                            Summer’s Hottest Music Festivals You Can’t Miss
-                        </h3>
-                        <p class="card-text text-white">
-                            <small>by Joanna Wellick | March 24, 2023</small>
-                        </p>
+            <?php foreach ($munculkisahgorontalo as $kisahgorontalo): ?>
+                <div class="col-lg-8 col-md-12 col-sm-12 border-right-index">
+                    <div class="ren-card-large position-relative">
+                        <img
+                            src="thumbnail/<?= $kisahgorontalo->gambar ?>"
+                            alt="Music Festival Image" />
+                        <div class="card-body">
+                            <h5 class="category-tag"><?= $kisahgorontalo->nama_kategori ?></h5>
+                            <h3 class="card-title mb-2">
+                                <?= $kisahgorontalo->judul ?>
+                            </h3>
+                            <p class="card-text text-white">
+                                <small><?= $kisahgorontalo->nama_pegawai ?> • <?= merubah_tanggal($kisahgorontalo->tgl_upload) ?></small>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach ?>
             <!-- Card 2 -->
             <div class="col-lg-4 col-md-12 col-sm-12">
-                <div class="ren-card-small">
-                    <div class="card-body">
-                        <h5 class="category-tag">Events</h5>
-                        <h3 class="card-title mb-2">
-                            Tech Conventions: Innovations and Future Trends
-                        </h3>
-                        <p class="card-text">
-                            <small class="text-muted">by Elliot Alderson | April 3, 2023</small>
-                        </p>
+                <?php foreach ($munculgayahidup as $gaya): ?>
+                    <div class="ren-card-small">
+                        <div class="card-body">
+                            <h5 class="category-tag"> <?= $gaya->nama_kategori ?></h5>
+                            <h3 class="card-title mb-2">
+                                <?= $gaya->judul ?>
+                            </h3>
+                            <p class="card-text">
+                                <small class="text-muted"> <?= $gaya->nama_pegawai ?> • <?= merubah_tanggal($gaya->tgl_upload) ?></small>
+                            </p>
+                        </div>
+                        <img
+                            src="thumbnail/<?= $gaya->gambar ?>"
+                            alt="Tech Conventions Image" />
                     </div>
-                    <img
-                        src="assets-home/img/berita/berita1.jpg"
-                        alt="Tech Conventions Image" />
-                </div>
-
-                <div class="ren-card-small">
-                    <div class="card-body">
-                        <h5 class="category-tag">Events</h5>
-                        <h3 class="card-title mb-2">
-                            Global Celebrations: A Journey Through Cultural Festivals
-                        </h3>
-                        <p class="card-text">
-                            <small class="text-muted">by Joanna Wellick | March 29, 2023</small>
-                        </p>
-                    </div>
-                    <img
-                        src="assets-home/img/berita/berita1.jpg"
-                        alt="Global Celebrations Image" />
-                </div>
-
-                <div class="ren-card-small">
-                    <div class="card-body">
-                        <h5 class="category-tag">Events</h5>
-                        <h3 class="card-title mb-2">
-                            Inside the Excitement of the Super Bowl Weekend
-                        </h3>
-                        <p class="card-text">
-                            <small class="text-muted">by Elliot Alderson | March 19, 2023</small>
-                        </p>
-                    </div>
-                    <img src="assets-home/img/berita/berita1.jpg" alt="Super Bowl Image" />
-                </div>
+                <?php endforeach ?>
             </div>
             <!-- Card 3 -->
         </div>

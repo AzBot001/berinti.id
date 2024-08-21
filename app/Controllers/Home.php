@@ -24,7 +24,18 @@ class Home extends BaseController
     {
         // $db = \Config\Database::connect();
         // $headline = $db->query('SELECT * FROM berita WHERE tgl_upload = CURDATE() ORDER BY jumlah_view DESC LIMIT 1')->getResult();
+        $muncultenggayahidup = $this->Mberita->gayahidup();
+        $muncultengkisahgorontalo = $this->Mberita->kisahgorontalo();
+        $muncultengberitapopuler = $this->Mberita->beritapopuler();
+        $muncultengholahraga = $this->Mberita->tengaholahraga();
+        $muncultenghulonthalo2 = $this->Mberita->tengahhulonthalo2();
+        $muncultengahhulonthalo = $this->Mberita->tengahhulonthalo();
+        $munculkiribawah1 = $this->Mberita->kiribawah1();
+        $munculkiribawahnusantara = $this->Mberita->kiribawah2();
         $berita_terbaru = $this->Mberita->dataterbaru();
+        $berita_headline = $this->Mberita->headline();
+        $kategori = $this->Mkategori->findAll();
+        $subkategori = $this->Msubkategori->getAll();
         $berita = $this->Mberita->getAll();
         $kategori = $this->Mkategori->get_categories();
 
@@ -33,7 +44,16 @@ class Home extends BaseController
             'tittle' => "Home Berinti.id",
             'kat' => $kategori,
             'ber' => $berita,
-            'baru' => $berita_terbaru,
+            'head' => $berita_headline,
+            'muncul2' => $berita_terbaru,
+            'muncul3' => $munculkiribawah1,
+            'munculnusantara' => $munculkiribawahnusantara,
+            'munculhulonthalo' => $muncultengahhulonthalo,
+            'munculhulonthalo2' => $muncultenghulonthalo2,
+            'munculolahraga' => $muncultengholahraga,
+            'munculberitapopuler' => $muncultengberitapopuler,
+            'munculkisahgorontalo' => $muncultengkisahgorontalo,
+            'munculgayahidup' => $muncultenggayahidup,
         ];
         return view('v_home', $data);
     }
