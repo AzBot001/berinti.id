@@ -34,17 +34,16 @@
                     foreach ($kat as $kateg):
                     ?>
                         <li class="nav-item dropdown">
-                            <?php if ($kateg['nama_kategori'] != 'Nusantara'): ?>
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdownMenuLink"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <?= $kateg['nama_kategori'] ?>
-                                </a>
-                            <?php endif ?>
+
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <?= $kateg['nama_kategori'] ?>
+                            </a>
                             <?php
                             // mengecualikan kategori Nusantara
                             foreach ($sub as $subkateg):
@@ -54,7 +53,7 @@
                                         class="dropdown-menu"
                                         aria-labelledby="navbarDropdownMenuLink">
                                         <li>
-                                            <a class="dropdown-item" href="subkategori/<?= $kateg['id_kategori'] ?>"><?= $kateg['nama_kategori'] ?></a>
+                                            <a class="dropdown-item" href="kategori/<?= $kateg['id_kategori'] ?>"><?= $kateg['nama_kategori'] ?></a>
                                             <?php
                                             // memanggil subkategori berdasarkan kategorinya
                                             foreach ($sub as $subkateggg):
@@ -68,7 +67,8 @@
                 </ul>
         <?php
                                 endif;
-                            endforeach ?>
+                            endforeach
+        ?>
         </li>
         <?php
                         // memanggil nusantara
@@ -81,12 +81,11 @@
                 </a>
             </li>
         <?php endif ?>
-
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+        </li>
     <?php endforeach ?>
 
-    <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
-    </li>
     </ul>
             </div>
         </div>

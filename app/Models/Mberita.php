@@ -22,13 +22,138 @@ class Mberita extends Model
     {
         return $this->db->insertID();
     }
-    public function dataterbaru()
+    public function headline()
     {
         $builder = $this->db->table('berita');
         $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
         $builder->where('status_head', 1); // Filter untuk hari ini
         $builder->limit(4);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function dataterbaru()
+    {
+        $builder = $this->db->table('berita');
+        $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->limit(4);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+    public function kiribawah1()
+    {
+        $builder = $this->db->table('berita');
+        // $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        // $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        // $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        // $builder->limit(2);
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 11); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(1);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+    public function kiribawah2()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 10); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(1);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function tengahhulonthalo()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 1); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(1);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function tengahhulonthalo2()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 1); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
+    public function tengaholahraga()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 8); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(1);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function beritapopuler()
+    {
+        //menghitung tanggal 1 minggu yang lalu
+        $oneWeekAgo = date('Y-m-d', strtotime('-1 week'));
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->where('tgl_upload >=', $oneWeekAgo); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->orderBy('jumlah_view', 'DESC'); // filter data terbaru
+        $builder->limit(10);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function kisahgorontalo()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 9); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(1);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+    public function gayahidup()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('kategori.id_kategori', 12); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(3);
         $query = $builder->get();
         return $query->getResult();
     }
