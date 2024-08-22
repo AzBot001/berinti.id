@@ -81,68 +81,22 @@ function merubah_tanggal($tgl)
             <div class="adv_article-left">ADVERTISEMENT</div>
             <h5 class="subjdl mt-5">Read More</h5>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">The World's Most Spectacular New Year's Eve Celebrations</h5>
-                            <p class="card-text"><small class="text-muted">by Joanna Wellick - March 4, 2023</small></p>
-                        </div>
+                <?php foreach ($terbaru as $baruberita): ?>
+                    <div class="col-md-4 d-inline">
+                       
+                            <div class="card article-card">
+                                <a href="detail_berita/<?= $baruberita->slug ?>">
+                                <img src="thumbnail/<?= $baruberita->gambar ?>" class="card-img-top" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <small class="text-uppercase text-kuning"><?= $baruberita->nama_kategori ?></small>
+                                    <h5 class="card-title"><a href="detail_berita/<?= $baruberita->slug ?>"><?= $baruberita->judul ?></a></h5>
+                                    <p class="card-text"><small class="text-muted"><?= $baruberita->nama_pegawai ?> - <?= merubah_tanggal($baruberita->tgl_upload) ?></small></p>
+                                </div>
+                            </div>
+
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Runway Revelations: What's New in the Fashion Week Shows</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - April 23, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Exploring the Renaissance: Masters and Masterpieces</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - April 25, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/demo-image-0039-1044x587.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Inside the Glamorous Lives of Hollywood A-Listers</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - January 5, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Secrets Behind Celeb Red Carpet Looks Revealed</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - January 8, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Rising Stars: Who's Next in the Spotlight?</h5>
-                            <p class="card-text"><small class="text-muted">by Joanna Wellick - January 13, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
             </div>
             <div class="adv_article-left">ADVERTISEMENT</div>
         </div>
@@ -160,7 +114,7 @@ function merubah_tanggal($tgl)
                                 <img src="thumbnail/<?= $munculberitatop->gambar ?>" class="img-fluid m-kecil " alt="...">
                                 <span class="number-circle"><?= $no++ ?></span>
                                 <div class="media-body">
-                                    <a href="#" class="text-decoration-none text-dark">
+                                    <a href="detail_berita/<?= $munculberitatop->slug ?>" class="text-decoration-none text-dark">
                                         <h6 class="fw-bold mb-1"><?= $munculberitatop->judul ?></h6>
                                     </a>
                                 </div>
@@ -176,15 +130,16 @@ function merubah_tanggal($tgl)
                 <?php foreach ($latestBerita as $item): ?>
                     <div class="col-12">
                         <div class="card bg-dark text-white">
-                            <img src="assets-home/img/berita/demo-image-0039-1044x587.jpg" class="card-img" alt="Award Show">
+                            <img src="thumbnail/<?= $item->gambar ?>" class="card-img" alt="Award Show" >
                             <div class="card-img-overlay d-flex flex-column justify-content-end">
-                                <small class="text-uppercase">sss</small>
-                                <h5 class="card-title"><?= $item->judul ?></h5>
-                                <p class="card-text">by Elliot Alderson &nbsp;&bull;&nbsp; February 6, 2023</p>
+                                <small class="text-uppercase"><?= $item->nama_kategori ?></small>
+                                <h5 class="card-title"><a style="color:#fff" href="detail_berita/<?= $item->slug ?>"><?= $item->judul ?></a></h5>
+                                <p class="card-text"><?= $item->nama_pegawai ?> &nbsp;&bull;&nbsp; <?= merubah_tanggal($item->tgl_upload) ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                <?php
+                endforeach; ?>
             </div>
             <div class="adv_article-right" id="sticky">ADVERTISEMENT</div>
         </div>

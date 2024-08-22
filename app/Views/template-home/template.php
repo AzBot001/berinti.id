@@ -27,7 +27,7 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="assets-home/img/logo.png" width="130" alt="" /></a>
+            <a class="navbar-brand" href="/"><img src="assets-home/img/logo.png" width="130" alt="" /></a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
                 <ul class="navbar-nav ms-auto">

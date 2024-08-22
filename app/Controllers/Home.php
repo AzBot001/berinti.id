@@ -78,19 +78,27 @@ class Home extends BaseController
         if ($gz) {
             $kategoriId = $gz->id_kategori; // ID kategori dari berita detail
             $currentId = $gz->id_berita;    // ID berita detail
-
-            // Mengambil dua berita terbaru dengan kategori yang sama
             $latestBerita = $this->Mberita->getLatestByCategory($kategoriId, $currentId);
         } else {
             $latestBerita = []; // Jika berita tidak ditemukan
         }
-        // Mengirim data ke view
-    $data = [
-        'tittle' => 'Detail Berita',
-        'kat' => $kategori,
-        'detailB' => $detailberita,
-        'munculberitatop' => $munculberitatop,
-        'latestBerita' => $latestBerita, // Menambahkan data berita terbaru
+        $beritaterbaru = $this->Mberita->beritaterbaru();
+        $lastetkategori = $this->Mberita->getAll();
+        $subkategori = $this->Msubkategori->getAll();
+        $munculberitatop = $this->Mberita->beritatop();
+        $kategori = $this->Mkategori->get_categories();
+        $detailberita = $this->Mberita->detailberita($slug);
+        $data = [
+            'tittle' => 'Detail Berita',
+            'kat' => $kategori,
+            'detailB' => $detailberita,
+            'munculberitatop' => $munculberitatop,
+            'muncullastetkategori' => $lastetkategori,
+            'subkat' => $subkategori,
+            'allberita' => $lastetkategori,
+            'terbaru' => $beritaterbaru,
+            'latestBerita' => $latestBerita, // Menambahkan data berita terbaru
+        
     ];
 
         return view('v_detail_berita', $data);
