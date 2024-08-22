@@ -31,6 +31,7 @@ class Home extends BaseController
         $muncultenghulonthalo2 = $this->Mberita->tengahhulonthalo2();
         $muncultengahhulonthalo = $this->Mberita->tengahhulonthalo();
         $munculkiribawah1 = $this->Mberita->kiribawah1();
+        $munculkota = $this->Mberita->kotamuncul();
         $munculkiribawahnusantara = $this->Mberita->kiribawah2();
         $berita_terbaru = $this->Mberita->dataterbaru();
         $berita_headline = $this->Mberita->headline();
@@ -47,6 +48,7 @@ class Home extends BaseController
             'head' => $berita_headline,
             'muncul2' => $berita_terbaru,
             'muncul3' => $munculkiribawah1,
+            'munculkotas' => $munculkota,
             'munculnusantara' => $munculkiribawahnusantara,
             'munculhulonthalo' => $muncultengahhulonthalo,
             'munculhulonthalo2' => $muncultenghulonthalo2,
@@ -67,8 +69,8 @@ class Home extends BaseController
             'tittle' => "Kategori Berinti.id",
             'sub' => $subkategori,
             'kat' => $kategori,
-            'showcategories' => $show ,
-            'topcategories'=>$munculberitatop,
+            'showcategories' => $show,
+            'topcategories' => $munculberitatop,
             'id_kategori' => $id_kategori  // Mengirim id_kategori ke view
         ];
         return view('v_home_kategori', $data);
@@ -94,41 +96,51 @@ class Home extends BaseController
 
     public function detail_berita($slug)
     {
-
-        // $kategori = $this->Mkategori->findAll();
-
-        $munculberitatop = $this->Mberita->beritatop();
-        $kategori = $this->Mkategori->get_categories();
+        // Ambil detail berita berdasarkan slug
         $detailberita = $this->Mberita->detailberita($slug);
-        $gz = $this->Mberita->gas($slug);
-        // Jika berita ditemukan
-        if ($gz) {
-            $kategoriId = $gz->id_kategori; // ID kategori dari berita detail
-            $currentId = $gz->id_berita;    // ID berita detail
-            $latestBerita = $this->Mberita->getLatestByCategory($kategoriId, $currentId);
+
+        // Cek apakah berita ditemukan
+        if ($detailberita) {
+            // Update view count
+            $this->Mberita->incrementViewCount($detailberita['id_berita']);
+            // $kategori = $this->Mkategori->findAll();
+
+            $munculberitatop = $this->Mberita->beritatop();
+            $kategori = $this->Mkategori->get_categories();
+            $detailberita = $this->Mberita->detailberita($slug);
+            $gz = $this->Mberita->gas($slug);
+            // Jika berita ditemukan
+            if ($gz) {
+                $kategoriId = $gz->id_kategori; // ID kategori dari berita detail
+                $currentId = $gz->id_berita;    // ID berita detail
+                $latestBerita = $this->Mberita->getLatestByCategory($kategoriId, $currentId);
+            } else {
+                $latestBerita = []; // Jika berita tidak ditemukan
+            }
+            $beritaterbaru = $this->Mberita->beritaterbaru();
+            $lastetkategori = $this->Mberita->getAll();
+            $subkategori = $this->Msubkategori->getAll();
+            $munculberitatop = $this->Mberita->beritatop();
+            $kategori = $this->Mkategori->get_categories();
+            $detailberita = $this->Mberita->detailberita($slug);
+            $data = [
+                'tittle' => 'Detail Berita',
+                'kat' => $kategori,
+                'detailB' => $detailberita,
+                'munculberitatop' => $munculberitatop,
+                'muncullastetkategori' => $lastetkategori,
+                'subkat' => $subkategori,
+                'allberita' => $lastetkategori,
+                'terbaru' => $beritaterbaru,
+                'latestBerita' => $latestBerita, // Menambahkan data berita terbaru
+
+            ];
+
+            return view('v_detail_berita', $data);
         } else {
-            $latestBerita = []; // Jika berita tidak ditemukan
+            // Jika berita tidak ditemukan, tampilkan error
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
-        $beritaterbaru = $this->Mberita->beritaterbaru();
-        $lastetkategori = $this->Mberita->getAll();
-        $subkategori = $this->Msubkategori->getAll();
-        $munculberitatop = $this->Mberita->beritatop();
-        $kategori = $this->Mkategori->get_categories();
-        $detailberita = $this->Mberita->detailberita($slug);
-        $data = [
-            'tittle' => 'Detail Berita',
-            'kat' => $kategori,
-            'detailB' => $detailberita,
-            'munculberitatop' => $munculberitatop,
-            'muncullastetkategori' => $lastetkategori,
-            'subkat' => $subkategori,
-            'allberita' => $lastetkategori,
-            'terbaru' => $beritaterbaru,
-            'latestBerita' => $latestBerita, // Menambahkan data berita terbaru
-        
-    ];
-
-        return view('v_detail_berita', $data);
     }
 
     public function label($id_label)

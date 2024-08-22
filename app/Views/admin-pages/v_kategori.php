@@ -3,102 +3,112 @@
 <?= $this->section('content'); ?>
 <div class="main-content">
     <section class="section">
-        <div class="section-header">
-            <h1>Data Kategori</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active">
-                    <a href="#">Dashboard</a>
+        <?php if (session()->get('jabatan') == 'Super Admin') : ?>
+            <div class="section-header">
+                <h1>Data Kategori</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active">
+                        <a href="#">Dashboard</a>
+                    </div>
+                    <div class="breadcrumb-item">Data Kategori</div>
                 </div>
-                <div class="breadcrumb-item">Data Kategori</div>
             </div>
-        </div>
-        <?php if (session()->getFlashdata('pesanlogout')) : ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <?php endif ?>
-        <h2 class="section-title">Data Kategori</h2>
-        <p class="section-lead">
-            Halaman Berisi data kategori di Berinti.id
-        </p>
+            <?php if (session()->getFlashdata('pesanlogout')) : ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesanlogout'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif ?>
+            <h2 class="section-title">Data Kategori</h2>
+            <p class="section-lead">
+                Halaman Berisi data kategori di Berinti.id
+            </p>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <?php if (session()->getFlashdata('pesan')) : ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <?php endif ?>
-                        <?php if (session()->getFlashdata('gagalhapus')) : ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('gagalhapus'); ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <?php endif ?>
-                        <?php if (session()->getFlashdata('berhasilhapus')) : ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('berhasilhapus'); ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <?php endif ?>
-                        <a href="tambah_kategori" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA KATEGORI</a>
-                        <div class="table-responsive">
-                            <table class="table table-striped" id="table-1">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nama Kategori</th>
-                                        <th>Sub Kategori</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $i = 1;
-                                    foreach ($rk as $d) :
-                                    ?>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php if (session()->getFlashdata('pesan')) : ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('pesan'); ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif ?>
+                            <?php if (session()->getFlashdata('gagalhapus')) : ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('gagalhapus'); ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif ?>
+                            <?php if (session()->getFlashdata('berhasilhapus')) : ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="fas fa-check fe-16 mr-2"></span> <?= session()->getFlashdata('berhasilhapus'); ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif ?>
+                            <a href="tambah_kategori" class="btn btn-primary mb-4"><i class="fas fa-plus-circle"></i> DATA KATEGORI</a>
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table-1">
+                                    <thead>
                                         <tr>
-                                            <td class="align-middle"><?= $i++ ?></td>
-                                            <td class="align-middle"><?= $d['nama_kategori'] ?></td>
-                                            <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#mdl<?= $d['id_kategori'] ?>">Sub Kategori</button></td>
-                                            <td class="align-middle">
-                                                <form action="<?= base_url(); ?>hapus_kategori/<?= $d['id_kategori']; ?>" method="post">
-                                                    <?php
-                                                    foreach ($rks as $sd) {
-                                                        if ($d['id_kategori'] == $sd->id_kategori) {
-                                                    ?>
-
-                                                            <input type="hidden" value="<?= $sd->id_subkategori ?>" name="id_sub[]">
-                                                    <?php
-                                                        }
-                                                    } ?>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <a href="vedit_kategori/<?= $d['id_kategori'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" onclick="return confirm('Apakah Anda Yakin ??')"></i></button>
-                                                </form>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Nama Kategori</th>
+                                            <th>Sub Kategori</th>
+                                            <th>Action</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 1;
+                                        foreach ($rk as $d) :
+                                        ?>
+                                            <tr>
+                                                <td class="align-middle"><?= $i++ ?></td>
+                                                <td class="align-middle"><?= $d['nama_kategori'] ?></td>
+                                                <td class="align-middle"><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#mdl<?= $d['id_kategori'] ?>">Sub Kategori</button></td>
+                                                <td class="align-middle">
+                                                    <form action="<?= base_url(); ?>hapus_kategori/<?= $d['id_kategori']; ?>" method="post">
+                                                        <?php
+                                                        foreach ($rks as $sd) {
+                                                            if ($d['id_kategori'] == $sd->id_kategori) {
+                                                        ?>
 
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                                                <input type="hidden" value="<?= $sd->id_subkategori ?>" name="id_sub[]">
+                                                        <?php
+                                                            }
+                                                        } ?>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <a href="vedit_kategori/<?= $d['id_kategori'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" onclick="return confirm('Apakah Anda Yakin ??')"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
+        <?php
+        if (session()->get('jabatan') == 'Wartawan' or session()->get('jabatan') == 'Editor') :
+        ?>
+            <div style="text-align:center;margin-top:20%;">
+                <h1 style="font-size: 200px;">404</h1>
+                <h2>Error Page</h2>
+            </div>
+        <?php endif ?>
     </section>
 
     <?php

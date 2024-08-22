@@ -253,12 +253,12 @@ body {
 .custom-card-index {
     border: none;
     margin-bottom: 20px;
-    /* border-bottom:1px solid #bfbfbf; */
+    border-bottom:1px solid #bfbfbf;
 }
-/* 
+
 .custom-card-index:last-child{
     border:0;
-} */
+}
 
 .custom-card-index img {
     width: 100%;
@@ -329,11 +329,11 @@ body {
     display: flex;
     align-items: center;
     padding: 1rem 0;
-    /* border-bottom:1px solid #bfbfbf; */
+    border-bottom:1px solid #bfbfbf;
 }
-/* .ren-card-small:last-child{
+.ren-card-small:last-child{
     border:0;
-} */
+}
 
 .ren-card-small img {
     width: 120px;
