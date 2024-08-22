@@ -15,6 +15,7 @@ class Mberita extends Model
         $builder = $this->db->table('berita');
         $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -161,4 +162,77 @@ class Mberita extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+    public function detailberita($slug)
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.caption, berita.isi, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai, pegawai.foto');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        // $builder->join('berita_label', 'berita_label.id_berita = berita.id_berita');
+        // $builder->join('label', 'label.id_label = berita_label.id_label');
+        $builder->where('berita.slug', $slug); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->groupBy('berita.id_berita');
+        $data = $builder->get()->getRowArray();
+
+
+        // Ambil label terkait berita
+        $labelBuilder = $this->db->table('berita_label');
+        $labelBuilder->select('label.nama_label')
+            ->join('label', 'label.id_label = berita_label.id_label')
+            ->where('berita_label.id_berita', $data['id_berita']);
+        $data['labels'] = $labelBuilder->get()->getResultArray();
+        return $data;
+    }
+
+    public function beritatop()
+    {
+        //menghitung tanggal 1 minggu yang lalu
+        $oneWeekAgo = date('Y-m-d', strtotime('-1 week'));
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->where('tgl_upload >=', $oneWeekAgo); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->orderBy('jumlah_view', 'DESC'); // filter data terbaru
+        $builder->limit(6);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+    public function lastetkategori($slug)
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $builder->where('berita.slug', $slug); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(2);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+    public function gas($slug)
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.judul, berita.isi, berita.tgl_upload, berita.gambar, subkategori.id_kategori');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->where('berita.slug', $slug);
+        $query = $builder->get();
+        return $query->getRow(); // Mengembalikan satu baris sebagai objek
+    }
+    public function getLatestByCategory($kategoriId, $currentId)
+{
+    $builder = $this->db->table('berita');
+    $builder->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai, berita.slug');
+    $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+    $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+    $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+    $builder->where('kategori.id_kategori', $kategoriId);
+    $builder->where('berita.id_berita !=', $currentId); // Pastikan berita yang sama tidak termasuk
+    $builder->orderBy('berita.id_berita', 'DESC');
+    $builder->limit(2);
+    return $builder->get()->getResult();
+}
 }

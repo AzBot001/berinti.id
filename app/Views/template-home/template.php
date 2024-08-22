@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <base href="<?= base_url('assets-home'); ?>">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -54,10 +55,13 @@
                                     if ($kateg->nama_kategori != 'Nusantara'):
                                 ?>
                                         <li>
-                                            <a class="dropdown-item" href="subkategori/<?= $sub->id_subkategori ?>"><?= $sub->nama_subkategori ?></a>
+                                            <a class="dropdown-item" href="subkategori_home/<?= $sub->id_subkategori ?>"><?= $sub->nama_subkategori ?></a>
                                         </li>
                                 <?php endif;
                                 endforeach ?>
+                                <li>
+                                    <a class="dropdown-item" href="kategori_home/ <?= $kateg->id_kategori ?>">Semua <?= $kateg->nama_kategori ?></a>
+                                </li>
                             </ul>
                         </li>
                         <?php
@@ -66,7 +70,7 @@
                             <li class="nav-item dropdown">
                                 <a
                                     class="nav-link"
-                                    href="nusantara">
+                                    href="kategori_home/<?= $kateg->id_kategori ?>">
                                     Nusantara
                                 </a>
                             </li>

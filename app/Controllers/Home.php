@@ -34,7 +34,7 @@ class Home extends BaseController
         $munculkiribawahnusantara = $this->Mberita->kiribawah2();
         $berita_terbaru = $this->Mberita->dataterbaru();
         $berita_headline = $this->Mberita->headline();
-        $kategori = $this->Mkategori->findAll();
+        // $kategori = $this->Mkategori->findAll();
         $subkategori = $this->Msubkategori->getAll();
         $berita = $this->Mberita->getAll();
         $kategori = $this->Mkategori->get_categories();
@@ -66,15 +66,33 @@ class Home extends BaseController
         ];
         return view('v_home_kategori', $data);
     }
-    public function detail_berita()
+    public function detail_berita($slug)
     {
-        $kategori = $this->Mkategori->get_categories();
+        // $kategori = $this->Mkategori->findAll();
 
-        $data = [
-            'tittle' => "Kategori Berinti.id",
-            'kat' => $kategori
-        ];
-        
+        $munculberitatop = $this->Mberita->beritatop();
+        $kategori = $this->Mkategori->get_categories();
+        $detailberita = $this->Mberita->detailberita($slug);
+        $gz = $this->Mberita->gas($slug);
+        // Jika berita ditemukan
+        if ($gz) {
+            $kategoriId = $gz->id_kategori; // ID kategori dari berita detail
+            $currentId = $gz->id_berita;    // ID berita detail
+
+            // Mengambil dua berita terbaru dengan kategori yang sama
+            $latestBerita = $this->Mberita->getLatestByCategory($kategoriId, $currentId);
+        } else {
+            $latestBerita = []; // Jika berita tidak ditemukan
+        }
+        // Mengirim data ke view
+    $data = [
+        'tittle' => 'Detail Berita',
+        'kat' => $kategori,
+        'detailB' => $detailberita,
+        'munculberitatop' => $munculberitatop,
+        'latestBerita' => $latestBerita, // Menambahkan data berita terbaru
+    ];
+
         return view('v_detail_berita', $data);
     }
 }

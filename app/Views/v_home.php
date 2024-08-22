@@ -66,7 +66,7 @@ function merubah_tanggal($tgl)
                         <div>
                             <p><?= $new->nama_kategori ?></p>
                             <h1 class="hero-title">
-                                <a href="<?= $new->slug ?>"><?= $new->judul ?></a>
+                                <a href="detail_berita/<?= $new->slug ?>"><?= $new->judul ?></a>
                             </h1>
                             <p class="hero-date"><?= $new->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
                         </div>
@@ -110,7 +110,7 @@ function merubah_tanggal($tgl)
             <?php foreach ($muncul2 as $section2): ?>
                 <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="card custom-card">
-                        <a href="<?= $section2->slug ?>">
+                        <a href="detail_berita/<?= $section2->slug ?>">
                             <img
                                 src="thumbnail/<?= $section2->gambar ?>"
                                 class="card-img-top"
@@ -119,7 +119,7 @@ function merubah_tanggal($tgl)
                         <div class="card-body">
                             <span class="category-tag"><?= $section2->nama_kategori ?></span>
                             <h5 class="card-title">
-                                <a href="<?= $section2->slug ?>"><?= $section2->judul ?></a>
+                                <a href="detail_berita/<?= $section2->slug ?>"><?= $section2->judul ?></a>
                             </h5>
                             <p class="card-text"><?= $section2->nama_pegawai ?> • <?= merubah_tanggal($new->tgl_upload) ?></p>
                         </div>
@@ -143,7 +143,7 @@ function merubah_tanggal($tgl)
                 <?php foreach ($muncul3 as $row):
                 ?>
                     <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12 border-bottom">
-                        <a href="<?= $row->slug ?>">
+                        <a href="detail_berita/<?= $row->slug ?>">
                             <img
                                 src="thumbnail/<?= $row->gambar ?>"
                                 class="card-img-top"
@@ -152,7 +152,7 @@ function merubah_tanggal($tgl)
                         <div class="card-body">
                             <span class="category-tag"><?= $row->nama_kategori ?></span>
                             <h5 class="card-title">
-                                <a href="<?= $row->slug ?>"><?= $row->judul ?></a>
+                                <a href="detail_berita/<?= $row->slug ?>"><?= $row->judul ?></a>
                             </h5>
                             <p class="card-text"><?= $row->nama_pegawai ?> • <?= merubah_tanggal($row->tgl_upload) ?></p>
                         </div>
@@ -161,7 +161,7 @@ function merubah_tanggal($tgl)
                 <?php foreach ($munculnusantara as $rows):
                 ?>
                     <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12">
-                        <a href="<?= $rows->slug ?>">
+                        <a href="detail_berita/<?= $rows->slug ?>">
                             <img
                                 src="thumbnail/<?= $rows->gambar ?>"
                                 class="card-img-top"
@@ -170,7 +170,7 @@ function merubah_tanggal($tgl)
                         <div class="card-body">
                             <span class="category-tag"><?= $rows->nama_kategori ?></span>
                             <h5 class="card-title">
-                                <a href="<?= $rows->slug ?>"><?= $rows->judul ?></a>
+                                <a href="detail_berita/<?= $rows->slug ?>"><?= $rows->judul ?></a>
                             </h5>
                             <p class="card-text"><?= $rows->nama_pegawai ?> • <?= merubah_tanggal($rows->tgl_upload) ?></p>
                         </div>
@@ -181,7 +181,7 @@ function merubah_tanggal($tgl)
             <div class="col-lg-6 col-md-12 col-sm-12 mb-2 border-right-index">
                 <?php foreach ($munculhulonthalo as $munhulonthalo): ?>
                     <div class="card custom-card-lg-index border-bottom">
-                        <a href="<?= $munhulonthalo->slug ?>">
+                        <a href="detail_berita/<?= $munhulonthalo->slug ?>">
                             <img
                                 src="thumbnail/<?= $munhulonthalo->gambar ?>"
                                 class="card-img-top"
@@ -190,7 +190,7 @@ function merubah_tanggal($tgl)
                         <div class="card-body">
                             <span class="category-tag"><?= $munhulonthalo->nama_kategori ?></span>
                             <h5 class="card-title">
-                                <a href="<?= $munhulonthalo->slug ?>"><?= $munhulonthalo->judul ?></a>
+                                <a href="detail_berita/<?= $munhulonthalo->slug ?>"><?= $munhulonthalo->judul ?></a>
                             </h5>
                             <p class="card-text"><?= $munhulonthalo->nama_pegawai ?> • <?= merubah_tanggal($munhulonthalo->tgl_upload) ?></p>
                         </div>
@@ -203,13 +203,13 @@ function merubah_tanggal($tgl)
                     <div class="card-body">
                         <h5 class="category-tag"><?= $secondrow['nama_kategori'] ?></h5>
                         <h3 class="card-title mb-2">
-                            <a href="<?= $secondrow['slug'] ?>"> <?= $secondrow['judul'] ?></a>
+                            <a href="detail_berita/<?= $secondrow['slug'] ?>"> <?= $secondrow['judul'] ?></a>
                         </h3>
                         <p class="card-text">
                             <small class="text-muted"><?= $secondrow['nama_pegawai'] ?> • <?= merubah_tanggal($secondrow['tgl_upload']) ?></small>
                         </p>
                     </div>
-                    <a href="<?= $secondrow['slug'] ?>">
+                    <a href="detail_berita/<?= $secondrow['slug'] ?>">
                         <img src="thumbnail/<?= $secondrow['gambar'] ?>" alt="Artwork Image" />
                     </a>
                 </div>
@@ -218,13 +218,13 @@ function merubah_tanggal($tgl)
                         <div class="card-body">
                             <h5 class="category-tag"><?= $munolahraga->nama_kategori ?></h5>
                             <h3 class="card-title mb-2">
-                                <a href="<?= $munolahraga->slug ?>"> <?= $munolahraga->judul ?></a>
+                                <a href="detail_berita/<?= $munolahraga->slug ?>"> <?= $munolahraga->judul ?></a>
                             </h3>
                             <p class="card-text">
                                 <small class="text-muted"><?= $munolahraga->nama_pegawai ?> • <?= merubah_tanggal($munolahraga->tgl_upload) ?></small>
                             </p>
                         </div>
-                        <a href="<?= $munolahraga->slug ?>">
+                        <a href="detail_berita/<?= $munolahraga->slug ?>">
                             <img src="thumbnail/<?= $munolahraga->gambar ?>" alt="Artwork Image" />
                         </a>
                     </div>
@@ -261,11 +261,11 @@ function merubah_tanggal($tgl)
                     <div class="content ms-1">
                         <span class="category-tag"><?= $populer->nama_kategori ?></span>
                         <h2 class="card-title">
-                            <a href="<?= $populer->slug ?>"><?= $populer->judul ?></a>
+                            <a href="detail_berita/<?= $populer->slug ?>"><?= $populer->judul ?></a>
                         </h2>
                         <p class="card-text"><?= $populer->nama_pegawai ?> • <?= merubah_tanggal($populer->tgl_upload) ?></p>
                     </div>
-                   <a href="<?= $populer->slug ?>">
+                   <a href="detail_berita/<?= $populer->slug ?>">
                    <img
                         src="thumbnail/<?= $populer->gambar ?>"
                         alt="Article Image"
@@ -291,13 +291,13 @@ function merubah_tanggal($tgl)
                     <div class="ren-card-large position-relative">
                         <img
                             style="cursor:pointer;"
-                            onclick="window.location.href='<?= $kisahgorontalo->slug ?>'"
+                            onclick="window.location.href='detail_berita/<?= $kisahgorontalo->slug ?>'"
                             src="thumbnail/<?= $kisahgorontalo->gambar ?>"
                             alt="Music Festival Image" />
                         <div class="card-body">
                             <h5 class="category-tag"><?= $kisahgorontalo->nama_kategori ?></h5>
                             <h3 class="card-title mb-2">
-                                <a style="color: #fff !important;" href="<?= $kisahgorontalo->slug ?>"> <?= $kisahgorontalo->judul ?></a>
+                                <a style="color: #fff !important;" href="detail_berita/<?= $kisahgorontalo->slug ?>"> <?= $kisahgorontalo->judul ?></a>
                             </h3>
                             <p class="card-text text-white">
                                 <small><?= $kisahgorontalo->nama_pegawai ?> • <?= merubah_tanggal($kisahgorontalo->tgl_upload) ?></small>
@@ -313,13 +313,13 @@ function merubah_tanggal($tgl)
                         <div class="card-body">
                             <h5 class="category-tag"> <?= $gaya->nama_kategori ?></h5>
                             <h3 class="card-title mb-2">
-                                <a href="<?= $gaya->slug ?>"> <?= $gaya->judul ?></a>
+                                <a href="detail_berita/<?= $gaya->slug ?>"> <?= $gaya->judul ?></a>
                             </h3>
                             <p class="card-text">
                                 <small class="text-muted"> <?= $gaya->nama_pegawai ?> • <?= merubah_tanggal($gaya->tgl_upload) ?></small>
                             </p>
                         </div>
-                        <a href="<?= $gaya->slug ?>">
+                        <a href="detail_berita/<?= $gaya->slug ?>">
                         <img
                             src="thumbnail/<?= $gaya->gambar ?>"
                             alt="Tech Conventions Image" />

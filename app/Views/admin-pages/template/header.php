@@ -178,11 +178,11 @@
                     tinymce.activeEditor.execCommand(
                         "mceInsertContent",
                         false,
-                        '<strong class="read__others">Baca Juga: <a href="' +
+                        '<br><br><strong class="read__others">Baca Juga: <a href="detail_berita' +
                         $(this).attr("data-url") +
                         '">' +
                         $(this).attr("data-title") +
-                        "</a></strong>"
+                        "</a></strong><br><br>"
                     );
                     $("#myModal").modal("hide");
                 });

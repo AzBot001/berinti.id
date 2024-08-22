@@ -18,4 +18,10 @@ class MberitaLabel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+    public function deleteberitalabel($id_berita)
+    {
+        $builder = $this->db->table('berita_label');
+        $builder->where('id_berita', $id_berita);
+        $query = $builder->delete();
+    }
 }
