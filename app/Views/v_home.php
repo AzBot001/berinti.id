@@ -192,49 +192,70 @@ function merubah_tanggal($tgl)
                     </div>
                 <?php endforeach ?>
                 <?php if (isset($munculhulonthalo2[1])) {
-                    $secondrow = $munculhulonthalo2[1];
-                } ?>
+                    $secondrowdata = $munculhulonthalo2[1];
+                }
+                ?>
                 <div class="ren-card border-bottom py-3">
                     <div class="card-body">
-                        <h5 class="category-tag"><?= $secondrow['nama_kategori'] ?></h5>
+                        <h5 class="category-tag"><?= $secondrowdata['nama_kategori'] ?></h5>
                         <h3 class="card-title mb-2">
-                            <a href="detail_berita/<?= $secondrow['slug'] ?>"> <?= $secondrow['judul'] ?></a>
+                            <a href="detail_berita/<?= $secondrowdata['slug'] ?>"> <?= $secondrowdata['judul'] ?></a>
                         </h3>
                         <p class="card-text">
-                            <small class="text-muted"><?= $secondrow['nama_pegawai'] ?> • <?= merubah_tanggal($secondrow['tgl_upload']) ?></small>
+                            <small class="text-muted"><?= $secondrowdata['nama_pegawai'] ?> • <?= merubah_tanggal($secondrowdata['tgl_upload']) ?></small>
                         </p>
                     </div>
-                    <a href="detail_berita/<?= $secondrow['slug'] ?>">
-                        <img src="thumbnail/<?= $secondrow['gambar'] ?>" alt="Artwork Image" />
+                    <a href="detail_berita/<?= $secondrowdata['slug'] ?>">
+                        <img src="thumbnail/<?= $secondrowdata['gambar'] ?>" alt="Artwork Image" />
                     </a>
                 </div>
-                <?php foreach ($munculolahraga as $munolahraga): ?>
-                    <div class="ren-card py-3">
-                        <div class="card-body">
-                            <h5 class="category-tag"><?= $munolahraga->nama_kategori ?></h5>
-                            <h3 class="card-title mb-2">
-                                <a href="detail_berita/<?= $munolahraga->slug ?>"> <?= $munolahraga->judul ?></a>
-                            </h3>
-                            <p class="card-text">
-                                <small class="text-muted"><?= $munolahraga->nama_pegawai ?> • <?= merubah_tanggal($munolahraga->tgl_upload) ?></small>
-                            </p>
-                        </div>
-                        <a href="detail_berita/<?= $munolahraga->slug ?>">
-                            <img src="thumbnail/<?= $munolahraga->gambar ?>" alt="Artwork Image" />
-                        </a>
+                <?php if (isset($munculhulonthalo2[2])) {
+                    $secondrowdata2 = $munculhulonthalo2[2];
+                }
+                ?>
+                <div class="ren-card border-bottom py-3">
+                    <div class="card-body">
+                        <h5 class="category-tag"><?= $secondrowdata2['nama_kategori'] ?></h5>
+                        <h3 class="card-title mb-2">
+                            <a href="detail_berita/<?= $secondrowdata2['slug'] ?>"> <?= $secondrowdata2['judul'] ?></a>
+                        </h3>
+                        <p class="card-text">
+                            <small class="text-muted"><?= $secondrowdata2['nama_pegawai'] ?> • <?= merubah_tanggal($secondrowdata2['tgl_upload']) ?></small>
+                        </p>
                     </div>
-                <?php endforeach ?>
+                    <a href="detail_berita/<?= $secondrowdata2['slug'] ?>">
+                        <img src="thumbnail/<?= $secondrowdata2['gambar'] ?>" alt="Artwork Image" />
+                    </a>
+                </div>
             </div>
             <!-- Card 3 -->
             <div class="col-lg-3 col-md-12 col-sm-12 mb-2">
-               
+                <?php foreach ($munculolahraga as $row):
+                ?>
+                    <div class="card custom-card-index col-lg-12 col-md-12 col-sm-12 border-bottom">
+                        <a href="detail_berita/<?= $row->slug ?>">
+                            <img
+                                src="thumbnail/<?= $row->gambar ?>"
+                                class="card-img-top"
+                                alt="Article Image" />
+                        </a>
+                        <div class="card-body">
+                            <span class="category-tag"><?= $row->nama_kategori ?></span>
+                            <h5 class="card-title">
+                                <a href="detail_berita/<?= $row->slug ?>"><?= $row->judul ?></a>
+                            </h5>
+                            <p class="card-text"><?= $row->nama_pegawai ?> • <?= merubah_tanggal($row->tgl_upload) ?></p>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+
             </div>
         </div>
         <hr />
     </div>
 </div>
 <div class="container">
-  
+
 </div>
 <div class="container-fluid p-1">
     <div class="container mt-5">
@@ -256,13 +277,13 @@ function merubah_tanggal($tgl)
                         </h2>
                         <p class="card-text"><?= $populer->nama_pegawai ?> • <?= merubah_tanggal($populer->tgl_upload) ?></p>
                     </div>
-                   <a href="detail_berita/<?= $populer->slug ?>">
-                   <img
-                        src="thumbnail/<?= $populer->gambar ?>"
-                        alt="Article Image"
-                        class="ms-auto" />
+                    <a href="detail_berita/<?= $populer->slug ?>">
+                        <img
+                            src="thumbnail/<?= $populer->gambar ?>"
+                            alt="Article Image"
+                            class="ms-auto" />
                     </a>
-                   </a>
+                    </a>
                 </div>
             <?php endforeach ?>
 
@@ -311,9 +332,9 @@ function merubah_tanggal($tgl)
                             </p>
                         </div>
                         <a href="detail_berita/<?= $gaya->slug ?>">
-                        <img
-                            src="thumbnail/<?= $gaya->gambar ?>"
-                            alt="Tech Conventions Image" />
+                            <img
+                                src="thumbnail/<?= $gaya->gambar ?>"
+                                alt="Tech Conventions Image" />
                         </a>
                     </div>
                 <?php endforeach ?>

@@ -31,6 +31,7 @@ class Home extends BaseController
         $muncultenghulonthalo2 = $this->Mberita->tengahhulonthalo2();
         $muncultengahhulonthalo = $this->Mberita->tengahhulonthalo();
         $munculkiribawah1 = $this->Mberita->kiribawah1();
+        $munculkota = $this->Mberita->kotamuncul();
         $munculkiribawahnusantara = $this->Mberita->kiribawah2();
         $berita_terbaru = $this->Mberita->dataterbaru();
         $berita_headline = $this->Mberita->headline();
@@ -47,6 +48,7 @@ class Home extends BaseController
             'head' => $berita_headline,
             'muncul2' => $berita_terbaru,
             'muncul3' => $munculkiribawah1,
+            'munculkotas' => $munculkota,
             'munculnusantara' => $munculkiribawahnusantara,
             'munculhulonthalo' => $muncultengahhulonthalo,
             'munculhulonthalo2' => $muncultenghulonthalo2,
@@ -67,8 +69,8 @@ class Home extends BaseController
             'tittle' => "Kategori Berinti.id",
             'sub' => $subkategori,
             'kat' => $kategori,
-            'showcategories' => $show ,
-            'topcategories'=>$munculberitatop,
+            'showcategories' => $show,
+            'topcategories' => $munculberitatop,
             'id_kategori' => $id_kategori  // Mengirim id_kategori ke view
         ];
         return view('v_home_kategori', $data);
@@ -125,8 +127,8 @@ class Home extends BaseController
             'allberita' => $lastetkategori,
             'terbaru' => $beritaterbaru,
             'latestBerita' => $latestBerita, // Menambahkan data berita terbaru
-        
-    ];
+
+        ];
 
         return view('v_detail_berita', $data);
     }
