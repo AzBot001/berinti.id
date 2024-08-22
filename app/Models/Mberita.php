@@ -202,6 +202,14 @@ class Mberita extends Model
         $data['labels'] = $labelBuilder->get()->getResultArray();
         return $data;
     }
+    //tambah jumlah view
+    public function incrementViewCount($id_berita)
+    {
+        $this->db->table('berita')
+            ->where('id_berita', $id_berita)
+            ->set('jumlah_view', 'jumlah_view + 1', FALSE)
+            ->update();
+    }
 
     public function beritatop()
     {

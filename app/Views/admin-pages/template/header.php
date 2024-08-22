@@ -88,39 +88,62 @@
                         <a href="index.html"><img src="assets/img/logo/b.png" width="40" alt=""></a>
                     </div>
                     <ul class="sidebar-menu mt-2">
-                        <li class="menu-header">Dashboard</li>
-                        <li class="<?= isset($tittle) && $tittle == 'Dashboard' ? 'active' : '' ?>">
-                            <a class="nav-link" href="dashboard">
-                                <i class="fas fa-home"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="menu-header">Master Data</li>
-                        <li class="<?= isset($tittle) && $tittle == 'Pegawai' ? 'active' : '' ?>">
-                            <a class="nav-link" href="pegawai">
-                                <i class="fas fa-user-edit"></i> <span>Pegawai</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="kategori">
-                                <i class="fas fa-bookmark"></i> <span>Kategori</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="label">
-                                <i class="fas fa-tags"></i> <span>Label</span>
-                            </a>
-                        </li>
-                        <li class="menu-header">Artikel</li>
-                        <li>
-                            <a class="nav-link" href="berita">
-                                <i class="fas fa-newspaper"></i> <span>Berita</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="index">
-                                <i class="fas fa-video"></i> <span>Video</span>
-                            </a>
-                        </li>
+                        <?php if (session()->get('jabatan') == 'Super Admin') : ?>
+                            <li class="menu-header">Dashboard</li>
+                            <li class="<?= isset($tittle) && $tittle == 'Dashboard' ? 'active' : '' ?>">
+                                <a class="nav-link" href="dashboard">
+                                    <i class="fas fa-home"></i> <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="menu-header">Master Data</li>
+                            <li class="<?= isset($tittle) && $tittle == 'Pegawai' ? 'active' : '' ?>">
+                                <a class="nav-link" href="pegawai">
+                                    <i class="fas fa-user-edit"></i> <span>Pegawai</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="kategori">
+                                    <i class="fas fa-bookmark"></i> <span>Kategori</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="label">
+                                    <i class="fas fa-tags"></i> <span>Label</span>
+                                </a>
+                            </li>
+                            <li class="menu-header">Artikel</li>
+                            <li>
+                                <a class="nav-link" href="berita">
+                                    <i class="fas fa-newspaper"></i> <span>Berita</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="index">
+                                    <i class="fas fa-video"></i> <span>Video</span>
+                                </a>
+                            </li>
+                        <?php endif ?>
+                        <!-- akses wartawan -->
+                        <?php if (session()->get('jabatan') == 'Wartawan' or session()->get('jabatan') == 'Editor') : ?>
+                            <li class="menu-header">Dashboard</li>
+                            <li class="<?= isset($tittle) && $tittle == 'Dashboard' ? 'active' : '' ?>">
+                                <a class="nav-link" href="dashboard">
+                                    <i class="fas fa-home"></i> <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="menu-header">Master Data</li>
+                            <li>
+                                <a class="nav-link" href="label">
+                                    <i class="fas fa-tags"></i> <span>Label</span>
+                                </a>
+                            </li>
+                            <li class="menu-header">Artikel</li>
+                            <li>
+                                <a class="nav-link" href="berita">
+                                    <i class="fas fa-newspaper"></i> <span>Berita</span>
+                                </a>
+                            </li>
+                        <?php endif ?>
                     </ul>
                 </aside>
             </div>
@@ -168,7 +191,7 @@
     <script
         src="assets/tinymce/tinymce/tinymce.min.js"
         referrerpolicy="origin"></script>
-        <script>
+    <script>
         // Event Read Too
         $(document).ready(function() {
             $(this)
