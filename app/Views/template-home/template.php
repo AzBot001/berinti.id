@@ -12,6 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous" />
     <link rel="stylesheet" href="assets-home/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -35,12 +36,11 @@
                     // memanggil kategori
                     foreach ($kat as $kateg):
                     ?>
-                        <li class="nav-item"><a href="categories/<?= $kateg->nama_kategori ?>" class="nav-link"><?= $kateg->nama_kategori ?></a></a></li>
+                        <li class="nav-item"><a href="categories/<?= $kateg->id_kategori ?>" class="nav-link"><?= $kateg->nama_kategori ?></a></a></li>
                         <li class="nav-item dropdown">
                             <?php if ($kateg->nama_kategori != 'Nusantara'): ?>
-
                                 <a
-                                    class=" nav-link dropdown-toggle"
+                                    class="nav-link dropdown-toggle span"
                                     href="#"
                                     id="navbarDropdownMenuLink"
                                     role="button"
@@ -60,22 +60,9 @@
                                         </li>
                                 <?php endif;
                                 endforeach ?>
-                                <li>
-                                    <a class="dropdown-item" href="categories/<?= $kateg->id_kategori ?>">Semua <?= $kateg->nama_kategori ?></a>
-                                </li>
                             </ul>
                         </li>
-                        <?php
-                        // memanggil nusantara
-                        if ($kateg->nama_kategori == 'Nusantara'): ?>
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link"
-                                    href="categories/<?= $kateg->id_kategori ?>">
-                                    Nusantara
-                                </a>
-                            </li>
-                        <?php endif ?>
+                       
                     <?php endforeach ?>
                 </ul>
             </div>

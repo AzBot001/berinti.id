@@ -33,7 +33,7 @@ function merubah_tanggal($tgl)
     <div class="row justify-content-around">
         <div class="article-header mb-4">
             <h1 class="title-news">
-                <?= isset($lab[$id_label]->nama_label) ? $lab[$id_label]->nama_label : 'Tidak Ditemukan' ?>
+                <i class="fas fa-tag text-kuning"></i> <?= isset($lab[$id_label]->nama_label) ? $lab[$id_label]->nama_label : 'Tidak Ditemukan' ?>
             </h1>
         </div>
         <!-- Main Article -->

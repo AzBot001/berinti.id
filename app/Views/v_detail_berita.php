@@ -80,7 +80,7 @@ function merubah_tanggal($tgl)
 
                 </p>
             </div>
-            <div class="adv_article-left">ADVERTISEMENT</div>
+           
             <h5 class="subjdl mt-5">Read More</h5>
             <div class="row">
                 <?php foreach ($terbaru as $baruberita): ?>
@@ -100,7 +100,7 @@ function merubah_tanggal($tgl)
                     </div>
                 <?php endforeach ?>
             </div>
-            <div class="adv_article-left">ADVERTISEMENT</div>
+    
         </div>
         <!-- Sidebar -->
         <div class="col-lg-3">
@@ -122,11 +122,11 @@ function merubah_tanggal($tgl)
                                 </div>
                             </div>
                         </li>
+                        <hr>
                     <?php endforeach ?>
-                    <hr>
                 </ul>
             </div>
-            <div class="adv_article-right">ADVERTISEMENT</div>
+      
             <h5 class="subjdl mt-5">Latest on this categories</h5>
             <div class="row mb-3">
                 <?php foreach ($latestBerita as $item): ?>
@@ -143,7 +143,7 @@ function merubah_tanggal($tgl)
                 <?php
                 endforeach; ?>
             </div>
-            <div class="adv_article-right" id="sticky">ADVERTISEMENT</div>
+          
         </div>
     </div>
 </div>

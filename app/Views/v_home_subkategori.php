@@ -39,29 +39,37 @@ function merubah_tanggal($tgl)
         <!-- Main Article -->
         <div class="col-lg-9 p-3 of mb-5" id="stopPoint">
             <div class="row">
-                <?php foreach ($panggesuber as $subber): ?>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="card custom-card">
-                            <a href="detail_berita/<?= $subber->slug ?>"><img
-                                    src="thumbnail/<?= $subber->gambar ?>"
-                                    class="card-img-top"
-                                    alt="Article Image" /></a>
-                            <div class="card-body">
-                                <span class="category-tag"><?= $subber->nama_kategori ?></span>
-                                <h5 class="card-title">
-                                    <a href="detail_berita/<?= $subber->slug ?>" style="color:black;">
-                                        <?= $subber->judul ?>
-                                    </a>
-                                </h5>
-                                <p class="card-text"><?= $subber->nama_pegawai ?> • <?= merubah_tanggal($subber->tgl_upload) ?></p>
+                <?php
+                if (isset($panggesuber) && ! empty($panggesuber)) {
+                   foreach ($panggesuber as $subber): ?>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="card custom-card">
+                                <a href="detail_berita/<?= $subber->slug ?>"><img
+                                        src="thumbnail/<?= $subber->gambar ?>"
+                                        class="card-img-top"
+                                        alt="Article Image" /></a>
+                                <div class="card-body">
+                                    <span class="category-tag"><?= $subber->nama_kategori ?></span>
+                                    <h5 class="card-title">
+                                        <a href="detail_berita/<?= $subber->slug ?>" style="color:black;">
+                                            <?= $subber->judul ?>
+                                        </a>
+                                    </h5>
+                                    <p class="card-text"><?= $subber->nama_pegawai ?> • <?= merubah_tanggal($subber->tgl_upload) ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach ?>
+                    <?php endforeach;
+                }else{
+                    ?>
+                    <div>Belum ada Berita</div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
         <!-- Sidebar -->
-        <div class="col-lg-3">
+        <div class="col-lg-3 mb-5">
             <div class="top-news">
                 <h5 class="subjdl">TOP NEWS</h5>
                 <hr />
@@ -69,7 +77,7 @@ function merubah_tanggal($tgl)
                     <?php
                     $no = 1;
                     foreach ($munculberitatop as $munculberitatop): ?>
-                        <li class="d-flex align-items-start mb-4">
+                        <li class="d-flex align-items-start mb-4 p-2">
                             <div class="d-flex align-items-center">
                                 <img src="thumbnail/<?= $munculberitatop->gambar ?>" class="img-fluid m-kecil " alt="...">
                                 <span class="number-circle"><?= $no++ ?></span>
@@ -80,8 +88,9 @@ function merubah_tanggal($tgl)
                                 </div>
                             </div>
                         </li>
+                        <hr>
                     <?php endforeach ?>
-                    <hr>
+                    
                 </ul>
             </div>
         </div>

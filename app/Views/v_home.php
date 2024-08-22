@@ -270,7 +270,7 @@ function merubah_tanggal($tgl)
         </div>
     </div>
 </div>
-<div class="container-fluid p-1">
+<div class="container-fluid p-1 mb-5">
     <div class="container mt-5">
         <div class="row">
             <!-- Card 1 -->
