@@ -69,7 +69,9 @@ class Home extends BaseController
     public function detail_berita($slug)
     {
         // $kategori = $this->Mkategori->findAll();
-        $lastetkategori = $this->Mberita->lastetkategori($slug);
+        $beritaterbaru = $this->Mberita->beritaterbaru();
+        $lastetkategori = $this->Mberita->getAll();
+        $subkategori = $this->Msubkategori->getAll();
         $munculberitatop = $this->Mberita->beritatop();
         $kategori = $this->Mkategori->get_categories();
         $detailberita = $this->Mberita->detailberita($slug);
@@ -79,6 +81,9 @@ class Home extends BaseController
             'detailB' => $detailberita,
             'munculberitatop' => $munculberitatop,
             'muncullastetkategori' => $lastetkategori,
+            'subkat' => $subkategori,
+            'allberita' => $lastetkategori,
+            'terbaru' => $beritaterbaru
 
         ];
 
