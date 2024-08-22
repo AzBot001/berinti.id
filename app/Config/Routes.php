@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('/categories/(:segment)', 'Home::kategori/$1');
+$routes->get('/labels/(:segment)', 'Home::label/$1');
+$routes->get('/sub_categories/(:segment)', 'Home::sub_kategori/$1');
 $routes->get('/detail_berita/(:segment)', 'Home::detail_berita/$1');
 $routes->get('/login_admin', 'Login::index');
 $routes->get('/dashboard', 'Dashboard::index');

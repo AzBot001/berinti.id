@@ -32,4 +32,23 @@ class Msubkategori extends Model
         $query = $builder->get();
         return $query;
     }
+    public function get_subcategories()
+    {
+        $query = $this->db->table('subkategori')->get();
+        $return = array();
+
+        foreach ($query->getResult() as $category) {
+            $return[$category->id_subkategori] = $category;
+            $return[$category->id_subkategori]->subkategori = $this->get_sub_categories($category->id_subkategori);
+        }
+
+        return $return;
+    }
+
+    public function get_sub_categories($category_id)
+    {
+        $query = $this->db->table('berita');
+        $query->where('id_subkategori', $category_id);
+        return $query->get()->getResult();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\Database\OCI8\Builder;
 use CodeIgniter\Model;
 
 class Mberita extends Model
@@ -178,7 +179,7 @@ class Mberita extends Model
 
         // Ambil label terkait berita
         $labelBuilder = $this->db->table('berita_label');
-        $labelBuilder->select('label.nama_label')
+        $labelBuilder->select('label.nama_label, label.id_label,')
             ->join('label', 'label.id_label = berita_label.id_label')
             ->where('berita_label.id_berita', $data['id_berita']);
         $data['labels'] = $labelBuilder->get()->getResultArray();
@@ -265,5 +266,32 @@ class Mberita extends Model
         $builder->where('kategori.id_kategori', $id_kategori);
         $query = $builder->get();
         return $query->getResult(); // Mengembalikan hasil sebagai array objek
+    }
+    public function pangge_sub($id_subkategori)
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.slug, berita.id_subkategori, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->where('subkategori.id_subkategori', $id_subkategori);
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function pangge_label($id_label)
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.id_berita, berita.slug, berita.id_subkategori, berita.judul, berita.tgl_upload, berita.gambar, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+        $builder->join('berita_label', 'berita_label.id_berita = berita.id_berita');
+        $builder->join('label', 'berita_label.id_label = label.id_label');
+        $builder->where('label.id_label', $id_label);
+        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
+        $query = $builder->get();
+        return $query->getResult();
     }
 }
