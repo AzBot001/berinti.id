@@ -35,16 +35,17 @@
                     // memanggil kategori
                     foreach ($kat as $kateg):
                     ?>
+                        <li class="nav-item"><a href="categories/<?= $kateg->nama_kategori ?>" class="nav-link"><?= $kateg->nama_kategori ?></a></a></li>
                         <li class="nav-item dropdown">
                             <?php if ($kateg->nama_kategori != 'Nusantara'): ?>
+
                                 <a
-                                    class="nav-link dropdown-toggle"
+                                    class=" nav-link dropdown-toggle"
                                     href="#"
                                     id="navbarDropdownMenuLink"
                                     role="button"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <?= $kateg->nama_kategori ?>
                                 </a>
                             <?php endif ?>
                             <ul
@@ -55,13 +56,10 @@
                                     if ($kateg->nama_kategori != 'Nusantara'):
                                 ?>
                                         <li>
-                                            <a class="dropdown-item" href="subkategori_home/<?= $sub->id_subkategori ?>"><?= $sub->nama_subkategori ?></a>
+                                            <a class="dropdown-item" href="sub_categories/<?= $sub->id_subkategori ?>"><?= $sub->nama_subkategori ?></a>
                                         </li>
                                 <?php endif;
                                 endforeach ?>
-                                <li>
-                                    <a class="dropdown-item" href="kategori_home/ <?= $kateg->id_kategori ?>">Semua <?= $kateg->nama_kategori ?></a>
-                                </li>
                             </ul>
                         </li>
                         <?php

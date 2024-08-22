@@ -64,7 +64,9 @@ function merubah_tanggal($tgl)
                 <div class="label_article">
                     <ul>
                         <?php foreach ($detailB['labels'] as $detaillabel): ?>
-                            <li> <?= $detaillabel['nama_label'] ?></li>
+                            <a href="labels/<?= $detaillabel['id_label'] ?>">
+                                <li> <?= $detaillabel['nama_label'] ?></li>
+                            </a>
                         <?php endforeach ?>
                     </ul>
                 </div>

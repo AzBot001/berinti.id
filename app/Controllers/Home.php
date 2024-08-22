@@ -59,15 +59,38 @@ class Home extends BaseController
     }
     public function kategori()
     {
+        $kategori = $this->Mkategori->get_categories();
         $subkategori = $this->Msubkategori->getAll();
         $data = [
             'tittle' => "Kategori Berinti.id",
-            'sub' => $subkategori
+            'sub' => $subkategori,
+            'kat' => $kategori
+
         ];
         return view('v_home_kategori', $data);
     }
+
+    public function sub_kategori($id_subkategori)
+    {
+        $munculberitatop = $this->Mberita->beritatop();
+        $kategori = $this->Mkategori->get_categories();
+        $suber = $this->Mberita->pangge_sub($id_subkategori);
+        $subkategori = $this->Msubkategori->get_subcategories();
+        $data = [
+            'tittle' => "Sub Kategori Berinti.id",
+            'sub' => $subkategori,
+            'munculberitatop' => $munculberitatop,
+            'kat' => $kategori,
+            'panggesuber' => $suber,
+            'id_subkategori' => $id_subkategori,
+
+        ];
+        return view('v_home_subkategori', $data);
+    }
+
     public function detail_berita($slug)
     {
+
         // $kategori = $this->Mkategori->findAll();
         $beritaterbaru = $this->Mberita->beritaterbaru();
         $lastetkategori = $this->Mberita->getAll();
@@ -88,5 +111,29 @@ class Home extends BaseController
         ];
 
         return view('v_detail_berita', $data);
+    }
+
+    public function label($id_label)
+    {
+        // $label = $this->Mberita->pangge_label($id_label);
+        // // echo "<pre>";
+        // // print_r($label);
+        // // echo "</pre>";
+        $munculberitatop = $this->Mberita->beritatop();
+        $kategori = $this->Mkategori->get_categories();
+        $labelpang = $this->Mberita->pangge_label($id_label);
+        $subkategori = $this->Msubkategori->get_subcategories();
+        $label = $this->Mlabel->get_labels();
+        $data = [
+            'tittle' => "Sub Kategori Berinti.id",
+            'sub' => $subkategori,
+            'lab' => $label,
+            'munculberitatop' => $munculberitatop,
+            'kat' => $kategori,
+            'labelpangge' => $labelpang,
+            'id_label' => $id_label,
+
+        ];
+        return view('v_home_labels', $data);
     }
 }
