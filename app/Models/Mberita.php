@@ -255,4 +255,15 @@ class Mberita extends Model
     $builder->limit(2);
     return $builder->get()->getResult();
 }
+
+    public function showKategori($id_kategori){
+        $builder = $this->db->table('berita');
+        $builder->select('berita.*, kategori.nama_kategori, pegawai.nama_pegawai');
+        $builder->join('pegawai','berita.id_pegawai = pegawai.id_pegawai');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $builder->where('kategori.id_kategori', $id_kategori);
+        $query = $builder->get();
+        return $query->getResult(); // Mengembalikan hasil sebagai array objek
+    }
 }

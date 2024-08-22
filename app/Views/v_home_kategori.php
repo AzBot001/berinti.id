@@ -1,114 +1,111 @@
 <?= $this->extend('template-home/template'); ?>
 
 <?= $this->section('content-home'); ?>
+<?php
+function merubah_tanggal($tgl)
+{
+    $bulan = array(
+        1 => 'januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $pecahkan = explode('-', $tgl);
+    return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+    function limit_wordss($string, $word_limit)
+    {
+        $words = explode(" ", $string);
+        return implode(" ", array_splice($words, 0, $word_limit));
+    }
+}
+?>
+<div class="hero-cat">
+    <?php
+       $getKat= $kat[$id_kategori]->id_kategori;
+    if ($getKat == '1') {
+     $img = 'hulonthalo.jpg';
+    }elseif ($getKat =='8') {
+        $img = 'sport.jpg';
+    }elseif ($getKat == '9') {
+        $img = 'kisah.jpg';
+    }elseif ($getKat == '10') {
+        $img = 'ikn.jpg';
+       
+    }elseif ($getKat == '11') {
+        $img = 'politik.jpg';
+    }elseif ($getKat == '12') {
+        $img = 'lifestyle.jpg'; 
+    }
+    ?>
+    <img src="assets-home/img/hero/<?= $img ?>" alt="Gambar Latar" />
+    <div class="hero-overlay-cat"></div>
+    <div class="container hero-content-cat">
+        <div>
+            <h1 class="hero-title">
+            <?= isset($kat[$id_kategori]->nama_kategori) ? $kat[$id_kategori]->nama_kategori : 'Tidak Ditemukan' ?>
+            </h1>
+            <p class="hero-subtitle">
+               <?php 
+             
+               
+                if ($getKat == '1') {
+                    echo 'Menyajikan berita terkini dan mendalam seputar Gorontalo, mulai dari perkembangan di kota, provinsi, hingga kabupaten';
+                }elseif ($getKat =='8') {
+                    echo 'Menghadirkan berita terhangat dari dunia olahraga, mulai dari prestasi atlet lokal hingga perkembangan terbaru di kancah nasional dan internasional.';
+                }elseif ($getKat == '9') {
+                    echo 'Mengangkat cerita-cerita inspiratif dari masyarakat Gorontalo, memberikan sorotan pada kisah perjuangan, kesuksesan, dan nilai-nilai kehidupan yang memotivasi.';
+                }elseif ($getKat == '10') {
+                    echo 'Menyuguhkan berita nasional yang relevan dan penting, memberikan wawasan tentang isu-isu yang tengah berkembang di seluruh Indonesia.';
+                }elseif ($getKat == '11') {
+                    echo 'Memberikan liputan komprehensif tentang perkembangan politik, termasuk kebijakan, pemilu, dan dinamika politik di tingkat lokal dan nasional.';
+                }elseif ($getKat == '12') {
+                    echo 'Menyajikan berbagai artikel menarik tentang gaya hidup, teknologi, budaya, dan tren terkini yang mempengaruhi keseharian kita.';
+                }
+               ?>
+            </p>
+        </div>
+    </div>
+</div>
 <div class="container mt-5">
     <!-- Main Content Row -->
     <div class="row justify-content-around">
-        <div class="article-header mb-4">
-            <h1 class="title-news">
-                Olahraga
-            </h1>
-        </div>
         <!-- Main Article -->
-        <div class="col-lg-9 of mb-5" id="stopPoint">
+        <div class="col-lg-9 of mb-5 p-4" id="stopPoint">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/itali.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">The World's Most Spectacular New Year's Eve Celebrations</h5>
-                            <p class="card-text"><small class="text-muted">by Joanna Wellick - March 4, 2023</small></p>
+                <?php foreach ($showcategories as $item): ?>
+
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card custom-card">
+                            <a href="detail_berita/<?= $item->slug ?>">
+                                <img
+                                    src="thumbnail/<?= $item->gambar ?>"
+                                    class="card-img-top"
+                                    alt="Article Image" />
+                            </a>
+                            <div class="card-body">
+                                <span class="category-tag"><?= $item->nama_kategori ?></span>
+                                <h5 class="card-title">
+                                    <a href="detail_berita/<?= $item->slug ?>"><?= $item->judul ?></a>
+                                </h5>
+                                <p class="card-text"><?= $item->nama_pegawai ?> • <?= merubah_tanggal($item->tgl_upload) ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/juve.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Runway Revelations: What's New in the Fashion Week Shows</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - April 23, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Exploring the Renaissance: Masters and Masterpieces</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - April 25, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+                <?php endforeach; ?>
+
             </div>
-            <div class="adv_article-left">ADVERTISEMENT</div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/rans.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Inside the Glamorous Lives of Hollywood A-Listers</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - January 5, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/kanguru.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Secrets Behind Celeb Red Carpet Looks Revealed</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - January 8, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/gp.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Rising Stars: Who's Next in the Spotlight?</h5>
-                            <p class="card-text"><small class="text-muted">by Joanna Wellick - January 13, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/rans.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Inside the Glamorous Lives of Hollywood A-Listers</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - January 5, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/kanguru.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Secrets Behind Celeb Red Carpet Looks Revealed</h5>
-                            <p class="card-text"><small class="text-muted">by Elliot Alderson - January 8, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card article-card">
-                        <img src="assets-home/img/berita/gp.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small class="text-uppercase text-kuning">Celebrities</small>
-                            <h5 class="card-title">Rising Stars: Who's Next in the Spotlight?</h5>
-                            <p class="card-text"><small class="text-muted">by Joanna Wellick - January 13, 2023</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="adv_article-left">ADVERTISEMENT</div>
         </div>
         <!-- Sidebar -->
         <div class="col-lg-3">
@@ -116,93 +113,23 @@
                 <h5 class="subjdl">TOP NEWS</h5>
                 <hr />
                 <ul class="list-unstyled">
-                    <li class="d-flex align-items-start mb-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://asset-2.tstatic.net/gorontalo/foto/bank/images/Kylian-Mbappe-mencetak-gol-perdana.jpg" class="img-fluid m-kecil " alt="...">
-                            <span class="number-circle">1</span>
-                            <div class="media-body">
-                                <a href="#" class="text-decoration-none text-dark">
-                                    <h6 class="fw-bold mb-1">Vinyl Revival: The Resurgence of Record Collecting</h6>
-                                </a>
+                    <?php $nomor = 1;
+                    foreach ($topcategories as $item) : ?>
+                        <li class="d-flex align-items-start mb-4">
+                            <div class="d-flex align-items-center">
+                                <img src="thumbnail/<?= $item->gambar ?>" class="img-fluid m-kecil " alt="...">
+                                <span class="number-circle"><?= $nomor++ ?></span>
+                                <div class="media-body">
+                                    <a href="detail_berita/<?= $item->slug ?>" class="text-decoration-none text-dark">
+                                        <h6 class="fw-bold mb-1"><?= $item->judul ?></h6>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <hr>
-                    <li class="d-flex align-items-start mb-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://asset-2.tstatic.net/gorontalo/foto/bank/images/71122_RSAS.jpg" class="img-fluid m-kecil" alt="...">
-                            <span class="number-circle">2</span>
-                            <div class="media-body">
-                                <a href="#" class="text-decoration-none text-dark">
-                                    <h6 class="fw-bold mb-1">Modern Art in Public Spaces: Urban Canvases</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <hr>
-                    <li class="d-flex align-items-start mb-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://asset-2.tstatic.net/gorontalo/foto/bank/images/Seorang-anak-kecil-menggunakan-implan-koklea.jpg" class="img-fluid m-kecil " alt="...">
-                            <span class="number-circle">3</span>
-                            <div class="media-body">
-                                <a href="#" class="text-decoration-none text-dark">
-                                    <h6 class="fw-bold mb-1">Wellness in Art: Balancing Mind, Body, and Soul</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <hr>
-                    <li class="d-flex align-items-start mb-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://asset-2.tstatic.net/gorontalo/foto/bank/images/20240814-Seorang-anggota-Paskibraka-asal-Gorontalo-Siti-Janeeta-Abdul-Wahab.jpg" class="img-fluid m-kecil" alt="...">
-                            <span class="number-circle">4</span>
-                            <div class="media-body">
-                                <a href="#" class="text-decoration-none text-dark">
-                                    <h6 class="fw-bold mb-1">Fashion as Lifestyle: Personal Style Evolution</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <hr>
-                    <li class="d-flex align-items-start mb-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://asset-2.tstatic.net/gorontalo/foto/bank/images/Kylian-Mbappe-mencetak-gol-perdana.jpg" class="img-fluid m-kecil" alt="...">
-                            <span class="number-circle">5</span>
-                            <div class="media-body">
-                                <a href="#" class="text-decoration-none text-dark">
-                                    <h6 class="fw-bold mb-1">The Aesthetic Traveler: Exploring Art Destinations</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <hr>
+                        </li>
+                        <hr>
+                    <?php endforeach; ?>
                 </ul>
             </div>
-
-            <h5 class="subjdl mt-5">Latest on this categories</h5>
-            <div class="row ">
-                <div class="col-12">
-                    <div class="card bg-dark text-white">
-                        <img src="assets-home/img/berita/berita1.jpg" class="card-img" alt="Art Therapy">
-                        <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <small class="text-uppercase">Art</small>
-                            <h5 class="card-title">Art Therapy: Healing Through Creative Expression</h5>
-                            <p class="card-text">by Elliot Alderson &nbsp;&bull;&nbsp; May 23, 2023</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mb-3">
-                    <div class="card bg-dark text-white">
-                        <img src="assets-home/img/berita/demo-image-0039-1044x587.jpg" class="card-img" alt="Award Show">
-                        <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <small class="text-uppercase">Celebrities</small>
-                            <h5 class="card-title">Award Show Highlights: Fashion, Speeches, Moments</h5>
-                            <p class="card-text">by Elliot Alderson &nbsp;&bull;&nbsp; February 6, 2023</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="adv_article-right" id="sticky">ADVERTISEMENT</div>
         </div>
     </div>
 </div>

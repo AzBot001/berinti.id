@@ -57,12 +57,19 @@ class Home extends BaseController
         ];
         return view('v_home', $data);
     }
-    public function kategori()
+    public function kategori($id_kategori)
     {
+        $kategori = $this->Mkategori->get_categories();
         $subkategori = $this->Msubkategori->getAll();
+        $show       = $this->Mberita->showKategori($id_kategori);
+        $munculberitatop = $this->Mberita->beritatop();
         $data = [
             'tittle' => "Kategori Berinti.id",
-            'sub' => $subkategori
+            'sub' => $subkategori,
+            'kat' => $kategori,
+            'showcategories' => $show ,
+            'topcategories'=>$munculberitatop,
+            'id_kategori' => $id_kategori  // Mengirim id_kategori ke view
         ];
         return view('v_home_kategori', $data);
     }

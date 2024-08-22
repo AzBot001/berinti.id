@@ -97,11 +97,6 @@ function merubah_tanggal($tgl)
 </div>
 <div class="container-fluid p-1" style="background-color: #f6f6f6">
     <div class="container mt-5">
-        <div class="col-12 mb-5">
-            <div class="adv_article-left" style="background-color: #fff">
-                ADVERTISEMENT
-            </div>
-        </div>
         <div class="row">
             <div class="subjdl mb-2">
                 <b>Intinya</b> Bulan ini <a href="">Lihat Semua</a>
@@ -232,18 +227,14 @@ function merubah_tanggal($tgl)
             </div>
             <!-- Card 3 -->
             <div class="col-lg-3 col-md-12 col-sm-12 mb-2">
-                <div class="adv_article-right">ADVERTISEMENT</div>
+               
             </div>
         </div>
         <hr />
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="adv_article-left">ADVERTISEMENT</div>
-        </div>
-    </div>
+  
 </div>
 <div class="container-fluid p-1">
     <div class="container mt-5">
@@ -309,7 +300,7 @@ function merubah_tanggal($tgl)
             <!-- Card 2 -->
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <?php foreach ($munculgayahidup as $gaya): ?>
-                    <div class="ren-card-small">
+                    <div class="ren-card-small border-bottom">
                         <div class="card-body">
                             <h5 class="category-tag"> <?= $gaya->nama_kategori ?></h5>
                             <h3 class="card-title mb-2">

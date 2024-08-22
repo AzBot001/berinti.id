@@ -3,112 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Hero Section with Logo</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap');
+
         body {
-    font-family: Arial, sans-serif;
-}
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: left;
+            background-color: #fff;
+            color: #000;
+            font-family: "DM Sans", sans-serif;
+        }
 
-.topcard {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1.5rem;
-}
+        a {
+            text-decoration: none;
+            color: #000;
+        }
 
-.number {
-    font-size: 2rem;
-    color: #E74C3C;
-    font-weight: bold;
-}
+        a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
 
-.content {
-    flex-grow: 1;
-}
+        .hero-cat {
+            position: relative;
+            height: 35vh;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.category {
-    color: #E74C3C;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
+        .hero-cat img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
 
-.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0.5rem 0;
-}
+        .hero-logo {
+            position: absolute;
+            top: 15%;
+            left: 5%;
+            z-index: 4;
+            width: 80px; /* Sesuaikan ukuran logo */
+            height: auto;
+            transition: transform 0.3s ease;
+        }
 
-.author {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-right: 10px;
-}
+        .hero-logo:hover {
+            transform: scale(1.1);
+        }
 
-.date {
-    font-size: 0.9rem;
-    color: #999;
-}
+        .hero-overlay-cat {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 2;
+        }
 
-img {
-    width: 150px;
-    height: auto;
-    object-fit: cover;
-}
+        .hero-content-cat {
+            position: relative;
+            z-index: 3;
+            padding-left: 15%;
+        }
 
-@media (min-width: 768px) {
-    .topcard {
-        padding-bottom: 2rem;
-    }
-}
+        .hero-title-cat {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
 
+        .hero-title-cat a {
+            color: #fff;
+        }
+
+        .hero-title-cat a:hover {
+            color: #f2f2f2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 0px;
+        }
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row">
-            <!-- Article 1 -->
-            <div class="col-md-6 topcard d-flex mb-4">
-                <div class="number">1</div>
-                <div class="content ms-3">
-                    <span class="category">FASHION</span>
-                    <h2 class="title">Unforgettable Moments from This Year’s Oscars</h2>
-                    <span class="author">by Joanna Wellick</span> <span class="date">February 22, 2023</span>
-                </div>
-                <img src="https://via.placeholder.com/150" alt="Article Image" class="ms-auto">
+    <div class="hero-cat">
+        <img src="../public/assets-home/img/hero/ikn.jpg" alt="Background">
+        <div class="hero-overlay-cat"></div>
+        <div class="hero-content-cat">
+            <img src="../public/assets-home/img/logo.png" alt="Logo" class="hero-logo">
+            <div>
+                <h1 class="hero-title-cat">Hulonthalo</h1>
+                <p class="hero-subtitle">Menyajikan berita terkini dan mendalam seputar Gorontalo, mulai dari perkembangan di kota, provinsi, hingga kabupaten</p>
             </div>
-            <!-- Article 2 -->
-            <div class="col-md-6 topcard d-flex mb-4">
-                <div class="number">2</div>
-                <div class="content ms-3">
-                    <span class="category">ART</span>
-                    <h2 class="title">The World’s Most Influential Art Galleries</h2>
-                    <span class="author">by Joanna Wellick</span> <span class="date">May 3, 2023</span>
-                </div>
-                <img src="https://via.placeholder.com/150" alt="Article Image" class="ms-auto">
-            </div>
-            <!-- Article 3 -->
-            <div class="col-md-6 topcard d-flex mb-4">
-                <div class="number">3</div>
-                <div class="content ms-3">
-                    <span class="category">FASHION</span>
-                    <h2 class="title">The Evolution of Haute Couture Through the Years</h2>
-                    <span class="author">by Elliot Alderson</span> <span class="date">April 13, 2023</span>
-                </div>
-                <img src="https://via.placeholder.com/150" alt="Article Image" class="ms-auto">
-            </div>
-            <!-- Article 4 -->
-            <div class="col-md-6 topcard d-flex mb-4">
-                <div class="number">4</div>
-                <div class="content ms-3">
-                    <span class="category">ART</span>
-                    <h2 class="title">The Art of Photography: Capturing Life’s Moments</h2>
-                    <span class="author">by Elliot Alderson</span> <span class="date">May 15, 2023</span>
-                </div>
-                <img src="https://via.placeholder.com/150" alt="Article Image" class="ms-auto">
-            </div>
-            <!-- Tambahkan lebih banyak artikel sesuai kebutuhan -->
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

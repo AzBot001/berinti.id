@@ -60,7 +60,7 @@
                                 <?php endif;
                                 endforeach ?>
                                 <li>
-                                    <a class="dropdown-item" href="kategori_home/ <?= $kateg->id_kategori ?>">Semua <?= $kateg->nama_kategori ?></a>
+                                    <a class="dropdown-item" href="categories/<?= $kateg->id_kategori ?>">Semua <?= $kateg->nama_kategori ?></a>
                                 </li>
                             </ul>
                         </li>
@@ -70,7 +70,7 @@
                             <li class="nav-item dropdown">
                                 <a
                                     class="nav-link"
-                                    href="kategori_home/<?= $kateg->id_kategori ?>">
+                                    href="categories/<?= $kateg->id_kategori ?>">
                                     Nusantara
                                 </a>
                             </li>
