@@ -1,149 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= $title ?></title>
+    <title>Berinti.id | Karena Setiap Berita Memiliki Inti</title>
     <base href="<?= base_url('assets-home'); ?>">
+
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets-home/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets-home/style.css" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img src="assets-home/img/logo.png" width="130" alt="" /></a>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="stiky">
+        <div class="top-navbar">
+            <div
+                class="container d-flex justify-content-between align-items-center">
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    onclick="toggleSideMenu()">
+                    &#9776;
+                </button>
+                <a class="navbar-brand" href="#"><img src="assets-home/image/LOGO/logo primary.svg" width="150" alt="" /></a>
+                <div class="d-flex">
+                    <a href="#" class="icon-social"><img
+                            src="https://img.icons8.com/material-rounded/24/000000/facebook-new.png" /></a>
+                    <a href="#" class="icon-social"><img
+                            src="https://img.icons8.com/material-rounded/24/000000/instagram-new.png" /></a>
+                    <a href="#" class="icon-social"><img
+                            src="https://img.icons8.com/material-rounded/24/000000/youtube-play.png" /></a>
+                    <a href="#" class="icon-social"><img src="https://img.icons8.com/ios-filled/18/000000/tiktok.png" alt="TikTok Logo"></a>
+                    <a href="#" class="icon-social"><img src="https://img.icons8.com/ios-filled/18/000000/x.png" alt="X Logo"></a>
+                </div>
+            </div>
+        </div>
+        <div class="side-toggle" id="sideMenu">
+            <div class="d-flex justify-content-between align-items-center">
+                <img
+                    src="https://img.icons8.com/material-rounded/48/000000/home.png"
+                    alt="Logo"
+                    width="40" />
+                <span class="close-btn" onclick="toggleSideMenu()">&#10006;</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search.." />
+            </div>
+            <div class="mobile-menu">
+                <div class="menu-item">
+                    <div
+                        class="dropdown-toggle"
+                        onclick="toggleDropdown('homeDropdown')">
+                        <span>Home</span>
+                        <i class="bi bi-chevron-down"></i>
+                        <!-- Right-aligned icon -->
+                    </div>
+                    <ul class="dropdown-menu" id="homeDropdown">
+                        <li><a href="#" class="dropdown-item">Main</a></li>
+                        <li><a href="#" class="dropdown-item">Classic News</a></li>
+                        <li><a href="#" class="dropdown-item">Tech</a></li>
+                        <li><a href="#" class="dropdown-item">Classic Blog</a></li>
+                        <li><a href="#" class="dropdown-item">Gaming</a></li>
+                        <li><a href="#" class="dropdown-item">Sports</a></li>
+                        <li><a href="#" class="dropdown-item">Newspaper</a></li>
+                    </ul>
+                </div>
+                <div class="menu-item"><a href="#">Social</a></div>
+                <div class="menu-item"><a href="#">Politics</a></div>
+                <div class="menu-item"><a href="#">Economy</a></div>
+                <div class="menu-item"><a href="#">Sports</a></div>
+                <div class="menu-item"><a href="#">Arts</a></div>
+                <div class="menu-item"><a href="#">International</a></div>
+                <div class="menu-item"><a href="#">Podcasts</a></div>
+                <div class="menu-item"><a href="#">News TV</a></div>
+            </div>
+            <div class="menu-item"><a href="#">Homepages</a></div>
+            <div class="menu-item"><a href="#">Latest</a></div>
+            <div class="menu-item"><a href="#">Trending</a></div>
+        </div>
 
-                <ul class="navbar-nav ms-auto">
-                    <?php
-                    // memanggil kategori
-                    foreach ($kat as $kateg):
-                    ?>
-                        <li class="nav-item"><a href="categories/<?= $kateg->id_kategori ?>" class="nav-link"><?= $kateg->nama_kategori ?></a></a></li>
-                        <li class="nav-item dropdown">
-                            <?php if ($kateg->nama_kategori != 'Nusantara'): ?>
+        <nav class="bottom-navbar">
+            <div
+                class="container d-flex justify-content-between align-items-center">
+                <!-- Left Menu: Search Icon -->
+                <div class="left-menu">
+                    <span class="nav-link search-icon">
+                        <img
+                            src="https://img.icons8.com/material-rounded/24/ffffff/search.png"
+                            alt="Search"
+                            id="searchIcon" />
+                    </span>
+                </div>
+
+                <!-- Middle Menu: Existing Links -->
+                <div
+                    class="middle-menu d-flex justify-content-center align-items-center">
+                    <a href="#" class="nav-link text-warning">Home</a>
+                    <?php foreach ($kat as $kateg):
+                        if ($kateg->nama_kategori != 'Nusantara'): ?>
+                            <div class="dropdown">
                                 <a
-                                    class="nav-link dropdown-toggle span"
                                     href="#"
-                                    id="navbarDropdownMenuLink"
+                                    class="nav-link dropdown-toggle"
+                                    id="<?= $kateg->nama_kategori ?>"
                                     role="button"
                                     data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                </a>
-                            <?php endif ?>
-                            <ul
-                                class="dropdown-menu"
-                                aria-labelledby="navbarDropdownMenuLink">
-                                <?php
-                                foreach ($kateg->subkategori as $sub):
-                                    if ($kateg->nama_kategori != 'Nusantara'):
-                                ?>
+                                    aria-expanded="false"><?= $kateg->nama_kategori ?></a>
+                                <ul class="dropdown-menu" aria-labelledby="<?= $kateg->nama_kategori ?>">
+                                    <?php foreach ($kateg->subkategori as $sub):
+                                    ?>
                                         <li>
                                             <a class="dropdown-item" href="sub_categories/<?= $sub->id_subkategori ?>"><?= $sub->nama_subkategori ?></a>
                                         </li>
-                                <?php endif;
-                                endforeach ?>
-                            </ul>
-                        </li>
-                       
+                                    <?php endforeach ?>
+                                    <li>
+                                        <a class="dropdown-item" href="categories/<?= $kateg->id_kategori ?>">All Hulonthalo</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php
+                        endif ?>
+
+                        <?php if ($kateg->nama_kategori == 'Nusantara') { ?>
+                            <a href="categories/<?= $kateg->id_kategori ?>" class="nav-link">Nusantara</a>
+                        <?php } ?>
+                        <?php if ($kateg->nama_kategori == 'Pilkada') { ?>
+                            <a href="categories/<?= $kateg->id_kategori ?>" class="nav-link">Pilkada</a>
+                        <?php } ?>
                     <?php endforeach ?>
-                </ul>
+
+                    <!-- Other middle menu items... -->
+                </div>
+
+                <!-- Right Menu: Dark Mode Icon -->
+                <div class="right-menu">
+                    <a href="#" class="nav-link dark-mode-icon">
+                        <img
+                            src="https://img.icons8.com/material-rounded/24/ffffff/moon.png"
+                            alt="Dark Mode" />
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+        <!-- Search Toggle -->
+    </div>
+
+
+
     <!-- this konten -->
     <?= $this->renderSection('content-home'); ?>
 
-    <footer class="bg-light py-5">
+    <footer class="bg-dark text-white py-5 mt-3" style="border-top:5px solid #fadd37;">
         <div class="container">
             <!-- Logo Section -->
-            <div class="row mb-4">
+            <div class="row mb-5">
                 <div class="col-md-6">
                     <div class="footer-logo">
-                        <img src="assets-home/img/logo.png" width="200" alt="" />
+                        <img src="assets-home/image/LOGO/putih.svg" width="200" alt="" />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <!-- Kolom 1 -->
                 <div class="col-md-2">
-                    <h5>Hulonthalo</h5>
+                    <h5 class="f-standar">Hulonthalo</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Provinsi Gorontalo</a></li>
-                        <li><a href="#">Kota Gorontalo</a></li>
-                        <li><a href="#">Kabupaten Bone Bolango</a></li>
-                        <li><a href="#">Kabupaten Gorontalo</a></li>
-                        <li><a href="#">Kabupaten Boalemo</a></li>
-                        <li><a href="#">Kabupaten Pohuwato</a></li>
-                        <li><a href="#">Kabupaten Gorontalo Utara</a></li>
+                        <li class="link-standar"><a href="#">Provinsi Gorontalo</a></li>
+                        <li class="link-standar"><a href="#">Kota Gorontalo</a></li>
+                        <li class="link-standar"><a href="#">Kabupaten Bone Bolango</a></li>
+                        <li class="link-standar"><a href="#">Kabupaten Gorontalo</a></li>
+                        <li class="link-standar"><a href="#">Kabupaten Boalemo</a></li>
+                        <li class="link-standar"><a href="#">Kabupaten Pohuwato</a></li>
+                        <li class="link-standar"><a href="#">Kabupaten Gorontalo Utara</a></li>
                     </ul>
                 </div>
                 <!-- Kolom 2 -->
                 <div class="col-md-1">
-                    <h5>Olahraga</h5>
+                    <h5 class="f-standar">Olahraga</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">E-Sport</a></li>
-                        <li><a href="#">Sepak Bola</a></li>
-                        <li><a href="#">Takraw</a></li>
-                        <li><a href="#">Silat</a></li>
+                        <li class="link-standar"><a href="#">E-Sport</a></li>
+                        <li class="link-standar"><a href="#">Sepak Bola</a></li>
+                        <li class="link-standar"><a href="#">Takraw</a></li>
+                        <li class="link-standar"><a href="#">Silat</a></li>
                     </ul>
                 </div>
                 <!-- Kolom 3 -->
                 <div class="col-md-1">
-                    <h5>Human Interest Story</h5>
+                    <h5 class="f-standar">Human Interest Story</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Kisah Pedagang</a></li>
-                        <li><a href="#">Kisah Inspiratif</a></li>
-                        <li><a href="#">Kisah Sukses</a></li>
+                        <li class="link-standar"><a href="#">Kisah Pedagang</a></li>
+                        <li class="link-standar"><a href="#">Kisah Inspiratif</a></li>
+                        <li class="link-standar"><a href="#">Kisah Sukses</a></li>
                     </ul>
                 </div>
                 <!-- Kolom 4 -->
                 <div class="col-md-1">
-                    <h5>Politik</h5>
+                    <h5 class="f-standar">Politik</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Pilkada</a></li>
-                        <li><a href="#">KPU</a></li>
-                        <li><a href="#">Bawaslu</a></li>
-                        <li><a href="#">Caleg</a></li>
+                        <li class="link-standar"><a href="#">Pilkada</a></li>
+                        <li class="link-standar"><a href="#">KPU</a></li>
+                        <li class="link-standar"><a href="#">Bawaslu</a></li>
+                        <li class="link-standar"><a href="#">Caleg</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h5>Politik</h5>
+                    <h5 class="f-standar">Politik</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Pilkada</a></li>
-                        <li><a href="#">KPU</a></li>
-                        <li><a href="#">Bawaslu</a></li>
-                        <li><a href="#">Caleg</a></li>
+                        <li class="link-standar"><a href="#">Pilkada</a></li>
+                        <li class="link-standar"><a href="#">KPU</a></li>
+                        <li class="link-standar"><a href="#">Bawaslu</a></li>
+                        <li class="link-standar"><a href="#">Caleg</a></li>
                     </ul>
                 </div>
                 <!-- Kolom Subscribe -->
                 <div class="col-md-4">
-                    <h5>Keep Up to Date with the Most Important News</h5>
+                    <h5 class="f-standar">Keep Up to Date with the Most Important News</h5>
                     <form class="d-flex mt-2">
                         <input
                             type="email"
                             class="form-control me-2"
                             placeholder="E-mail" />
-                        <button class="btn btn-danger" type="submit">Subscribe</button>
+                        <button class="btn btn-warning" type="submit">Subscribe</button>
                     </form>
-                    <small class="d-block mt-2">Dengan menekan tombol Subscribe, Anda menyetujui
+                    <small class="d-block mt-2 link-standar">Dengan menekan tombol Subscribe, Anda menyetujui
                         <a href="#">Kebijakan Privasi</a> dan
                         <a href="#">Syarat Penggunaan</a> kami.</small>
                 </div>
@@ -154,7 +238,7 @@
                 <div class="col-md-6">
                     <p>© 2024 Berinti.id Hak Cipta Dilindungi.</p>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-6 text-end link-standar">
                     <a href="#">Syarat Penggunaan</a> |
                     <a href="#">Kebijakan Privasi</a> | <a href="#">Beli Sekarang</a>
                 </div>
@@ -170,11 +254,54 @@
         </div>
     </footer>
 
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
+
+
+
+
+    <!-- Search Toggle -->
+    <div class="search-container" id="searchContainer">
+        <span class="close-icon" id="closeSearch">&times;</span>
+        <h2>Search</h2>
+        <input type="text" placeholder="Type your keyword.." />
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSideMenu() {
+            var sideMenu = document.getElementById("sideMenu");
+            sideMenu.classList.toggle("active");
+        }
+
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            dropdown.classList.toggle("show");
+        }
+        document
+            .getElementById("searchIcon")
+            .addEventListener("click", function() {
+                const searchContainer = document.getElementById("searchContainer");
+                searchContainer.style.display = "flex"; // Ensure it's visible
+                setTimeout(() => {
+                    searchContainer.classList.add("active"); // Trigger the transition
+                }, 10); // Small delay to allow the browser to render the initial state
+            });
+
+        document
+            .getElementById("closeSearch")
+            .addEventListener("click", function() {
+                const searchContainer = document.getElementById("searchContainer");
+                searchContainer.classList.remove("active");
+                searchContainer.addEventListener(
+                    "transitionend",
+                    function() {
+                        if (!searchContainer.classList.contains("active")) {
+                            searchContainer.style.display = "none"; // Hide after transition
+                        }
+                    }, {
+                        once: true
+                    }
+                );
+            });
+    </script>
 </body>
 
 </html>

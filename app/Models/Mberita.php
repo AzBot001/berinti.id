@@ -20,6 +20,16 @@ class Mberita extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+    // public function getAll2()
+    // {
+    //     $builder = $this->db->table('berita');
+    //     $builder->join('subkategori', 'subkategori.id_subkategori = berita.id_subkategori');
+    //     $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
+    //     $builder->orderBy('id_berita', 'DESC');
+    //     $builder->limit(6);
+    //     $query = $builder->get();
+    //     return $query->getResult();
+    // }
     public function getLastID()
     {
         return $this->db->insertID();
@@ -45,7 +55,7 @@ class Mberita extends Model
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
         $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
-        $builder->limit(4);
+        $builder->limit(5);
         $query = $builder->get();
         return $query->getResult();
     }
@@ -60,9 +70,8 @@ class Mberita extends Model
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
-        $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
-        $builder->where('kategori.id_kategori', 11); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
-        $builder->limit(1);
+        $builder->where('kategori.id_kategori'); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        $builder->limit(6);
         $query = $builder->get();
         return $query->getResult();
     }
@@ -147,9 +156,9 @@ class Mberita extends Model
         $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
         $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
         $builder->join('pegawai', 'pegawai.id_pegawai = berita.id_pegawai');
-        $builder->where('tgl_upload >=', $oneWeekAgo); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
+        // $builder->where('tgl_upload >=', $oneWeekAgo); // Ganti 'Olahraga' dengan nama kategori yang diinginkan
         $builder->orderBy('jumlah_view', 'DESC'); // filter data terbaru
-        $builder->limit(10);
+        $builder->limit(7);
         $query = $builder->get();
         return $query->getResult();
     }
@@ -319,5 +328,26 @@ class Mberita extends Model
         $builder->orderBy('id_berita', 'DESC'); // filter data terbaru
         $query = $builder->get();
         return $query->getResult();
+    }
+    public function showAllKategori()
+    {
+        $query = $this->db->table('kategori')->get();
+        $return = array();
+
+        foreach ($query->getResult() as $category2) {
+            $return[$category2->id_kategori] = $category2;
+            $return[$category2->id_kategori]->berita = $this->beritas($category2->id_kategori);
+        }
+
+        return $return;
+    }
+    public function beritas()
+    {
+        $builder = $this->db->table('berita');
+        $builder->select('berita.*, kategori.nama_kategori');
+        $builder->join('subkategori', 'berita.id_subkategori = subkategori.id_subkategori');
+        $builder->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $query = $builder->get();
+        return $query->getResult(); // Mengembalikan hasil sebagai array objek
     }
 }

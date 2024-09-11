@@ -39,4 +39,29 @@ class Mkategori extends Model
         $query->where('id_kategori', $category_id);
         return $query->get()->getResult();
     }
+
+    public function get_categories2()
+    {
+        $query = $this->db->table('kategori')->get();
+        $return = array();
+
+        foreach ($query->getResult() as $category2) {
+            $return[$category2->id_kategori] = $category2;
+            $return[$category2->id_kategori]->subkategori = $this->get_sub_categories2($category2->id_kategori);
+        }
+
+        return $return;
+    }
+
+
+    public function get_sub_categories2($category_id2)
+    {
+        $query = $this->db->table('subkategori');
+        $query->select('berita.id_berita, berita.judul, berita.tgl_upload, berita.gambar, kategori.id_kategori, berita.slug');
+        $query->join('berita', 'berita.id_subkategori = berita.id_subkategori');
+        $query->join('kategori', 'subkategori.id_kategori = kategori.id_kategori');
+        $query->where('kategori.id_kategori', $category_id2);
+        $query->limit(1);
+        return $query->get()->getResult();
+    }
 }

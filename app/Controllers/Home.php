@@ -37,14 +37,15 @@ class Home extends BaseController
         $berita_headline = $this->Mberita->headline();
         // $kategori = $this->Mkategori->findAll();
         $subkategori = $this->Msubkategori->getAll();
-        $berita = $this->Mberita->getAll();
+        // $berita = $this->Mberita->getAll2();
         $kategori = $this->Mkategori->get_categories();
+        $allkategori = $this->Mberita->showAllKategori();
 
 
         $data = [
             'tittle' => "Home Berinti.id",
             'kat' => $kategori,
-            'ber' => $berita,
+            'kat2' => $allkategori,
             'head' => $berita_headline,
             'muncul2' => $berita_terbaru,
             'muncul3' => $munculkiribawah1,
@@ -124,9 +125,9 @@ class Home extends BaseController
             $kategori = $this->Mkategori->get_categories();
             $detailberita = $this->Mberita->detailberita($slug);
             $judulBerita = $detailberita['judul'];
-            $deskripsi = substr($detailberita['isi'],0,150).'..';
+            $deskripsi = substr($detailberita['isi'], 0, 150) . '..';
             $data = [
-                
+
                 'title' => $judulBerita,
                 'kat' => $kategori,
                 'detailB' => $detailberita,
