@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berinti.id | Karena Setiap Berita Memiliki Inti</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* body dan nav */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+.text-warning{
+    color:#fadd37 !important;
+    font-weight:bold;
+}
+
+#judul{
+    font-weight:bold;
+    font-size:18px;
+    display: flex;
+    align-items: center;
+}
+#judul .box {
+    width: 10px; /* Adjust the size of the box */
+    height: 10px;
+    background-color: #fadd37; /* Replace with the color you want */
+    margin-right: 8px; /* Space between the box and the text */
+}
+
+#judulD{
+    font-weight:bold;
+    font-size:18px;
+    display: flex;
+    color:#fff;
+    align-items: center;
+}
+#judulD .box {
+    width: 10px; /* Adjust the size of the box */
+    height: 10px;
+    background-color: #fadd37; /* Replace with the color you want */
+    margin-right: 8px; /* Space between the box and the text */
+}
+
+.head h6{
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+}
+.head h4{
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.stiky{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    padding: 40px 0;
+}
+
+.top-navbar .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-toggler {
+    border: none;
+    font-size: 24px;
+}
+
+.icon-social {
+    margin: 0 5px;
+}
+
+.bottom-navbar {
+    background-color: #212529;
+    color: #fff;
+    padding: 6px 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+    border-bottom:2px solid #fadd37;
+}
+
+.bottom-navbar .nav-link {
+    color: #fff;
+    padding: 10px 8px;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+
+.bottom-navbar .nav-link:hover {
+    color: #fadd37;
+    text-decoration: none;
+}
+.search-icon img, .dark-mode-icon img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.search-container {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transform: translate(-50%, -20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.search-container.active {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.search-container input {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    text-align:center;
+    border-bottom: 2px solid #333;
+    font-size: 18px;
+    outline: none;
+}
+
+.search-container .close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.search-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.dropdown-menu {
+    padding: 10px;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+    max-height: 0;
+}
+
+.dropdown-menu.show {
+    max-height: 500px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #333;
+    /* border-radius: 4px; */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.dropdown-item:hover {
+    background-color: #fadd37;
+    color: #000;
+}
+
+.side-toggle {
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    z-index: 1050;
+    padding: 20px;
+    transition: left 0.3s ease, box-shadow 0.3s ease;
+    overflow-y: auto;
+}
+
+.side-toggle.active {
+    left: 0;
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.side-toggle .close-btn {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.side-toggle .menu-item {
+    margin: 20px 0;
+}
+
+.side-toggle .menu-item a,
+.side-toggle .dropdown-toggle {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 10px 8px;
+}
+
+.side-toggle .menu-item .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+}
+
+.side-toggle .dropdown-toggle i {
+    margin-left: auto; /* Add this to push icon to the right */
+}
+
+.side-toggle .dropdown-menu {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+    max-height: 0;
+}
+
+.side-toggle .dropdown-menu.show {
+    max-height: 500px;
+}
+
+.side-toggle .dropdown-item {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.side-toggle .dropdown-item:hover {
+    background-color: #ff9900;
+    color: #fff;
+}
+
+.side-toggle .search-box {
+    margin: 20px 0;
+}
+
+.side-toggle .search-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* end body dan nav */
+
+
+/* section1 */
+.top-news, .slider, .editor-picks {
+    padding: 20px;
+}
+
+.news-slider {
+    position: relative;
+    width: 100%;
+    max-width: 870px;
+    /* margin: 20px auto; */
+}
+
+.news-slider img {
+    width: 100%;
+    height: auto;
+    /* border-radius: 8px; */
+}
+
+.news-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px;
+    
+}
+
+.news-caption .category {
+    color: #fadd37;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.news-caption h5 {
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.news-caption .author-date {
+    font-size: 12px;
+    color: #ddd;
+}
+
+.slider img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+}
+
+.top-news ul {
+    list-style: none;
+    padding: 0;
+}
+
+.top-news ul li {
+    margin-bottom: 10px;
+    padding: 15px 0px;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-news ul li .time {
+    font-size: 12px;
+    color: #888;
+    margin-right: 10px;
+}
+
+.editor-picks .editor-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.editor-picks .editor-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+/* carddark */
+.larger-card {
+    height: 100%;
+    min-height:500px;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.overlay-dark {
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+}
+
+.card-img-overlay {
+    padding: 1.5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+.card-author {
+    margin-top: 5px;
+}
+
+.card-img {
+    height: 100%;
+    width: 100%;
+    min-height:250px;
+    object-fit: cover;
+}
+/* carddark */
+
+/* endsection1 */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .bottom-navbar {
+        display: none;
+    }
+
+    .side-toggle .menu-item {
+        display: block;
+    }
+
+    .side-toggle .mobile-menu {
+        display: block;
+    }
+    .top-news, .slider, .editor-picks {
+        padding: 10px;
+    }
+
+    .slider {
+        order: 1;
+    }
+
+    .top-news {
+        order: 2;
+    }
+
+    .editor-picks {
+        order: 3;
+    }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="stiky">
+      <div class="top-navbar">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <button
+            class="navbar-toggler"
+            type="button"
+            onclick="toggleSideMenu()"
+          >
+            &#9776;
+          </button>
+          <a class="navbar-brand" href="#"
+            ><img src="assets/image/LOGO/logo primary.svg" width="150" alt=""
+          /></a>
+          <div class="d-flex">
+            <a href="#" class="icon-social"
+              ><img
+                src="https://img.icons8.com/material-rounded/24/000000/facebook-new.png"
+            /></a>
+            <a href="#" class="icon-social"
+              ><img
+                src="https://img.icons8.com/material-rounded/24/000000/instagram-new.png"
+            /></a>
+            <a href="#" class="icon-social"
+              ><img
+                src="https://img.icons8.com/material-rounded/24/000000/youtube-play.png"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="side-toggle" id="sideMenu">
+        <div class="d-flex justify-content-between align-items-center">
+          <img
+            src="https://img.icons8.com/material-rounded/48/000000/home.png"
+            alt="Logo"
+            width="40"
+          />
+          <span class="close-btn" onclick="toggleSideMenu()">&#10006;</span>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search.." />
+        </div>
+        <div class="mobile-menu">
+          <div class="menu-item">
+            <div
+              class="dropdown-toggle"
+              onclick="toggleDropdown('homeDropdown')"
+            >
+              <span>Home</span>
+              <i class="bi bi-chevron-down"></i>
+              <!-- Right-aligned icon -->
+            </div>
+            <ul class="dropdown-menu" id="homeDropdown">
+              <li><a href="#" class="dropdown-item">Main</a></li>
+              <li><a href="#" class="dropdown-item">Classic News</a></li>
+              <li><a href="#" class="dropdown-item">Tech</a></li>
+              <li><a href="#" class="dropdown-item">Classic Blog</a></li>
+              <li><a href="#" class="dropdown-item">Gaming</a></li>
+              <li><a href="#" class="dropdown-item">Sports</a></li>
+              <li><a href="#" class="dropdown-item">Newspaper</a></li>
+            </ul>
+          </div>
+          <div class="menu-item"><a href="#">Social</a></div>
+          <div class="menu-item"><a href="#">Politics</a></div>
+          <div class="menu-item"><a href="#">Economy</a></div>
+          <div class="menu-item"><a href="#">Sports</a></div>
+          <div class="menu-item"><a href="#">Arts</a></div>
+          <div class="menu-item"><a href="#">International</a></div>
+          <div class="menu-item"><a href="#">Podcasts</a></div>
+          <div class="menu-item"><a href="#">News TV</a></div>
+        </div>
+        <div class="menu-item"><a href="#">Homepages</a></div>
+        <div class="menu-item"><a href="#">Latest</a></div>
+        <div class="menu-item"><a href="#">Trending</a></div>
+      </div>
+
+      <nav class="bottom-navbar">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <!-- Left Menu: Search Icon -->
+          <div class="left-menu">
+            <span class="nav-link search-icon">
+              <img
+                src="https://img.icons8.com/material-rounded/24/ffffff/search.png"
+                alt="Search"
+                id="searchIcon"
+              />
+            </span>
+          </div>
+
+          <!-- Middle Menu: Existing Links -->
+          <div
+            class="middle-menu d-flex justify-content-center align-items-center"
+          >
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="hulonthalo"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Hulonthalo</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="hulonthalo">
+                <li>
+                  <a class="dropdown-item" href="#">Provinsi Gorontalo</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Kota Gorontalo</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Kabupaten Gorontalo</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Kabupaten Bone Bolango</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Kabupaten Boalemo</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Kabupaten Pohuwato</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Kabupaten Gorontalo Utara</a>
+                  </li>
+                  <li></li>
+                    <a class="dropdown-item" href="#">All Hulonthalo</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="olahraga"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Olahraga</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="olahraga">
+                <li><a class="dropdown-item" href="#">E-Sport</a></li>
+                <li><a class="dropdown-item" href="#">Sepak Bola</a></li>
+                <li><a class="dropdown-item" href="#">All Sports</a></li>
+                <!-- Other items... -->
+              </ul>
+            </div>
+            <a href="#" class="nav-link">Pilkada</a>
+            <a href="#" class="nav-link">Nusantara</a>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="his"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Human Interest Story</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="his">
+                <li><a class="dropdown-item" href="#">Kisah Inspiratif</a></li>
+                <li><a class="dropdown-item" href="#">Kisah Sukses</a></li>
+                <li><a class="dropdown-item" href="#">Kisah Pedagang</a></li>
+                <li><a class="dropdown-item" href="#">All HIS</a></li>
+                <!-- Other items... -->
+              </ul>
+            </div>
+            <div class="dropdown">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  id="politik"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Politik</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="politik">
+                  <li><a class="dropdown-item" href="#">KPU</a></li>
+                  <li><a class="dropdown-item" href="#">Bawaslu</a></li>
+                  <li><a class="dropdown-item" href="#">Caleg</a></li>
+                  <li><a class="dropdown-item" href="#">All Politics</a></li>
+                  <!-- Other items... -->
+                </ul>
+              </div>
+              <div class="dropdown">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  id="lifestyle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Life Style</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="lifestyle">
+                  <li><a class="dropdown-item" href="#">Teknologi</a></li>
+                  <li><a class="dropdown-item" href="#">Budaya</a></li>
+                  <li><a class="dropdown-item" href="#">Kisah Pedagang</a></li>
+                  <li><a class="dropdown-item" href="#">All Lifestlye</a></li>
+                  <!-- Other items... -->
+                </ul>
+              </div>    
+            <!-- Other middle menu items... -->
+          </div>
+
+          <!-- Right Menu: Dark Mode Icon -->
+          <div class="right-menu">
+            <a href="#" class="nav-link dark-mode-icon">
+              <img
+                src="https://img.icons8.com/material-rounded/24/ffffff/moon.png"
+                alt="Dark Mode"
+              />
+            </a>
+          </div>
+        </div>
+      </nav>
+      <!-- Search Toggle -->
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- Top News -->
+            <div class="col-md-3 top-news">
+                <h4 id="judul">
+                    <span class="box"></span>Hot now</h4>
+                <ul>
+                    <li><span class="time">10:23</span> The Rise of AI-Powered Personal Assistants: How They Manage</li>
+                    <li><span class="time">09:30</span> Tech Innovations Reshaping the Retail Landscape: AI Payments</li>
+                    <li><span class="time">09:10</span> Balancing Work and Wellness: Tech Solutions for Healthy Living</li>
+                    <li><span class="time">08:00</span> The Importance of Sleep: Tips for Better Rest and Recovery</li>
+                    <li><span class="time">22:00</span> The Future of Sustainable Living: Driving Eco-Friendly...</li>
+                    
+                </ul>
+            </div>
+
+            <!-- Slider -->
+            <div class="col-md-6 slider">
+                <div class="head">
+                    <h6>Gorontalo, 8, November 2024</h6>
+                    <h4>Karena Setiap Berita Memiliki Inti.</h4>
+                </div>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="news-slider">
+                                <img src="https://via.placeholder.com/870x495" alt="News Image">
+                                <div class="news-caption">
+                                    <div class="category">Human Interest Story</div>
+                                    <h5>Soekarno dan Protes Komunitas Arab di Gorontalo</h5>
+                                    <div class="author-date">
+                                        Azwar Ramadhan Botutihe • 22 Agustus 2024
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="news-slider">
+                                <img src="https://via.placeholder.com/870x495" alt="News Image">
+                                <div class="news-caption">
+                                    <div class="category">Human Interest Story</div>
+                                    <h5>Soekarno dan Protes Komunitas Arab di Gorontalo</h5>
+                                    <div class="author-date">
+                                        Azwar Ramadhan Botutihe • 22 Agustus 2024
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="news-slider">
+                                <img src="https://via.placeholder.com/870x495" alt="News Image">
+                                <div class="news-caption">
+                                    <div class="category">Human Interest Story</div>
+                                    <h5>Soekarno dan Protes Komunitas Arab di Gorontalo</h5>
+                                    <div class="author-date">
+                                        Azwar Ramadhan Botutihe • 22 Agustus 2024
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Editor Picks -->
+            <div class="col-md-3 editor-picks">
+                <h4 id="judul">
+                    <span class="box"></span>latest news</h4>
+                <div class="editor-item">
+                    <img src="https://via.placeholder.com/80x80" alt="News">
+                    <div>
+                        <p>Business Agility the Digital Age: Leveraging AI and Automation</p>
+                    </div>
+                </div>
+                <div class="editor-item">
+                    <img src="https://via.placeholder.com/80x80" alt="News">
+                    <div>
+                        <p>Tech Tools for your Time Management: Enhancing Productivity</p>
+                    </div>
+                </div>
+                <div class="editor-item">
+                    <img src="https://via.placeholder.com/80x80" alt="News">
+                    <div>
+                        <p>A Guide to The Rise of Gourmet Street Food: From Trends to Taste</p>
+                    </div>
+                </div>
+                <div class="editor-item">
+                    <img src="https://via.placeholder.com/80x80" alt="News">
+                    <div>
+                        <p>Tech Tools for your Time Management: Enhancing Productivity</p>
+                    </div>
+                </div>
+                <div class="editor-item">
+                    <img src="https://via.placeholder.com/80x80" alt="News">
+                    <div>
+                        <p>Tech Tools for your Time Management: Enhancing Productivity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="container-fluid bg-dark mt-3">
+    <div class="container py-5">
+        <div class="mb-4">
+            <h4 id="judulD">
+                <span class="box"></span>Hulonthalo</h4>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white larger-card">
+                    <img src="https://via.placeholder.com/870x495" class="card-img" alt="Article Image">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-3 overlay-dark">
+                        <p class="text-warning mb-1">HUMAN INTEREST STORY</p>
+                        <h5 class="card-title mb-1">Soekarno dan Protes Komunitas Arab di Gorontalo</h5>
+                        <p class="card-author mb-0"><small>By Azwar Ramadhan Botutihe • 22 Agustus 2024</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-dark text-white ">
+                    <img src="https://via.placeholder.com/435x247" class="card-img" alt="Article Image">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-3 overlay-dark">
+                        <p class="text-warning mb-1">TRAVEL</p>
+                        <h6 class="card-title mb-1">Solo Travel: Some Tips and Destinations for the...</h6>
+                        <p class="card-author mb-0"><small>By Jane Smith • Jan 8, 2024</small></p>
+                    </div>
+                </div>
+                <div class="card bg-dark text-white  mt-4">
+                    <img src="https://via.placeholder.com/435x247" class="card-img" alt="Article Image">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-3 overlay-dark">
+                        <p class="text-warning mb-1">TECH</p>
+                        <h6 class="card-title mb-1">AI-Powered Financial Planning: How Algorithms...</h6>
+                        <p class="card-author mb-0"><small>By Alex Brown • Jan 8, 2024</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-dark text-white ">
+                    <img src="https://via.placeholder.com/435x247" class="card-img" alt="Article Image">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-3 overlay-dark">
+                        <p class="text-warning mb-1">STARTUPS</p>
+                        <h6 class="card-title mb-1">Tech Tools for your Time Management: Enhancing...</h6>
+                        <p class="card-author mb-0"><small>By Emily Davis • Dec 8, 2023</small></p>
+                    </div>
+                </div>
+                <div class="card bg-dark text-white  mt-4">
+                    <img src="https://via.placeholder.com/435x247" class="card-img" alt="Article Image">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-3 overlay-dark">
+                        <p class="text-warning mb-1">AI POWERED</p>
+                        <h6 class="card-title mb-1">A Guide to The Rise of Gourmet Street Food: Tren...</h6>
+                        <p class="card-author mb-0"><small>By Michael Lee • Sep 8, 2023</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+    
+
+    <!-- Search Toggle -->
+    <div class="search-container" id="searchContainer">
+      <span class="close-icon" id="closeSearch">&times;</span>
+      <h2>Search</h2>
+      <input type="text" placeholder="Type your keyword.." />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function toggleSideMenu() {
+        var sideMenu = document.getElementById("sideMenu");
+        sideMenu.classList.toggle("active");
+      }
+
+      function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.classList.toggle("show");
+      }
+      document
+        .getElementById("searchIcon")
+        .addEventListener("click", function () {
+          const searchContainer = document.getElementById("searchContainer");
+          searchContainer.style.display = "flex"; // Ensure it's visible
+          setTimeout(() => {
+            searchContainer.classList.add("active"); // Trigger the transition
+          }, 10); // Small delay to allow the browser to render the initial state
+        });
+
+      document
+        .getElementById("closeSearch")
+        .addEventListener("click", function () {
+          const searchContainer = document.getElementById("searchContainer");
+          searchContainer.classList.remove("active");
+          searchContainer.addEventListener(
+            "transitionend",
+            function () {
+              if (!searchContainer.classList.contains("active")) {
+                searchContainer.style.display = "none"; // Hide after transition
+              }
+            },
+            { once: true }
+          );
+        });
+    </script>
+  </body>
+</html>

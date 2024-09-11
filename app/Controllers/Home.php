@@ -123,8 +123,11 @@ class Home extends BaseController
             $munculberitatop = $this->Mberita->beritatop();
             $kategori = $this->Mkategori->get_categories();
             $detailberita = $this->Mberita->detailberita($slug);
+            $judulBerita = $detailberita['judul'];
+            $deskripsi = substr($detailberita['isi'],0,150).'..';
             $data = [
-                'tittle' => 'Detail Berita',
+                
+                'title' => $judulBerita,
                 'kat' => $kategori,
                 'detailB' => $detailberita,
                 'munculberitatop' => $munculberitatop,

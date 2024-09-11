@@ -201,11 +201,11 @@
                     tinymce.activeEditor.execCommand(
                         "mceInsertContent",
                         false,
-                        '<br><br><strong class="read__others">Baca Juga: <a href="detail_berita' +
+                        '<br><br><div class="read__others">Baca Juga: <a href="detail_berita' +
                         $(this).attr("data-url") +
                         '">' +
                         $(this).attr("data-title") +
-                        "</a></strong><br><br>"
+                        "</a></div><br><br>"
                     );
                     $("#myModal").modal("hide");
                 });

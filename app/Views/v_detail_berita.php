@@ -56,8 +56,7 @@ function merubah_tanggal($tgl)
                     src="thumbnail/<?= $detailB['gambar'] ?>"
                     alt="Main Article Image"
                     class="img-fluid" />
-                <small class="text-muted caption"><i><?= $detailB['caption'] ?>
-                        (<?= $detailB['nama_pegawai'] ?> • <?= merubah_tanggal($detailB['tgl_upload']) ?>)</i></small>
+                <small class="text-muted caption"><i><?= $detailB['caption'] ?></i></small>
             </div>
             <div class="article-content mt-4">
                 <?= $detailB['isi'] ?>

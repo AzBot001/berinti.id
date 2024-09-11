@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berinti.id | Karena Setiap Berita Memiliki Inti</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <div class="stiky">
+      <div class="top-navbar">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <button
+            class="navbar-toggler"
+            type="button"
+            onclick="toggleSideMenu()"
+          >
+            &#9776;
+          </button>
+          <a class="navbar-brand" href="#"
+            ><img src="assets/image/LOGO/logo primary.svg" width="150" alt=""
+          /></a>
+          <div class="d-flex">
+            <a href="#" class="icon-social"
+              ><img
+                src="https://img.icons8.com/material-rounded/24/000000/facebook-new.png"
+            /></a>
+            <a href="#" class="icon-social"
+              ><img
+                src="https://img.icons8.com/material-rounded/24/000000/instagram-new.png"
+            /></a>
+            <a href="#" class="icon-social"
+              ><img
+                src="https://img.icons8.com/material-rounded/24/000000/youtube-play.png"
+            /></a>
+            <a href="#" class="icon-social"
+              ><img src="https://img.icons8.com/ios-filled/18/000000/tiktok.png" alt="TikTok Logo"></a>
+              <a href="#" class="icon-social"
+              ><img src="https://img.icons8.com/ios-filled/18/000000/x.png" alt="X Logo"></a>
+          </div>
+        </div>
+      </div>
+      <div class="side-toggle" id="sideMenu">
+        <div class="d-flex justify-content-between align-items-center">
+          <img
+            src="https://img.icons8.com/material-rounded/48/000000/home.png"
+            alt="Logo"
+            width="40"
+          />
+          <span class="close-btn" onclick="toggleSideMenu()">&#10006;</span>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search.." />
+        </div>
+        <div class="mobile-menu">
+          <div class="menu-item">
+            <div
+              class="dropdown-toggle"
+              onclick="toggleDropdown('homeDropdown')"
+            >
+              <span>Home</span>
+              <i class="bi bi-chevron-down"></i>
+              <!-- Right-aligned icon -->
+            </div>
+            <ul class="dropdown-menu" id="homeDropdown">
+              <li><a href="#" class="dropdown-item">Main</a></li>
+              <li><a href="#" class="dropdown-item">Classic News</a></li>
+              <li><a href="#" class="dropdown-item">Tech</a></li>
+              <li><a href="#" class="dropdown-item">Classic Blog</a></li>
+              <li><a href="#" class="dropdown-item">Gaming</a></li>
+              <li><a href="#" class="dropdown-item">Sports</a></li>
+              <li><a href="#" class="dropdown-item">Newspaper</a></li>
+            </ul>
+          </div>
+          <div class="menu-item"><a href="#">Social</a></div>
+          <div class="menu-item"><a href="#">Politics</a></div>
+          <div class="menu-item"><a href="#">Economy</a></div>
+          <div class="menu-item"><a href="#">Sports</a></div>
+          <div class="menu-item"><a href="#">Arts</a></div>
+          <div class="menu-item"><a href="#">International</a></div>
+          <div class="menu-item"><a href="#">Podcasts</a></div>
+          <div class="menu-item"><a href="#">News TV</a></div>
+        </div>
+        <div class="menu-item"><a href="#">Homepages</a></div>
+        <div class="menu-item"><a href="#">Latest</a></div>
+        <div class="menu-item"><a href="#">Trending</a></div>
+      </div>
+
+      <nav class="bottom-navbar">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <!-- Left Menu: Search Icon -->
+          <div class="left-menu">
+            <span class="nav-link search-icon">
+              <img
+                src="https://img.icons8.com/material-rounded/24/ffffff/search.png"
+                alt="Search"
+                id="searchIcon"
+              />
+            </span>
+          </div>
+
+          <!-- Middle Menu: Existing Links -->
+          <div
+            class="middle-menu d-flex justify-content-center align-items-center"
+          >
+          <a href="#" class="nav-link text-warning">Home</a>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="hulonthalo"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Hulonthalo</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="hulonthalo">
+                <li>
+                  <a class="dropdown-item" href="#">Provinsi Gorontalo</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Kota Gorontalo</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Kabupaten Gorontalo</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Kabupaten Bone Bolango</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Kabupaten Boalemo</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Kabupaten Pohuwato</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Kabupaten Gorontalo Utara</a>
+                  </li>
+                  <li></li>
+                    <a class="dropdown-item" href="#">All Hulonthalo</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="olahraga"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Olahraga</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="olahraga">
+                <li><a class="dropdown-item" href="#">E-Sport</a></li>
+                <li><a class="dropdown-item" href="#">Sepak Bola</a></li>
+                <li><a class="dropdown-item" href="#">All Sports</a></li>
+                <!-- Other items... -->
+              </ul>
+            </div>
+            <a href="#" class="nav-link">Pilkada</a>
+            <a href="#" class="nav-link">Nusantara</a>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="his"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Human Interest Story</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="his">
+                <li><a class="dropdown-item" href="#">Kisah Inspiratif</a></li>
+                <li><a class="dropdown-item" href="#">Kisah Sukses</a></li>
+                <li><a class="dropdown-item" href="#">Kisah Pedagang</a></li>
+                <li><a class="dropdown-item" href="#">All HIS</a></li>
+                <!-- Other items... -->
+              </ul>
+            </div>
+            <div class="dropdown">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  id="politik"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Politik</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="politik">
+                  <li><a class="dropdown-item" href="#">KPU</a></li>
+                  <li><a class="dropdown-item" href="#">Bawaslu</a></li>
+                  <li><a class="dropdown-item" href="#">Caleg</a></li>
+                  <li><a class="dropdown-item" href="#">All Politics</a></li>
+                  <!-- Other items... -->
+                </ul>
+              </div>
+              <div class="dropdown">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  id="lifestyle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Life Style</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="lifestyle">
+                  <li><a class="dropdown-item" href="#">Teknologi</a></li>
+                  <li><a class="dropdown-item" href="#">Budaya</a></li>
+                  <li><a class="dropdown-item" href="#">Kisah Pedagang</a></li>
+                  <li><a class="dropdown-item" href="#">All Lifestlye</a></li>
+                  <!-- Other items... -->
+                </ul>
+              </div>    
+            <!-- Other middle menu items... -->
+          </div>
+
+          <!-- Right Menu: Dark Mode Icon -->
+          <div class="right-menu">
+            <a href="#" class="nav-link dark-mode-icon">
+              <img
+                src="https://img.icons8.com/material-rounded/24/ffffff/moon.png"
+                alt="Dark Mode"
+              />
+            </a>
+          </div>
+        </div>
+      </nav>
+      <!-- Search Toggle -->
+    </div>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-12 news-title">
+              <h1>Profil Mayjen Purn Afanti Uloli, Komandan Tim Pemenangan Tonny-Marten di Pilkada 2024
+              </h1>
+              <div class="sosial-icons d-flex justify-content-center mt-5">
+                <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/facebook-new.png" alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/linkedin.png" alt="LinkedIn"></a>
+                <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/pinterest.png" alt="Pinterest"></a>
+                <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/new-post.png" alt="Email"></a>
+                <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/link.png" alt="Link"></a>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12 content">
+            <!-- Image -->
+            <img class="img-fluid" src="https://via.placeholder.com/870x495" alt="Interview with microphones">
+            <!-- Paragraph -->
+            <p>
+               <b><i> Street food has evolved from humble beginnings to a global culinary trend, now embraced by gourmet chefs who are adding their signature touches. With a focus on quality ingredients, creativity, and presentation, gourmet street food is redefining the casual dining experience. Cities around the world are seeing a surge in food trucks and pop-up eateries offering everything from truffle-infused fries to lobster rolls. This movement reflects a broader shift towards more accessible yet high-quality cuisine, catering to adventurous eaters looking for unique flavors on the go.</i></b>
+            </p>
+            <h4>LOREM IPSUM</h4>
+            <p>
+                Some top trends in gourmet street food include fusion dishes that blend culinary traditions from different countries, plant-based options for health-conscious consumers, and artisanal takes on classic comfort foods. With an emphasis on sustainability and local sourcing, these dishes are not only delicious but also reflect growing consumer interest in ethical eating. Whether you're a foodie seeking the next big thing or just looking for a quick bite, gourmet street food offers a taste of innovation in every bite.
+            </p>
+            <p>
+              Street food has evolved from humble beginnings to a global culinary trend, now embraced by gourmet chefs who are adding their signature touches. With a focus on quality ingredients, creativity, and presentation, gourmet street food is redefining the casual dining experience. Cities around the world are seeing a surge in food trucks and pop-up eateries offering everything from truffle-infused fries to lobster rolls. This movement reflects a broader shift towards more accessible yet high-quality cuisine, catering to adventurous eaters looking for unique flavors on the go.
+          </p>
+          <div class="read_others mt-3 mb-3">
+            Baca Juga:
+            <a href="google.com"
+              >IM57 Minta KPK Berbuat Konkret dalam Mengusut Kasus Harun
+              Masiku</a
+            >
+          </div>
+          <p>
+              Some top trends in gourmet street food include fusion dishes that blend culinary traditions from different countries, plant-based options for health-conscious consumers, and artisanal takes on classic comfort foods. With an emphasis on sustainability and local sourcing, these dishes are not only delicious but also reflect growing consumer interest in ethical eating. Whether you're a foodie seeking the next big thing or just looking for a quick bite, gourmet street food offers a taste of innovation in every bite.
+          </p>
+          <p>
+            Street food has evolved from humble beginnings to a global culinary trend, now embraced by gourmet chefs who are adding their signature touches. With a focus on quality ingredients, creativity, and presentation, gourmet street food is redefining the casual dining experience. Cities around the world are seeing a surge in food trucks and pop-up eateries offering everything from truffle-infused fries to lobster rolls. This movement reflects a broader shift towards more accessible yet high-quality cuisine, catering to adventurous eaters looking for unique flavors on the go.
+        </p>
+        <p>
+            Some top trends in gourmet street food include fusion dishes that blend culinary traditions from different countries, plant-based options for health-conscious consumers, and artisanal takes on classic comfort foods. With an emphasis on sustainability and local sourcing, these dishes are not only delicious but also reflect growing consumer interest in ethical eating. Whether you're a foodie seeking the next big thing or just looking for a quick bite, gourmet street food offers a taste of innovation in every bite.
+        </p>
+        </div>
+    </div>
+    
+    <hr class="mt-5 mb-5">
+    <div class="row mb-5">
+      <div class="responsive-container d-flex justify-content-between align-items-center">
+        <!-- Tags Section -->
+        <div class="tags">
+            <span>Tags:</span>
+            <a href="#" class="tag">Food</a>,
+            <a href="#" class="tag">Life Style</a>,
+            <a href="#" class="tag">Tech</a>,
+            <a href="#" class="tag">Travel</a>
+        </div>
+        <!-- Share Section -->
+        <div class="sosial-share d-flex align-items-center">
+            <span class="me-2">Share:</span>
+            <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/facebook-new.png" alt="Facebook"></a>
+            <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/linkedin.png" alt="LinkedIn"></a>
+            <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/pinterest.png" alt="Pinterest"></a>
+            <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/new-post.png" alt="Email"></a>
+            <a href="#"><img src="https://img.icons8.com/material-rounded/24/000000/link.png" alt="Link"></a>
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card-read-more h-100">
+                <img src="https://via.placeholder.com/435x247" class="card-img-top" alt="Solo Travel">
+                <div class="card-body">
+                    <p class="category text-uppercase text-warning fw-bold mb-1">Travel</p>
+                    <h5 class="card-title">Solo Travel: Some Tips and Destinations for the Adventurous</h5>
+                    <p class="author-date text-muted">By Jane Smith • Jan 8, 2024</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card-read-more h-100">
+                <img src="https://via.placeholder.com/435x247" class="card-img-top" alt="AI in Marketing">
+                <div class="card-body">
+                    <p class="category text-uppercase text-warning fw-bold mb-1">Tech</p>
+                    <h5 class="card-title">AI in Marketing: Unlocking Customer Insights</h5>
+                    <p class="author-date text-muted">By John Doe • Feb 12, 2024</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card-read-more h-100">
+                <img src="https://via.placeholder.com/435x247" class="card-img-top" alt="Baking Art">
+                <div class="card-body">
+                    <p class="category text-uppercase text-warning fw-bold mb-1">Food</p>
+                    <h5 class="card-title">The Art of Baking: From Classic Bread to Artisan Pastries</h5>
+                    <p class="author-date text-muted">By Emily Clark • Feb 22, 2024</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card-read-more h-100">
+                <img src="https://via.placeholder.com/435x247" class="card-img-top" alt="Eco Tourism">
+                <div class="card-body">
+                    <p class="category text-uppercase text-warning fw-bold mb-1">Life Style</p>
+                    <h5 class="card-title">Eco-Tourism: Traveling Responsibly and Sustainably</h5>
+                    <p class="author-date text-muted">By Mark Johnson • Feb 8, 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+   
+<footer class="bg-dark text-white py-5 mt-3" style="border-top:5px solid #fadd37;">
+    <div class="container">
+      <!-- Logo Section -->
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <div class="footer-logo">
+            <img src="assets/image/LOGO/putih.svg" width="200" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Kolom 1 -->
+        <div class="col-md-2">
+          <h5 class="f-standar">Hulonthalo</h5>
+          <ul class="list-unstyled">
+            <li class="link-standar"><a href="#">Provinsi Gorontalo</a></li>
+            <li class="link-standar"><a href="#">Kota Gorontalo</a></li>
+            <li class="link-standar"><a href="#">Kabupaten Bone Bolango</a></li>
+            <li class="link-standar"><a href="#">Kabupaten Gorontalo</a></li>
+            <li class="link-standar"><a href="#">Kabupaten Boalemo</a></li>
+            <li class="link-standar"><a href="#">Kabupaten Pohuwato</a></li>
+            <li class="link-standar"><a href="#">Kabupaten Gorontalo Utara</a></li>
+          </ul>
+        </div>
+        <!-- Kolom 2 -->
+        <div class="col-md-1">
+          <h5 class="f-standar">Olahraga</h5>
+          <ul class="list-unstyled">
+            <li class="link-standar"><a href="#">E-Sport</a></li>
+            <li class="link-standar"><a href="#">Sepak Bola</a></li>
+            <li class="link-standar"><a href="#">Takraw</a></li>
+            <li class="link-standar"><a href="#">Silat</a></li>
+          </ul>
+        </div>
+        <!-- Kolom 3 -->
+        <div class="col-md-1">
+          <h5 class="f-standar">Human Interest Story</h5>
+          <ul class="list-unstyled">
+            <li class="link-standar"><a href="#">Kisah Pedagang</a></li>
+            <li class="link-standar"><a href="#">Kisah Inspiratif</a></li>
+            <li class="link-standar"><a href="#">Kisah Sukses</a></li>
+          </ul>
+        </div>
+        <!-- Kolom 4 -->
+        <div class="col-md-1">
+          <h5 class="f-standar">Politik</h5>
+          <ul class="list-unstyled">
+            <li class="link-standar"><a href="#">Pilkada</a></li>
+            <li class="link-standar"><a href="#">KPU</a></li>
+            <li class="link-standar"><a href="#">Bawaslu</a></li>
+            <li class="link-standar"><a href="#">Caleg</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="f-standar">Politik</h5>
+          <ul class="list-unstyled">
+            <li class="link-standar"><a href="#">Pilkada</a></li>
+            <li class="link-standar"><a href="#">KPU</a></li>
+            <li class="link-standar"><a href="#">Bawaslu</a></li>
+            <li class="link-standar"><a href="#">Caleg</a></li>
+          </ul>
+        </div>
+        <!-- Kolom Subscribe -->
+        <div class="col-md-4">
+          <h5 class="f-standar">Keep Up to Date with the Most Important News</h5>
+          <form class="d-flex mt-2">
+            <input
+              type="email"
+              class="form-control me-2"
+              placeholder="E-mail"
+            />
+            <button class="btn btn-warning" type="submit">Subscribe</button>
+          </form>
+          <small class="d-block mt-2 link-standar"
+            >Dengan menekan tombol Subscribe, Anda menyetujui
+            <a href="#">Kebijakan Privasi</a> dan
+            <a href="#">Syarat Penggunaan</a> kami.</small
+          >
+        </div>
+      </div>
+
+      <!-- Footer bawah -->
+      <div class="row mt-4 pt-3 border-top">
+        <div class="col-md-6">
+          <p>© 2024 Berinti.id Hak Cipta Dilindungi.</p>
+        </div>
+        <div class="col-md-6 text-end link-standar">
+          <a href="#">Syarat Penggunaan</a> |
+          <a href="#">Kebijakan Privasi</a> | <a href="#">Beli Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Ikon Sosial -->
+      <div class="text-center mt-3">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+    
+
+    
+
+    <!-- Search Toggle -->
+    <div class="search-container" id="searchContainer">
+      <span class="close-icon" id="closeSearch">&times;</span>
+      <h2>Search</h2>
+      <input type="text" placeholder="Type your keyword.." />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function toggleSideMenu() {
+        var sideMenu = document.getElementById("sideMenu");
+        sideMenu.classList.toggle("active");
+      }
+
+      function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.classList.toggle("show");
+      }
+      document
+        .getElementById("searchIcon")
+        .addEventListener("click", function () {
+          const searchContainer = document.getElementById("searchContainer");
+          searchContainer.style.display = "flex"; // Ensure it's visible
+          setTimeout(() => {
+            searchContainer.classList.add("active"); // Trigger the transition
+          }, 10); // Small delay to allow the browser to render the initial state
+        });
+
+      document
+        .getElementById("closeSearch")
+        .addEventListener("click", function () {
+          const searchContainer = document.getElementById("searchContainer");
+          searchContainer.classList.remove("active");
+          searchContainer.addEventListener(
+            "transitionend",
+            function () {
+              if (!searchContainer.classList.contains("active")) {
+                searchContainer.style.display = "none"; // Hide after transition
+              }
+            },
+            { once: true }
+          );
+        });
+    </script>
+  </body>
+</html>
